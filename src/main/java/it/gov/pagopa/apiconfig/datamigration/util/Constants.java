@@ -1,4 +1,4 @@
-package it.gov.pagopa.microservice.util;
+package it.gov.pagopa.apiconfig.datamigration.util;
 
 import lombok.experimental.UtilityClass;
 

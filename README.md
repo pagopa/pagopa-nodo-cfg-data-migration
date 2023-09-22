@@ -1,9 +1,9 @@
-# Template for Java Spring Microservice project
+# ApiConfig Data Migration
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TODO-set-your-id&metric=alert_status)](https://sonarcloud.io/dashboard?id=TODO-set-your-id)
-[![Integration Tests](https://github.com/pagopa/<TODO-repo>/actions/workflows/integration_test.yml/badge.svg?branch=main)](https://github.com/pagopa/<TODO-repo>/actions/workflows/integration_test.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pagopa-api-config-data-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=pagopa-api-config-data-migration)
+[![Integration Tests](https://github.com/pagopa/pagopa-api-config-data-migration/actions/workflows/integration_test.yml/badge.svg?branch=main)](https://github.com/pagopa/pagopa-api-config-data-migration/actions/workflows/integration_test.yml)
 
-TODO: add a description
+A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database
 
 TODO: generate a index with this tool: https://ecotrust-canada.github.io/markdown-toc/
 

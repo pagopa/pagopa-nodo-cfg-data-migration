@@ -1,6 +1,7 @@
-package it.gov.pagopa.microservice.exception;
+package it.gov.pagopa.apiconfig.datamigration.exception;
 
-import it.gov.pagopa.microservice.model.ProblemJson;
+import it.gov.pagopa.apiconfig.datamigration.model.ProblemJson;
+
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;

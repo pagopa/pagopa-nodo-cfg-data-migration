@@ -1,6 +1,6 @@
-package it.gov.pagopa.microservice.config;
+package it.gov.pagopa.apiconfig.datamigration.config;
 
-import it.gov.pagopa.microservice.exception.AppException;
+import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -28,7 +28,7 @@ public class ResponseValidator {
    * @param result    the response to validate
    */
   // TODO: set your package
-  @AfterReturning(pointcut = "execution(* it.gov.pagopa.microservice.controller.*.*(..))", returning = "result")
+  @AfterReturning(pointcut = "execution(* it.gov.pagopa.apiconfig.datamigration.controller.*.*(..))", returning = "result")
   public void validateResponse(JoinPoint joinPoint, Object result) {
     if (result instanceof ResponseEntity) {
       validateResponse((ResponseEntity<?>) result);

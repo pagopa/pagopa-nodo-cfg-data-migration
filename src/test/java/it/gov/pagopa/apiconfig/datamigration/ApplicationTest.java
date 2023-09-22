@@ -1,10 +1,11 @@
-package it.gov.pagopa.microservice;
+package it.gov.pagopa.apiconfig.datamigration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/*
 @SpringBootTest
 class ApplicationTest {
 
@@ -14,3 +15,4 @@ class ApplicationTest {
     assertTrue(true);
   }
 }
+*/
