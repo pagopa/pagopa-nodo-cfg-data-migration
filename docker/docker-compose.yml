@@ -1,8 +1,9 @@
 version: '3.8'
 
 services:
+
   app:
-    container_name: 'service' # TODO
+    container_name: 'service'
     image: ${image}
     platform: linux/amd64
     build:
@@ -12,3 +13,24 @@ services:
       - ./.env
     ports:
       - "8080:8080"
+    depends_on:
+      - db-oracle
+      - db-postgres
+
+  oracle-db:
+    image: container-registry.oracle.com/enterprise:latest
+    container_name: db-oracle
+    environment:
+      ORACLE_PWD: compose-oracle
+      ORACLE_CHARACTERSET: AL32UTF8
+    ports:
+      - "5432:5432"
+
+  postgres-db:
+    image: postgres:13.1-alpine
+    container_name: db-postgres
+    environment:
+      POSTGRES_USER: compose-postgres
+      POSTGRES_PASSWORD: compose-postgres
+    ports:
+      - "5433:5433"

@@ -2,11 +2,12 @@ package it.gov.pagopa.apiconfig.datamigration.fsm;
 
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationInLockStateException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 public class FSMExecutor {
 
-    private FSMSharedState sharedState;
+    private final FSMSharedState sharedState;
 
     private State currentStep;
 
