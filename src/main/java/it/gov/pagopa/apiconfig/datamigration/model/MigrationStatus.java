@@ -1,6 +1,6 @@
 package it.gov.pagopa.apiconfig.datamigration.model;
 
-import it.gov.pagopa.apiconfig.datamigration.fsm.State;
+import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import lombok.Data;
 
 import java.time.Instant;
@@ -11,5 +11,5 @@ public class MigrationStatus {
     private Instant migrationStart;
     private long elapsedMillis;
     private String status;
-    private Map<String, State> tableStatus; //si può popolare la table con default: TO DO se non è stata toccata
+    private Map<String, StepName> tableStatus; //si può popolare la table con default: TO DO se non è stata toccata
 }

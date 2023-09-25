@@ -1,24 +1,31 @@
 package it.gov.pagopa.apiconfig.datamigration.exception;
 
+import it.gov.pagopa.apiconfig.datamigration.util.Constants;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 
 @Getter
 public enum AppError {
-  INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error",
-      "Something was wrong");
 
-  public final HttpStatus httpStatus;
-  public final String title;
-  public final String details;
+    STATUS_ALREADY_LOCKED(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT, "Error while trying to lock the migration status. The status is already locked."),
+
+    STATUS_NOT_LOCKED(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT, "Error while trying to unlock the migration status. The status is not locked."),
+
+    FORCE_STOP_ALREADY_REQUESTED(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT, "Error while trying to stop the migration process. A graceful stop was already requested."),
+
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error", "Something was wrong");
+
+    public final HttpStatus httpStatus;
+    public final String title;
+    public final String details;
 
 
-  AppError(HttpStatus httpStatus, String title, String details) {
-    this.httpStatus = httpStatus;
-    this.title = title;
-    this.details = details;
-  }
+    AppError(HttpStatus httpStatus, String title, String details) {
+        this.httpStatus = httpStatus;
+        this.title = title;
+        this.details = details;
+    }
 }
 
 

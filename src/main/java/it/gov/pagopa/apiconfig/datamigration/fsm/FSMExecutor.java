@@ -1,43 +1,67 @@
 package it.gov.pagopa.apiconfig.datamigration.fsm;
 
-import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationInLockStateException;
+import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
+import it.gov.pagopa.apiconfig.datamigration.exception.AppError;
+import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
+import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Slf4j
+@Service
 public class FSMExecutor {
+
+    @Autowired
+    private Map<String, Step> steps;
 
     private final FSMSharedState sharedState;
 
-    private State currentStep;
+    private StepName currentStep;
 
     public FSMExecutor() {
         this.sharedState = new FSMSharedState();
     }
 
-    public void execute() throws Exception {
-        if (this.sharedState.isInLock()) {
-            throw new MigrationInLockStateException();
-        }
-        this.sharedState.setInLock(true);
+    private void execute() throws MigrationStepException {
         while (this.sharedState.isInLock() && this.currentStep != null) {
-            this.currentStep = this.currentStep.execute(sharedState);
+            Step currentStepExecutor = this.steps.get(currentStep.toString());
+            currentStepExecutor.attachSharedState(sharedState);
+            this.currentStep =  currentStepExecutor.call();
         }
-        this.sharedState.setInLock(false);
     }
 
     public void start() throws Exception {
-        this.currentStep = State.START;
+        // check if status is in lock
+        if (this.sharedState.isInLock()) {
+            throw new AppException(AppError.STATUS_ALREADY_LOCKED);
+        }
+        this.sharedState.lock();
+        this.currentStep = StepName.START;
         execute();
     }
 
     public void restart() throws Exception {
+        // check if status is in lock
+        if (this.sharedState.isInLock()) {
+            throw new AppException(AppError.STATUS_ALREADY_LOCKED);
+        }
+        this.sharedState.lock();
+
         // TODO reload migration status from postgreSQL
-        // TODO set currentStep with the IN_PROGRESS (if exists)
+        // TODO set currentStep with the IN_PROGRESS status (if exists)
         execute();
     }
 
     public void forceStop() {
-        this.sharedState.setInLock(false);
+        if (this.sharedState.isBlockRequested()) {
+            throw new AppException(AppError.FORCE_STOP_ALREADY_REQUESTED);
+        }
+        if (!this.sharedState.isInLock()) {
+            throw new AppException(AppError.STATUS_NOT_LOCKED);
+        }
+        this.sharedState.requestBlock();
     }
 }
