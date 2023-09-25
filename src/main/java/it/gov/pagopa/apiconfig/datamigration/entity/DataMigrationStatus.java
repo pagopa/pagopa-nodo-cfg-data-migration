@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 public class DataMigrationStatus implements Serializable {
@@ -19,4 +18,8 @@ public class DataMigrationStatus implements Serializable {
     private Timestamp start;
 
     private Timestamp end;
+
+    public DataMigrationStatus() {
+        this.status = MigrationStepStatus.TODO;
+    }
 }

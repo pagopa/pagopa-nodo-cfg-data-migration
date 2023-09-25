@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
-//@Table(name = "CFG_DATA_MIGRATION")
-//@Entity
+@Table(name = "CFG_DATA_MIGRATION")
+@Entity
 @Getter
 @Setter
 @Builder
