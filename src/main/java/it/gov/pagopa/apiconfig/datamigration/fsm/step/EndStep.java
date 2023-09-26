@@ -5,7 +5,7 @@ import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.CfgDataMigrationRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

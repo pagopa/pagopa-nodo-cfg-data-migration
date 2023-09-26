@@ -6,7 +6,7 @@ import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationErrorO
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.CfgDataMigrationRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
 import it.gov.pagopa.apiconfig.datamigration.repository.oracle.IntermediariPaSrcRepository;
 import it.gov.pagopa.apiconfig.datamigration.repository.postgres.IntermediariPaDestRepository;
 import it.gov.pagopa.apiconfig.starter.entity.IntermediariPa;
