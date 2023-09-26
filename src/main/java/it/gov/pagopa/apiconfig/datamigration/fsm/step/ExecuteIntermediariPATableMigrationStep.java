@@ -1,16 +1,14 @@
 package it.gov.pagopa.apiconfig.datamigration.fsm.step;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
-import it.gov.pagopa.apiconfig.datamigration.exception.migration.InvalidMigrationStatusException;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationErrorOnStepException;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
 import it.gov.pagopa.apiconfig.datamigration.repository.CfgDataMigrationRepository;
-import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
+import it.gov.pagopa.apiconfig.datamigration.repository.oracle.IntermediariPaSrcRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.IntermediariPaDestRepository;
 import it.gov.pagopa.apiconfig.starter.entity.IntermediariPa;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Slf4j
@@ -32,11 +29,11 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
     @Autowired
     private CfgDataMigrationRepository cfgDataMigrationRepo;
 
-    // @Autowired
-    // IntermediariPaSrcRepository srcRepo;
+    @Autowired
+    IntermediariPaSrcRepository srcRepo;
 
-    // @Autowired
-    // IntermediariPaDestRepository destRepo;
+    @Autowired
+    IntermediariPaDestRepository destRepo;
 
     @Override
     public void executeStep() throws MigrationStepException {

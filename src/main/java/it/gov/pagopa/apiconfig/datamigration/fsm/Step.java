@@ -12,7 +12,6 @@ import it.gov.pagopa.apiconfig.datamigration.repository.CfgDataMigrationReposito
 import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.Timestamp;
 import java.util.concurrent.Callable;
@@ -31,7 +30,7 @@ public abstract class Step implements Callable<StepName> {
     public abstract DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details);
 
     @Override
-    public StepName call() throws MigrationStepException {
+    public StepName call() {
         long startTime = System.currentTimeMillis();
         StepName nextState = getNextState();
         log.info(String.format("The step [%s] is starting its execution.", getStepName()));
@@ -56,24 +55,24 @@ public abstract class Step implements Callable<StepName> {
         return !this.sharedState.isBlockRequested() && this.sharedState.isInLock() && pageable.isPaged();
     }
 
-    protected void updateDataMigrationStatusOnStart(CfgDataMigrationRepository cfgDataMigrationRepo) {
+    protected void updateDataMigrationStatusOnStart(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.IN_PROGRESS, CommonUtils.now(), null);
     }
 
-    protected void updateDataMigrationStatusOnEnd(CfgDataMigrationRepository cfgDataMigrationRepo) {
+    protected void updateDataMigrationStatusOnEnd(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.COMPLETED, null, CommonUtils.now());
     }
 
-    protected void updateDataMigrationStatusOnFailure(CfgDataMigrationRepository cfgDataMigrationRepo) {
+    protected void updateDataMigrationStatusOnFailure(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.FAILED, null, CommonUtils.now());
     }
 
-    protected void updateDataMigrationStatusOnBlock(CfgDataMigrationRepository cfgDataMigrationRepo) {
+    protected void updateDataMigrationStatusOnBlock(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.BLOCKED, null, CommonUtils.now());
     }
 
-    private void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end) {
-        DataMigration dataMigration = cfgDataMigrationRepo.readLastMigration().orElseThrow(InvalidMigrationStatusException::new);;
+    private void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end) throws InvalidMigrationStatusException {
+        DataMigration dataMigration = cfgDataMigrationRepo.readLastMigration().orElseThrow(InvalidMigrationStatusException::new);
         DataMigrationDetails details = dataMigration.getDetails();
         details.setLastExecutedStep(getStepName());
         DataMigrationStatus migrationStatus = getDataMigrationStatus(details);
