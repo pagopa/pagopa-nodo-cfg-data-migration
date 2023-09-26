@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactory",
+        entityManagerFactoryRef = "oracleEntityManagerFactory",
         basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.oracle"}
 )
 public class OracleDBDatasourceConfiguration {
@@ -32,21 +32,20 @@ public class OracleDBDatasourceConfiguration {
     }
 
     @Primary
-    @Bean(name = "entityManagerFactory")
+    @Bean(name = "oracleEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean (
             EntityManagerFactoryBuilder builder,
             @Qualifier("dataSource") DataSource dataSource
     ) {
-        //TODO fix domain and persistenceunit
         return builder
                 .dataSource(dataSource)
-                .packages("")
-                .persistenceUnit("")
+                .packages("it.gov.pagopa.apiconfig.datamigration.entity")
+                .persistenceUnit("oracledbUnit")
                 .build();
     }
 
     @Primary
-    @Bean(name = "transactionManager")
+    @Bean(name = "oracledbTransactionManager")
     public PlatformTransactionManager transactionManager (
             @Qualifier("entityManagerFactory")EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);

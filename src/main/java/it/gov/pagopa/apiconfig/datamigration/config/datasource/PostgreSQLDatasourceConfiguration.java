@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactory",
+        entityManagerFactoryRef = "postgresqlEntityManagerFactory",
         basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.postgres"}
 )
 public class PostgreSQLDatasourceConfiguration {
@@ -29,20 +29,19 @@ public class PostgreSQLDatasourceConfiguration {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "entityManagerFactory")
+    @Bean(name = "postgresqlEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean (
             EntityManagerFactoryBuilder builder,
             @Qualifier("dataSource") DataSource dataSource
     ) {
-        //TODO fix domain and persistenceunit
         return builder
                 .dataSource(dataSource)
-                .packages("")
-                .persistenceUnit("")
+                .packages("it.gov.pagopa.apiconfig.datamigration.entity")
+                .persistenceUnit("postgresqlUnit")
                 .build();
     }
 
-    @Bean(name = "transactionManager")
+    @Bean(name = "postgresqlTransactionManager")
     public PlatformTransactionManager transactionManager (
             @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
