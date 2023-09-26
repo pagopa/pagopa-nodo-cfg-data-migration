@@ -55,8 +55,10 @@ public class StartStep extends Step {
         this.sharedState.lock();
         // save migration status
         try {
+            String id = UUID.randomUUID().toString();
+            this.sharedState.setDataMigrationStateId(id);
             DataMigration dataMigration = DataMigration.builder()
-                    .id(UUID.randomUUID().toString())
+                    .id(id)
                     .start(CommonUtils.now())
                     .status(MigrationStepStatus.IN_PROGRESS.toString())
                     .details(DataMigrationDetails.builder()
@@ -100,7 +102,7 @@ public class StartStep extends Step {
                             .quadratureSched(new DataMigrationStatus())
                             .build())
                     .build();
-            // cfgDataMigrationRepo.save(dataMigration); // TODO de-comment when repository is created
+            cfgDataMigrationRepo.save(dataMigration);
         } catch (DataAccessException e) {
             throw new MigrationStatusSavingException(e);
         }

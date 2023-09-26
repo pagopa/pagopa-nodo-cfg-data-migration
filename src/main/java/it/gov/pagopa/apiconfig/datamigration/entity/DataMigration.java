@@ -1,13 +1,12 @@
 package it.gov.pagopa.apiconfig.datamigration.entity;
 
+import it.gov.pagopa.apiconfig.datamigration.util.JsonBConverter;
 import lombok.*;
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Table(name = "CFG_DATA_MIGRATION")
@@ -24,16 +23,17 @@ public class DataMigration {
     @Column(name = "ID", nullable = false)
     private String id;
 
-    @Column(name = "START", nullable = false)
+    @Column(name = "START_EXEC", nullable = false)
     private Timestamp start;
 
-    @Column(name = "END")
+    @Column(name = "END_EXEC")
     private Timestamp end;
 
     @Column(name = "STATUS", nullable = false)
     private String status;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "DETAIL", nullable = false)
+    @Column(name = "DETAIL", nullable = false, columnDefinition = "jsonb")
+    @ColumnTransformer(write = "?::jsonb")
+    @Convert(converter = JsonBConverter.class)
     private DataMigrationDetails details;
 }

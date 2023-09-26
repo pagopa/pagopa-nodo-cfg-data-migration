@@ -13,9 +13,13 @@ public class FSMSharedState {
 
     private boolean isInLock;
 
+    @Setter
+    private String dataMigrationStateId;
+
     public void resetStates() {
         this.isBlockRequested = false;
         this.isPersistingData = false;
+        this.dataMigrationStateId = null;
     }
 
     public void requestBlock() {
