@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="liquibase" id="202206211659">
+        <dropColumn columnName="CATEGORIA"
+                    tableName="CDS_SERVIZIO">
+            <column name="CATEGORIA"/>
+        </dropColumn>
+    </changeSet>
+
+    <changeSet author="liquibase" id="202206211700">
+        <addColumn tableName="CDS_SOGGETTO_SERVIZIO">
+            <column name="ID_SOGGETTO_SERVIZIO" type="VARCHAR2(5 CHAR)"/>
+        </addColumn>
+        <sql>UPDATE CDS_SOGGETTO_SERVIZIO SET ID_SOGGETTO_SERVIZIO = substr(lpad(to_char(fk_cds_servizio), 12, '0'), -5)</sql>
+    </changeSet>
+
+    <changeSet author="liquibase" id="202206211710">
+        <addNotNullConstraint columnName="ID_SOGGETTO_SERVIZIO"
+                              tableName="CDS_SOGGETTO_SERVIZIO"
+                              validate="true"/>
+        <addUniqueConstraint  columnNames="ID_SOGGETTO_SERVIZIO"
+                              constraintName="CDS_SOGGETTO_SERVIZIO_ID_SOGGETTO_SERVIZIO_UNIQUE"
+                              deferrable="false"
+                              initiallyDeferred="false"
+                              tableName="CDS_SOGGETTO_SERVIZIO"
+                              tablespace="${tablespaceIdx}"
+                              validate="true"/>
+        <dropUniqueConstraint constraintName="CDS_SERVIZIO_UNIQUE"
+                              tableName="CDS_SOGGETTO_SERVIZIO"
+                              uniqueColumns="FK_CDS_SERVIZIO"/>
+    </changeSet>
+
+</databaseChangeLog>

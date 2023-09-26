@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="liquibase" id="20220720000000_1">
+        <createTable tableName="DIZIONARIO_METADATI">
+            <column name="CHIAVE" type="VARCHAR2(140 CHAR)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIZIONE" type="VARCHAR2(200 CHAR)">
+            </column>
+            <column name="DATA_INIZIO_VALIDITA" type="TIMESTAMP(6)">
+            </column>
+            <column name="DATA_FINE_VALIDITA" type="TIMESTAMP(6)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="liquibase" id="20220720000000_2">
+        <addColumn tableName="STAZIONI">
+            <column name="VERSIONE_PRIMITIVE" type="NUMBER(2)" defaultValueNumeric="1">
+            </column>
+        </addColumn>
+    </changeSet>
+
+
+    <changeSet author="liquibase" id="20220720000000_3">
+        <addNotNullConstraint columnName="DATA_INIZIO_VALIDITA" tableName="DIZIONARIO_METADATI"/>
+    </changeSet>
+
+</databaseChangeLog>
