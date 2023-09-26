@@ -1,6 +1,7 @@
 package it.gov.pagopa.apiconfig.datamigration.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -19,7 +20,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(
         entityManagerFactoryRef = "postgresqlEntityManagerFactory",
-        basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.postgres"}
+        basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.postgres" }
 )
 public class PostgreSQLDatasourceConfiguration {
 
@@ -36,14 +37,14 @@ public class PostgreSQLDatasourceConfiguration {
     ) {
         return builder
                 .dataSource(dataSource)
-                .packages("it.gov.pagopa.apiconfig.datamigration.entity")
+                .packages("it.gov.pagopa.apiconfig.datamigration.entity", "it.gov.pagopa.apiconfig.starter.entity")
                 .persistenceUnit("postgresqlUnit")
                 .build();
     }
 
     @Bean(name = "postgresqlTransactionManager")
     public PlatformTransactionManager transactionManager (
-            @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+            @Qualifier("postgresqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 }

@@ -1,6 +1,7 @@
 package it.gov.pagopa.apiconfig.datamigration.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -39,7 +40,7 @@ public class OracleDBDatasourceConfiguration {
     ) {
         return builder
                 .dataSource(dataSource)
-                .packages("it.gov.pagopa.apiconfig.datamigration.entity")
+                .packages("it.gov.pagopa.apiconfig.starter.entity")
                 .persistenceUnit("oracledbUnit")
                 .build();
     }
@@ -47,7 +48,7 @@ public class OracleDBDatasourceConfiguration {
     @Primary
     @Bean(name = "oracledbTransactionManager")
     public PlatformTransactionManager transactionManager (
-            @Qualifier("entityManagerFactory")EntityManagerFactory entityManagerFactory) {
+            @Qualifier("oracleEntityManagerFactory")EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 }
