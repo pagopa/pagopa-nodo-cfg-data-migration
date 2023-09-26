@@ -1,15 +1,12 @@
 # Docker Environment 🐳
-`run_docker.sh` is a script to launch the image of this microservice and all the dependencies on Docker.
-
-## How to use 💻
-You can use `local`, `dev`, `uat` or `prod` images
-
-Precondition: `az login`
-
-`sh ./run_docker.sh <local|dev|uat|prod>`
-
----
-
-ℹ️ _Note_: for **PagoPa ACR** is **required** the login `az acr login -n <acr-name>`
-
-ℹ️ _Note_: If you run the script without the parameter, `local` is used as default.
+ - Clone `https://github.com/oracle/docker-images` project
+ - Download "OracleDB" zip v19.3.0, the downloaded file will be `LINUX.ARM64_1919000_db_home`. 
+ - Move this zip in folder `/docker-images/OracleDatabase/SingleInstance/dockerfiles/19.3.0`.
+ - As described [here](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md), run `./buildContainerImage.sh -e -v 19.3.0 -o '--build-arg SLIMMING=false'
+ - From this repository in `docker` folder, run `docker-compose -f docker-compose.yml up`.
+ - Move in `db/liquibase/` folder
+ - Run `sh runLiquibase.sh`
+ - Connect with your favourite client on local image, using:
+   - JDBC Connection: jdbc:oracle:thin:@//localhost:1521/ORCLPDB1
+   - Username: system
+   - Password: oracle
