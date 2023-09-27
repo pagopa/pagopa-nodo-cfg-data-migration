@@ -40,6 +40,7 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
         try {
             // starting migration step: update migration status
             updateDataMigrationStatusOnStart(cfgDataMigrationRepo);
+            checkExecutionBlock(cfgDataMigrationRepo, true);
 
             // starting migration: read from source DB, then save on destination DB, until end or stop
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
@@ -52,6 +53,7 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
 
             // ending migration step: update migration status
             updateDataMigrationStatusOnStepEnd(cfgDataMigrationRepo);
+            checkExecutionBlock(cfgDataMigrationRepo, false);
 
         } catch (DataAccessException e) {
             updateDataMigrationStatusOnFailure(cfgDataMigrationRepo);

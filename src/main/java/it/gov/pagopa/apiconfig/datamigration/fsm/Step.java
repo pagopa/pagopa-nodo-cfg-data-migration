@@ -55,6 +55,15 @@ public abstract class Step implements Callable<StepName> {
         return !this.sharedState.isBlockRequested() && this.sharedState.isInLock() && pageable.isPaged();
     }
 
+    protected void checkExecutionBlock(CfgDataMigrationRepository cfgDataMigrationRepo, boolean updateStatus) throws MigrationInterruptedStepException, InvalidMigrationStatusException {
+        if (this.sharedState.isBlockRequested()) {
+            if (updateStatus) {
+                updateDataMigrationStatusOnBlock(cfgDataMigrationRepo);
+            }
+            throw new MigrationInterruptedStepException();
+        }
+    }
+
     protected void updateDataMigrationStatusOnStart(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.IN_PROGRESS, CommonUtils.now(), null);
     }
