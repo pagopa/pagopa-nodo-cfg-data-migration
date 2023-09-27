@@ -1,6 +1,5 @@
 package it.gov.pagopa.apiconfig.datamigration.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
@@ -22,10 +21,6 @@ public class MigrationService {
     @Autowired
     @Qualifier("executor")
     private FSMExecutor fsmExecutor;
-
-
-    @Autowired
-    private ObjectMapper mapper;
 
     @Async
     public void startMigration() {
