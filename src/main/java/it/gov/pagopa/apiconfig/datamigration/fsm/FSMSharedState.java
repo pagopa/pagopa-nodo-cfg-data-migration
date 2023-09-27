@@ -6,9 +6,6 @@ import lombok.Setter;
 @Getter
 public class FSMSharedState {
 
-    @Setter
-    private boolean isPersistingData;
-
     private boolean isBlockRequested;
 
     private boolean isInLock;
@@ -18,7 +15,6 @@ public class FSMSharedState {
 
     public void resetStates() {
         this.isBlockRequested = false;
-        this.isPersistingData = false;
         this.dataMigrationStateId = null;
     }
 

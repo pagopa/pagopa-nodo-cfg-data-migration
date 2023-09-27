@@ -1,7 +1,7 @@
 package it.gov.pagopa.apiconfig.datamigration.enumeration;
 
 public enum MigrationStepStatus {
-    TODO,
+    TODO, // used only for steps
     IN_PROGRESS,
     BLOCKED,
     FAILED,
