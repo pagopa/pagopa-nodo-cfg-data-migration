@@ -29,7 +29,7 @@ public class EndStep extends Step {
             Optional<DataMigration> dataMigrationOpt = cfgDataMigrationRepo.findById(this.sharedState.getDataMigrationStateId());
             if (dataMigrationOpt.isPresent()) {
                 DataMigration dataMigration = dataMigrationOpt.get();
-                dataMigration.setStatus(this.sharedState.isExecutionFailed() ? MigrationStepStatus.FAILED.toString() : MigrationStepStatus.COMPLETED.toString());
+                dataMigration.setStatus(this.sharedState.isBlockRequested() ? MigrationStepStatus.BLOCKED.toString() : MigrationStepStatus.COMPLETED.toString());
                 dataMigration.setEnd(CommonUtils.now());
                 cfgDataMigrationRepo.saveAndFlush(dataMigration);
             } else {
