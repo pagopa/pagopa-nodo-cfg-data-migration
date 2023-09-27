@@ -63,7 +63,7 @@ public abstract class Step implements Callable<StepName> {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.COMPLETED, null, CommonUtils.now());
     }
 
-    protected void updateDataMigrationOnStepEnd(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
+    protected void updateDataMigrationStatusOnStepEnd(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         if (this.sharedState.isBlockRequested()) {
             updateDataMigrationStatusOnBlock(cfgDataMigrationRepo);
         } else {

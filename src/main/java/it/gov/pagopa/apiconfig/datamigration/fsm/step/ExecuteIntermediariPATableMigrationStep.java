@@ -38,9 +38,10 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
     @Override
     public void executeStep() throws MigrationStepException {
         try {
-            // ending migration step: update migration status
+            // starting migration step: update migration status
             updateDataMigrationStatusOnStart(cfgDataMigrationRepo);
 
+            // starting migration: read from source DB, then save on destination DB, until end or stop
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
             do {
                 Page<IntermediariPa> pagedEntities = srcRepo.findAll(pageable);
@@ -50,7 +51,7 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
             } while(canContinueReadPages(pageable));
 
             // ending migration step: update migration status
-            updateDataMigrationStatusOnEnd(cfgDataMigrationRepo);
+            updateDataMigrationStatusOnStepEnd(cfgDataMigrationRepo);
 
         } catch (DataAccessException e) {
             updateDataMigrationStatusOnFailure(cfgDataMigrationRepo);
