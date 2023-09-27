@@ -16,6 +16,10 @@ public enum AppError {
 
     NOT_FOUND_NO_VALID_MIGRATION_STATUS(HttpStatus.NOT_FOUND, "Not found", "Error while reading the status of the last execution. No valid migration was executed before."),
 
+    MIGRATION_ALREADY_COMPLETED(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT,  "Error while restarting the migration. The last migration was already completed with success."),
+    MIGRATION_ALREADY_IN_PROGRESS(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT, "Error while restarting the migration. The last migration is currently in progress or has an invalid [IN_PROGRESS] state."),
+    MIGRATION_NOT_RESTARTABLE(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT, "Error while restarting the migration. The last migration cannot be restarted because is in a un-restartable state."),
+
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error", "Something was wrong");
 
     public final HttpStatus httpStatus;

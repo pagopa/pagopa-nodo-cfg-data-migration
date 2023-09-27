@@ -1,5 +1,6 @@
 package it.gov.pagopa.apiconfig.datamigration.entity;
 
+import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
 import it.gov.pagopa.apiconfig.datamigration.util.JsonBConverter;
 import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
@@ -25,6 +26,9 @@ public class DataMigration {
 
     @Column(name = "START_EXEC", nullable = false)
     private Timestamp start;
+
+    @Column(name = "RESTART_EXEC")
+    private Timestamp restart;
 
     @Column(name = "END_EXEC")
     private Timestamp end;

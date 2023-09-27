@@ -21,6 +21,9 @@ public class MigrationStatus implements Serializable {
     @JsonProperty("migration_start")
     private String migrationStart;
 
+    @JsonProperty("migration_last_restart")
+    private String migrationLastRestart;
+
     @JsonProperty("elapsed_time")
     private Long elapsedTime;
 

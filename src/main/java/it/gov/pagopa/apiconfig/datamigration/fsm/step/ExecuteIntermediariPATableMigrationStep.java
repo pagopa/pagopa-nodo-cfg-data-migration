@@ -27,9 +27,6 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
     private static final int PAGE_SIZE = 50;
 
     @Autowired
-    private CfgDataMigrationRepository cfgDataMigrationRepo;
-
-    @Autowired
     IntermediariPaSrcRepository srcRepo;
 
     @Autowired

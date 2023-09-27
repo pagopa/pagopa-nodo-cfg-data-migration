@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppError;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
+import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.fsm.FSMExecutor;
 import it.gov.pagopa.apiconfig.datamigration.model.migration.MigrationStatus;
 import it.gov.pagopa.apiconfig.datamigration.model.migration.TableMigrationStatus;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
 import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
-import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
@@ -26,20 +23,18 @@ public class MigrationService {
     @Qualifier("executor")
     private FSMExecutor fsmExecutor;
 
-    @Autowired
-    private CfgDataMigrationRepository cfgDataMigrationRepo;
 
     @Autowired
     private ObjectMapper mapper;
 
     @Async
-    public void startMigration() throws Exception {
+    public void startMigration() {
         fsmExecutor.start();
     }
 
-    @Async
-    public void reStartMigration() throws Exception {
-        fsmExecutor.restart();
+    public void reStartMigration() {
+        StepName lastExecutedName = fsmExecutor.restart();
+        asyncStart(lastExecutedName);
     }
 
     public void forcedStopMigration() {
@@ -47,8 +42,12 @@ public class MigrationService {
     }
 
     public MigrationStatus getMigrationStatus() {
-        DataMigration dataMigrationStatus = cfgDataMigrationRepo.findTopByOrderByStartDesc().orElseThrow(() -> new AppException(AppError.NOT_FOUND_NO_VALID_MIGRATION_STATUS));
-        return convert(dataMigrationStatus);
+        return convert(fsmExecutor.getLastMigrationStatus());
+    }
+
+    @Async
+    private void asyncStart(StepName lastExecutedName) {
+        fsmExecutor.start(lastExecutedName);
     }
 
     public MigrationStatus convert(DataMigration dataMigration) {
@@ -95,7 +94,8 @@ public class MigrationService {
 
         // complete migration status
         return MigrationStatus.builder()
-                .migrationStart(dataMigration.getStart().toString())//CommonUtils.toLocalDateTime(dataMigration.getStart()))
+                .migrationStart(dataMigration.getStart().toString())
+                .migrationLastRestart(dataMigration.getRestart().toString())
                 .elapsedTime(dataMigration.getEnd() != null ?
                         CommonUtils.getElapsedTime(dataMigration.getStart(), dataMigration.getEnd()) :
                         CommonUtils.getElapsedTime(dataMigration.getStart(), CommonUtils.now()))

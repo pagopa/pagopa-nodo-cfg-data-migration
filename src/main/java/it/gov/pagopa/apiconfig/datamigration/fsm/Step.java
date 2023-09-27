@@ -21,6 +21,8 @@ public abstract class Step implements Callable<StepName> {
 
     protected FSMSharedState sharedState;
 
+    protected CfgDataMigrationRepository cfgDataMigrationRepo;
+
     public abstract void executeStep() throws MigrationStepException;
 
     public abstract StepName getNextState();
@@ -47,8 +49,9 @@ public abstract class Step implements Callable<StepName> {
         return nextState;
     }
 
-    public void attachSharedState(FSMSharedState fsm) {
+    public void attachSharedState(FSMSharedState fsm, CfgDataMigrationRepository repository) {
         this.sharedState = fsm;
+        this.cfgDataMigrationRepo = repository;
     }
 
     protected boolean canContinueReadPages(Pageable pageable) {

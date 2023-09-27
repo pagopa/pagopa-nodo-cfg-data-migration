@@ -9,10 +9,8 @@ import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepEx
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationTruncateAllTablesException;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
 import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -22,9 +20,6 @@ import java.util.UUID;
 @Slf4j
 @Service("START")
 public class StartStep extends Step {
-
-    @Autowired
-    private CfgDataMigrationRepository cfgDataMigrationRepo;
 
     @Override
     public void executeStep() throws MigrationStepException {
