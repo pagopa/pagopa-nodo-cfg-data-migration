@@ -28,7 +28,6 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "INFORMATIVE_PA_DETAIL")
-
 public class InformativePaDetail {
 
     @Id

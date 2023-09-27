@@ -2,13 +2,13 @@ package it.gov.pagopa.apiconfig.datamigration.fsm.step;
 
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.apiconfig.datamigration.entity.cfg.IntermediariPa;
+import it.gov.pagopa.apiconfig.datamigration.entity.cfg.Codifiche;
+import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationErrorOnStepException;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.oracle.IntermediariPaSrcRepository;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.IntermediariPaDestRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.oracle.CodificheSrcRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CodificheDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -20,16 +20,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Slf4j
-@Service("EXECUTE_INTERMEDIARIPA_TABLE_MIGRATION")
-public class ExecuteIntermediariPATableMigrationStep extends Step {
+@Service("EXECUTE_CODIFICHE_TABLE_MIGRATION")
+public class ExecuteCodificheTableMigrationStep extends Step {
 
     private static final int PAGE_SIZE = 50;
 
     @Autowired
-    IntermediariPaSrcRepository srcRepo;
+    CodificheSrcRepository srcRepo;
 
     @Autowired
-    IntermediariPaDestRepository destRepo;
+    CodificheDestRepository destRepo;
 
     @Override
     public void executeStep() throws MigrationStepException {
@@ -41,8 +41,8 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
             // starting migration: read from source DB, then save on destination DB, until end or stop
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
             do {
-                Page<IntermediariPa> pagedEntities = srcRepo.findAll(pageable);
-                List<IntermediariPa> entities = pagedEntities.getContent();
+                Page<Codifiche> pagedEntities = srcRepo.findAll(pageable);
+                List<Codifiche> entities = pagedEntities.getContent();
                 destRepo.saveAllAndFlush(entities);
                 pageable = pagedEntities.nextPageable();
             } while(canContinueReadPages(pageable));
@@ -59,16 +59,17 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_PA_TABLE_MIGRATION;
+        return StepName.EXECUTE_CODIFICHE_PA_TABLE_MIGRATION;
     }
 
     @Override
     public String getStepName() {
-        return StepName.EXECUTE_INTERMEDIARI_PA_TABLE_MIGRATION.toString();
+        return StepName.EXECUTE_CODIFICHE_TABLE_MIGRATION.toString();
     }
 
     @Override
     public DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details) {
-        return details.getIntermediariPa();
+        return details.getCodifiche();
     }
 }
+

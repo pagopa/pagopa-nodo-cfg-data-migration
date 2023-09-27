@@ -21,7 +21,8 @@ import lombok.ToString;
 
 @Table(
         name = "PA_STAZIONE_PA",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_PA", "FK_STAZIONE"})})
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_PA", "FK_STAZIONE"})}
+)
 @Entity
 @Getter
 @Setter
@@ -29,7 +30,6 @@ import lombok.ToString;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class PaStazionePa {
 
     @Id

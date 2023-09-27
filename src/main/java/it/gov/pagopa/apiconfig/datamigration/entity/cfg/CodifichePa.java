@@ -24,7 +24,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-
 public class CodifichePa {
 
     @Id

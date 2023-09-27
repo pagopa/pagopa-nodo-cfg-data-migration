@@ -22,7 +22,6 @@ import lombok.ToString;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class IntermediariPsp {
 
     @Id

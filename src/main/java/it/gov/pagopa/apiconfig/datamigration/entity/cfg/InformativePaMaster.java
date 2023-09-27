@@ -30,7 +30,6 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class InformativePaMaster {
 
     @Id

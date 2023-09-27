@@ -27,7 +27,6 @@ import org.springframework.data.annotation.Immutable;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-
 public class IbanValidiPerPa {
 
     @Id

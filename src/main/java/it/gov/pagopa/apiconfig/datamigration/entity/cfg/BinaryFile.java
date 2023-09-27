@@ -21,7 +21,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-
 public class BinaryFile {
 
     @Id

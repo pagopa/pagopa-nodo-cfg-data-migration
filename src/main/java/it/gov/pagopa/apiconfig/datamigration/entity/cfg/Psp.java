@@ -1,5 +1,6 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
+import it.gov.pagopa.apiconfig.starter.entity.PspCanaleTipoVersamento;
 import it.gov.pagopa.apiconfig.starter.util.YesNoConverter;
 import java.util.List;
 import javax.persistence.Column;
@@ -27,7 +28,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-
 public class Psp {
 
     @Id

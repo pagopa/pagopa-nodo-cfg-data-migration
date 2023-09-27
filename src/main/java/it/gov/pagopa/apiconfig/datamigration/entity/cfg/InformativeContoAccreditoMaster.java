@@ -28,7 +28,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-
 public class InformativeContoAccreditoMaster {
 
     @Id

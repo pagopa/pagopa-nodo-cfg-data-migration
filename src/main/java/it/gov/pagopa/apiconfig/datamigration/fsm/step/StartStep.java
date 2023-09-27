@@ -31,7 +31,7 @@ public class StartStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_INTERMEDIARIPA_TABLE_MIGRATION;
+        return StepName.EXECUTE_INTERMEDIARI_PA_TABLE_MIGRATION;
     }
 
     @Override
