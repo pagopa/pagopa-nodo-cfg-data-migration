@@ -63,7 +63,7 @@ public class ExecuteIntermediariPATableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_PA_TABLE_MIGRATION;
+        return StepName.END;
     }
 
     @Override

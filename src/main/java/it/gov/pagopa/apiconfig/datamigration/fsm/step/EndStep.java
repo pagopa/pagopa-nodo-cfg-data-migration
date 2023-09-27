@@ -31,7 +31,7 @@ public class EndStep extends Step {
                 DataMigration dataMigration = dataMigrationOpt.get();
                 dataMigration.setStatus(this.sharedState.isBlockRequested() ? MigrationStepStatus.BLOCKED.toString() : MigrationStepStatus.COMPLETED.toString());
                 if (!this.sharedState.isBlockRequested()) {
-                    dataMigration.getDetails().setLastExecutedStep(StepName.END.toString());
+                    dataMigration.setLastExecutedStep(StepName.END.toString());
                 }
                 dataMigration.setEnd(CommonUtils.now());
                 cfgDataMigrationRepo.saveAndFlush(dataMigration);

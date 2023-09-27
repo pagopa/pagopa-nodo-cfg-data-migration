@@ -12,8 +12,6 @@ import java.io.Serializable;
 @ToString
 public class DataMigrationDetails implements Serializable {
 
-    private String lastExecutedStep;
-
     private DataMigrationStatus intermediariPa;
 
     private DataMigrationStatus pa;

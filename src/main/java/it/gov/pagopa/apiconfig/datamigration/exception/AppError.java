@@ -14,6 +14,8 @@ public enum AppError {
 
     FORCE_STOP_ALREADY_REQUESTED(HttpStatus.CONFLICT, Constants.STATUS_CONFLICT, "Error while trying to stop the migration process. A graceful stop was already requested."),
 
+    NOT_FOUND_NO_VALID_MIGRATION_STATUS(HttpStatus.NOT_FOUND, "Not found", "Error while reading the status of the last execution. No valid migration was executed before."),
+
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error", "Something was wrong");
 
     public final HttpStatus httpStatus;

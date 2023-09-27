@@ -7,8 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import it.gov.pagopa.apiconfig.datamigration.model.MigrationExecutionMessage;
-import it.gov.pagopa.apiconfig.datamigration.model.MigrationStatus;
+import it.gov.pagopa.apiconfig.datamigration.model.migration.MigrationExecutionMessage;
+import it.gov.pagopa.apiconfig.datamigration.model.migration.MigrationStatus;
 import it.gov.pagopa.apiconfig.datamigration.service.MigrationService;
 import it.gov.pagopa.apiconfig.datamigration.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,9 +118,8 @@ public class MigrationController {
                                     schema = @Schema(implementation = MigrationExecutionMessage.class)))
             })
     @GetMapping("/status")
-    public ResponseEntity<MigrationStatus> status() throws Exception {
-        //migrationService.getMigrationStatus();
-        return ResponseEntity.status(200).body(null);
+    public ResponseEntity<MigrationStatus> status() {
+        return ResponseEntity.status(200).body(migrationService.getMigrationStatus());
     }
 
     @Operation(

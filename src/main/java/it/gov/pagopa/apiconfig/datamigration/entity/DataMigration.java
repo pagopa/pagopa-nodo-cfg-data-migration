@@ -32,6 +32,9 @@ public class DataMigration {
     @Column(name = "STATUS", nullable = false)
     private String status;
 
+    @Column(name = "LAST_EXECUTED_STEP", nullable = false)
+    private String lastExecutedStep;
+
     @Column(name = "DETAIL", nullable = false, columnDefinition = "jsonb")
     @ColumnTransformer(write = "?::jsonb")
     @Convert(converter = JsonBConverter.class)

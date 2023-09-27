@@ -13,13 +13,13 @@ import java.sql.Timestamp;
 @ToString
 public class DataMigrationStatus implements Serializable {
 
-    private MigrationStepStatus status;
+    private String status;
 
     private Timestamp start;
 
     private Timestamp end;
 
     public DataMigrationStatus() {
-        this.status = MigrationStepStatus.TODO;
+        this.status = MigrationStepStatus.TODO.toString();
     }
 }
