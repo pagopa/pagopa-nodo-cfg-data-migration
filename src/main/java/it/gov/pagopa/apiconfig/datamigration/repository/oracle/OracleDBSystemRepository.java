@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.Optional;
 
 @Repository
-public class OracleDBHealthCheckRepository {
+public class OracleDBSystemRepository {
 
     @Autowired
     @Qualifier("oracleEntityManagerFactory")
@@ -16,5 +16,12 @@ public class OracleDBHealthCheckRepository {
 
     public Optional<Object> healthCheck() {
         return Optional.of(emFactory.createEntityManager().createNativeQuery("SELECT 1").getSingleResult());
+    }
+
+    public Long readHibernateSequence() {
+        String newSequenceLastNumber = emFactory.createEntityManager()
+                .createNativeQuery("SELECT last_number FROM all_sequences WHERE sequence_name = 'HIBERNATE_SEQUENCE';")
+                .getSingleResult().toString();
+        return Long.getLong(newSequenceLastNumber);
     }
 }

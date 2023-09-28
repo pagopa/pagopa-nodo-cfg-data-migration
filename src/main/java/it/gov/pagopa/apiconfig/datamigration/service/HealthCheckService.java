@@ -1,7 +1,7 @@
 package it.gov.pagopa.apiconfig.datamigration.service;
 
-import it.gov.pagopa.apiconfig.datamigration.repository.oracle.OracleDBHealthCheckRepository;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.PostgresDBHealthCheckRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.oracle.OracleDBSystemRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.PostgresDBSystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class HealthCheckService {
 
     @Autowired
-    private OracleDBHealthCheckRepository oracleDbRepo;
+    private OracleDBSystemRepository oracleDbRepo;
 
     @Autowired
-    private PostgresDBHealthCheckRepository postgresDbRepo;
+    private PostgresDBSystemRepository postgresDbRepo;
 
     public boolean getHealthCheckForOracleDB() {
         try {

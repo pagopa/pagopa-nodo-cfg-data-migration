@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.Optional;
 
 @Repository
-public class PostgresDBHealthCheckRepository {
+public class PostgresDBSystemRepository {
 
     @Autowired
     @Qualifier("postgresqlEntityManagerFactory")
@@ -16,5 +16,12 @@ public class PostgresDBHealthCheckRepository {
 
     public Optional<Object> healthCheck() {
         return Optional.of(emFactory.createEntityManager().createNativeQuery("SELECT 1").getSingleResult());
+    }
+
+    public Long updateHibernateSequence(Long lastValue) {
+        String newSequenceLastNumber =  emFactory.createEntityManager()
+                .createNativeQuery(String.format("SELECT setval('sequence_value', %d, FALSE);", lastValue))
+                .getSingleResult().toString();
+        return Long.getLong(newSequenceLastNumber);
     }
 }

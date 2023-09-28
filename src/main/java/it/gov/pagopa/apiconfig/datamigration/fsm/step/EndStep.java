@@ -6,8 +6,11 @@ import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
+import it.gov.pagopa.apiconfig.datamigration.repository.oracle.OracleDBSystemRepository;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.PostgresDBSystemRepository;
 import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +20,19 @@ import java.util.Optional;
 @Service("END")
 public class EndStep extends Step {
 
+    @Autowired
+    private OracleDBSystemRepository oracleSystemRepo;
+
+    @Autowired
+    private PostgresDBSystemRepository postgresSystemRepo;
+
     @Override
     public void executeStep() {
         // save migration status
         try {
             Optional<DataMigration> dataMigrationOpt = cfgDataMigrationRepo.findById(this.sharedState.getDataMigrationStateId());
             if (dataMigrationOpt.isPresent()) {
+                // update the state with completed state
                 DataMigration dataMigration = dataMigrationOpt.get();
                 dataMigration.setStatus(this.sharedState.isBlockRequested() ? MigrationStepStatus.BLOCKED.toString() : MigrationStepStatus.COMPLETED.toString());
                 if (!this.sharedState.isBlockRequested()) {
@@ -30,6 +40,8 @@ public class EndStep extends Step {
                 }
                 dataMigration.setEnd(CommonUtils.now());
                 cfgDataMigrationRepo.saveAndFlush(dataMigration);
+                // update sequences
+                updateSequenceLastValue();
             } else {
                 log.error("Error while saving migration state in END step. The record in CFG_DATA_MIGRATION is not present and cannot be updated.");
             }
@@ -54,5 +66,10 @@ public class EndStep extends Step {
     @Override
     public DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details) {
         return null;
+    }
+
+    private void updateSequenceLastValue() {
+        Long sequenceLastNumber = oracleSystemRepo.readHibernateSequence();
+        postgresSystemRepo.updateHibernateSequence(sequenceLastNumber);
     }
 }
