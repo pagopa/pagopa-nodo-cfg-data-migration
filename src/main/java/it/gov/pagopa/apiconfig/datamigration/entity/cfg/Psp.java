@@ -48,7 +48,7 @@ public class Psp {
     private String codiceMybank;
 
     @Column(name = "MARCA_BOLLO_DIGITALE", nullable = false)
-    private Boolean marcaBolloDigitale;
+    private Integer marcaBolloDigitale;
 
     @Convert(converter = YesNoConverter.class)
     @Column(name = "AGID_PSP", nullable = false)
