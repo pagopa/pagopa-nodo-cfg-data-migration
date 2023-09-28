@@ -19,4 +19,6 @@ public class AppInfo {
   private String name;
   private String version;
   private String environment;
+  private String oracleDBStatus;
+  private String postgresDBStatus;
 }
