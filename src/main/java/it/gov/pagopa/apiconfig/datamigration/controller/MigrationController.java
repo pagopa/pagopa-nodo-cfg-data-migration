@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,43 +28,17 @@ public class MigrationController {
     @Operation(
             summary = "Start the migration",
             security = {
-                    @SecurityRequirement(name = "ApiKey"),
-                    @SecurityRequirement(name = "Authorization")
+                    @SecurityRequirement(name = "ApiKey")
             },
-            tags = {
-                    "DB Migration",
-            })
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "OK",
-                            content =
-                            @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
-                            content = @Content(schema = @Schema())),
-
-                    @ApiResponse(
-                            responseCode = "409",
-                            description = "Conflict",
-                            content =
-                            @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "429",
-                            description = "Too many requests",
-                            content = @Content(schema = @Schema()))
-            })
-
-    @GetMapping("/start")
-    public ResponseEntity<MigrationExecutionMessage> start() throws Exception {
+            tags = {"DB Migration"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema()))
+    })
+    @PostMapping("/start")
+    public ResponseEntity<MigrationExecutionMessage> start() {
         migrationService.startMigration();
         return ResponseEntity.ok(
                 MigrationExecutionMessage.builder()
@@ -75,97 +50,36 @@ public class MigrationController {
     @Operation(
             summary = "Get the status of the migration",
             security = {
-                    @SecurityRequirement(name = "ApiKey"),
-                    @SecurityRequirement(name = "Authorization")
+                    @SecurityRequirement(name = "ApiKey")
             },
-            tags = {
-                    "DB Migration",
-            })
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "OK",
-                            content =
-                            @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
-                            content = @Content(schema = @Schema())),
-
-                    @ApiResponse(
-                            responseCode = "409",
-                            description = "Conflict",
-                            content =
-                            @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "429",
-                            description = "Too many requests",
-                            content = @Content(schema = @Schema())),
-
-                    @ApiResponse(
-                            responseCode = "500",
-                            description = "Service unavailable",
-                            content =
-                            @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class)))
-            })
+            tags = {"DB Migration"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "500", description = "Service unavailable", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MigrationExecutionMessage.class)))
+    })
     @GetMapping("/status")
     public ResponseEntity<MigrationStatus> status() {
         return ResponseEntity.status(200).body(migrationService.getMigrationStatus());
     }
 
     @Operation(
-            summary = "Start again the migration in case it was interrupted",
+            summary = "Start again the migration, if interrupted",
             security = {
-                    @SecurityRequirement(name = "ApiKey"),
-                    @SecurityRequirement(name = "Authorization")
+                    @SecurityRequirement(name = "ApiKey")
             },
-            tags = {
-                    "DB Migration",
-            })
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "OK",
-                            content =
-                            @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
-                            content = @Content(schema = @Schema())),
-
-                    @ApiResponse(
-                            responseCode = "404",
-                            description = "Not Found",
-                            content = @Content(schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "409",
-                            description = "Conflict",
-                            content =
-                            @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "429",
-                            description = "Too many requests",
-                            content = @Content(schema = @Schema()))
-            })
-    @GetMapping("/restart")
-    public ResponseEntity<MigrationExecutionMessage> restart() throws Exception {
+            tags = {"DB Migration"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema()))
+    })
+    @PostMapping("/restart")
+    public ResponseEntity<MigrationExecutionMessage> restart() {
         migrationService.reStartMigration();
         return ResponseEntity.ok(
                 MigrationExecutionMessage.builder()
@@ -177,41 +91,16 @@ public class MigrationController {
     @Operation(
             summary = "Stop the migration",
             security = {
-                    @SecurityRequirement(name = "ApiKey"),
-                    @SecurityRequirement(name = "Authorization")
+                    @SecurityRequirement(name = "ApiKey")
             },
-            tags = {
-                    "DB Migration",
-            })
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "OK",
-                            content =
-                            @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "401",
-                            description = "Unauthorized",
-                            content = @Content(schema = @Schema())),
-
-                    @ApiResponse(
-                            responseCode = "409",
-                            description = "Conflict",
-                            content =
-                            @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = MigrationExecutionMessage.class))),
-
-                    @ApiResponse(
-                            responseCode = "429",
-                            description = "Too many requests",
-                            content = @Content(schema = @Schema()))
-            })
-    @GetMapping("/stop")
+            tags = {"DB Migration"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "409", description = "Conflict", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MigrationExecutionMessage.class))),
+            @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema()))
+    })
+    @PostMapping("/stop")
     public ResponseEntity<MigrationExecutionMessage> stop() {
         migrationService.forcedStopMigration();
         return ResponseEntity.ok(
