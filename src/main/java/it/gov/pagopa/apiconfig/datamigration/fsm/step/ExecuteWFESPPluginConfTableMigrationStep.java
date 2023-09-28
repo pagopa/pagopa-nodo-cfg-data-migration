@@ -59,7 +59,7 @@ public class ExecuteWFESPPluginConfTableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_FTP_SERVERS_TABLE_MIGRATION;
+        return StepName.EXECUTE_CANALI_NODO_TABLE_MIGRATION;
     }
 
     @Override

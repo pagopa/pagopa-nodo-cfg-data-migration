@@ -59,7 +59,7 @@ public class ExecuteConfigurationKeysTableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_WFESP_PLUGIN_CONF_TABLE_MIGRATION;
+        return StepName.EXECUTE_FTP_SERVERS_TABLE_MIGRATION;
     }
 
     @Override

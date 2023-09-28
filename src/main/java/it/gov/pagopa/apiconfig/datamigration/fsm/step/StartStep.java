@@ -148,7 +148,6 @@ public class StartStep extends Step {
              deleteAndFlush(gdeConfigRepo);
              deleteAndFlush(pddRepo);
              deleteAndFlush(ftpServersRepo);
-             deleteAndFlush(wfespPluginConfRepo);
              deleteAndFlush(configurationKeysRepo);
              deleteAndFlush(cdsSoggettoServizioRepo);
              deleteAndFlush(cdsServizioRepo);
@@ -166,6 +165,7 @@ public class StartStep extends Step {
              deleteAndFlush(tipiVersamentoRepo);
              deleteAndFlush(canaliRepo);
              deleteAndFlush(canaliNodoRepo);
+             deleteAndFlush(wfespPluginConfRepo);
              deleteAndFlush(pspRepo);
              deleteAndFlush(intermediariPspRepo);
              deleteAndFlush(informativePaFasceRepo);
