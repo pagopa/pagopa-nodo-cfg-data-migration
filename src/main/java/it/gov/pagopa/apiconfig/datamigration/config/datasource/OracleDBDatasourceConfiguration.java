@@ -13,7 +13,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -58,7 +57,7 @@ public class OracleDBDatasourceConfiguration {
     }
 
     @Primary
-    @Bean(name = "transactionManager")
+    @Bean(name = "oracledbTransactionManager")
     public PlatformTransactionManager transactionManager (
             @Qualifier("oracleEntityManagerFactory")EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
