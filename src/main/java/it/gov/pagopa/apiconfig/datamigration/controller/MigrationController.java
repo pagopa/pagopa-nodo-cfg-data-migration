@@ -38,7 +38,7 @@ public class MigrationController {
             @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema()))
     })
     @PostMapping("/start")
-    public ResponseEntity<MigrationExecutionMessage> start() throws Exception {
+    public ResponseEntity<MigrationExecutionMessage> start() {
         migrationService.startMigration();
         return ResponseEntity.ok(
                 MigrationExecutionMessage.builder()
@@ -60,7 +60,7 @@ public class MigrationController {
             @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema())),
             @ApiResponse(responseCode = "500", description = "Service unavailable", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MigrationExecutionMessage.class)))
     })
-    @PostMapping("/status")
+    @GetMapping("/status")
     public ResponseEntity<MigrationStatus> status() {
         return ResponseEntity.status(200).body(migrationService.getMigrationStatus());
     }
@@ -79,7 +79,7 @@ public class MigrationController {
             @ApiResponse(responseCode = "429", description = "Too many requests", content = @Content(schema = @Schema()))
     })
     @PostMapping("/restart")
-    public ResponseEntity<MigrationExecutionMessage> restart() throws Exception {
+    public ResponseEntity<MigrationExecutionMessage> restart() {
         migrationService.reStartMigration();
         return ResponseEntity.ok(
                 MigrationExecutionMessage.builder()
