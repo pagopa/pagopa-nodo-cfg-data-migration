@@ -1,6 +1,6 @@
 apiVersion: v2
-name: pagopa-afm-calculator
-description: Microservice that handles calculation for pagoPA Advanced Fees Management
+name: pagopa-nodo-cfg-data-migration
+description: A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database
 type: application
 version: 0.0.0
 appVersion: 0.0.0
