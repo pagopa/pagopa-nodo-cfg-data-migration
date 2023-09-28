@@ -22,7 +22,7 @@ public class HealthCheckService {
             return false;
         }
     }
-    }
+
 
     public boolean getHealthCheckForPostgresDB() {
         try {
