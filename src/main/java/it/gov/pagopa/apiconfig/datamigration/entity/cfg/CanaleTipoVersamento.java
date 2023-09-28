@@ -30,6 +30,7 @@ import lombok.ToString;
         name = "CANALE_TIPO_VERSAMENTO",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_CANALE", "FK_TIPO_VERSAMENTO"})})
 @Builder
+
 public class CanaleTipoVersamento {
 
     @Id
