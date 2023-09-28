@@ -51,10 +51,8 @@ public class CanaliNodo {
     @Column(name = "REDIRECT_PROTOCOLLO", length = 35)
     private String redirectProtocollo;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_SERV_PLUGIN", referencedColumnName = "ID_SERV_PLUGIN")
-    private WfespPluginConf idServPlugin;
+    @Column(name = "ID_SERV_PLUGIN", length = 35)
+    private String idServPlugin;
 
     @Column(name = "ID_CLUSTER")
     private String idCluster;
