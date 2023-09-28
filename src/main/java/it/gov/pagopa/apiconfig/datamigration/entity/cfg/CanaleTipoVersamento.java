@@ -11,11 +11,8 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @Entity
-@Table(
-        name = "CANALE_TIPO_VERSAMENTO",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_CANALE", "FK_TIPO_VERSAMENTO"})})
+@Table(name = "CANALE_TIPO_VERSAMENTO", uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_CANALE", "FK_TIPO_VERSAMENTO"})})
 @Builder
-
 public class CanaleTipoVersamento {
 
     @Id
@@ -38,10 +35,7 @@ public class CanaleTipoVersamento {
     @JoinColumn(name = "FK_TIPO_VERSAMENTO", nullable = false)
     private TipiVersamento tipoVersamento;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "fkCanaleTipoVersamento",
-            cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkCanaleTipoVersamento", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<PspCanaleTipoVersamento> pspCanaleTipoVersamentoList;

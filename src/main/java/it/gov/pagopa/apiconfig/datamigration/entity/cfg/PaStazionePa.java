@@ -5,10 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Table(
-        name = "PA_STAZIONE_PA",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_PA", "FK_STAZIONE"})}
-)
+@Table(name = "PA_STAZIONE_PA", uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_PA", "FK_STAZIONE"})})
 @Entity
 @Getter
 @Setter

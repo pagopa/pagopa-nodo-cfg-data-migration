@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "WFESP_PLUGIN_CONF")
 @Builder(toBuilder = true)
-
 public class WfespPluginConf {
 
     @Id

@@ -15,7 +15,7 @@ public class OracleDBSystemRepository {
     EntityManagerFactory emFactory;
 
     public Optional<Object> healthCheck() {
-        return Optional.of(emFactory.createEntityManager().createNativeQuery("SELECT 1").getSingleResult());
+        return Optional.of(emFactory.createEntityManager().createNativeQuery("SELECT 1 FROM DUAL").getSingleResult());
     }
 
     public Long readHibernateSequence() {

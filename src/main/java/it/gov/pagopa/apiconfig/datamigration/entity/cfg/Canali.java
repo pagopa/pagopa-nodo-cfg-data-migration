@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "CANALI")
 @Builder(toBuilder = true)
-
 public class Canali {
 
     @Id

@@ -14,7 +14,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @IdClass(GdeConfigPk.class)
-
 public class GdeConfig {
 
     @Id
