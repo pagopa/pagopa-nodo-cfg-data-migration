@@ -2,6 +2,8 @@ package it.gov.pagopa.apiconfig.datamigration.fsm.step;
 
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
+import it.gov.pagopa.apiconfig.datamigration.entity.cfg.Canali;
+import it.gov.pagopa.apiconfig.datamigration.entity.cfg.QuadratureSched;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationErrorOnStepException;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
@@ -40,10 +42,8 @@ public class ExecuteQuadratureSchedTableMigrationStep extends Step {
             // starting migration: read from source DB, then save on destination DB, until end or stop
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
             do {
-                //TODO
-                Page<Object> pagedEntities = srcRepo.findAll(pageable);
-                //TODO
-                List<Object> entities = pagedEntities.getContent();
+                Page<QuadratureSched> pagedEntities = srcRepo.findAll(pageable);
+                List<QuadratureSched> entities = pagedEntities.getContent();
                 destRepo.saveAllAndFlush(entities);
                 pageable = pagedEntities.nextPageable();
             } while(canContinueReadPages(pageable));

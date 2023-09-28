@@ -59,7 +59,7 @@ public class ExecuteBinaryFileTableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_IBAN_VALIDI_PER_PA_TABLE_MIGRATION;
+        return StepName.EXECUTE_INFORMATIVE_CONTO_ACCREDITO_MASTER_TABLE_MIGRATION;
     }
 
     @Override
