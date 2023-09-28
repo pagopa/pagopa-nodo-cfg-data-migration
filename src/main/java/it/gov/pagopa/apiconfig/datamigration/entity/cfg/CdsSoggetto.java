@@ -7,23 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "CODIFICHE")
-@Entity
 @Getter
 @Setter
+@ToString
+@Entity
+@Table(name = "CDS_SOGGETTO")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString
-public class Codifiche {
+
+public class CdsSoggetto {
 
     @Id
     @Column(name = "OBJ_ID", nullable = false)
-    private Long objId;
+    private Long id;
 
-    @Column(name = "ID_CODIFICA", nullable = false, length = 35)
-    private String idCodifica;
+    @Column(name = "ID_DOMINIO", nullable = false)
+    private String creditorInstitutionCode;
 
-    @Column(name = "DESCRIZIONE", length = 35)
-    private String descrizione;
+    @Column(name = "DESCRIZIONE_ENTE")
+    private String creditorInstitutionDescription;
 }

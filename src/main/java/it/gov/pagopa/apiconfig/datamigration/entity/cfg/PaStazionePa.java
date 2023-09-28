@@ -1,23 +1,9 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
 import it.gov.pagopa.apiconfig.starter.util.YesNoConverter;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import javax.persistence.*;
 
 @Table(
         name = "PA_STAZIONE_PA",

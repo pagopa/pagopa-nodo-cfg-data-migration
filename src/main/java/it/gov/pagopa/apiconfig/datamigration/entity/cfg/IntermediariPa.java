@@ -1,19 +1,9 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import it.gov.pagopa.apiconfig.starter.util.YesNoConverter;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import javax.persistence.*;
 
 @Table(name = "INTERMEDIARI_PA")
 @Entity

@@ -1,26 +1,11 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
+import it.gov.pagopa.apiconfig.starter.util.NumericBooleanConverter;
+import lombok.*;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import it.gov.pagopa.apiconfig.starter.util.NumericBooleanConverter;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Table(name = "INFORMATIVE_PA_MASTER")
 @Entity
