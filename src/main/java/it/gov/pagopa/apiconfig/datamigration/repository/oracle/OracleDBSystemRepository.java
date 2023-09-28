@@ -20,8 +20,8 @@ public class OracleDBSystemRepository {
 
     public Long readHibernateSequence() {
         String newSequenceLastNumber = emFactory.createEntityManager()
-                .createNativeQuery("SELECT last_number FROM all_sequences WHERE sequence_name = 'HIBERNATE_SEQUENCE';")
+                .createNativeQuery("SELECT last_number FROM all_sequences WHERE sequence_name = 'HIBERNATE_SEQUENCE'")
                 .getSingleResult().toString();
-        return Long.getLong(newSequenceLastNumber);
+        return Long.parseLong(newSequenceLastNumber);
     }
 }
