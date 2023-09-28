@@ -9,8 +9,10 @@ import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStatus
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationTruncateAllTablesException;
 import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
+import it.gov.pagopa.apiconfig.datamigration.repository.postgres.*;
 import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,43 @@ import java.util.UUID;
 @Slf4j
 @Service("START")
 public class StartStep extends Step {
+
+    @Autowired private BinaryFileDestRepository binaryFileRepo;
+    @Autowired private CanaleTipoVersamentoDestRepository canaleTipoVersamentoRepo;
+    @Autowired private CanaliDestRepository canaliRepo;
+    @Autowired private CanaliNodoDestRepository canaliNodoRepo;
+    @Autowired private CdiDetailDestRepository cdiDetailRepo;
+    @Autowired private CdiFasciaCostoServizioDestRepository cdiFasciaCostoServizioRepo;
+    @Autowired private CdiInformazioniServizioDestRepository cdiInformazioniServizioRepo;
+    @Autowired private CdiMasterDestRepository cdiMasterRepo;
+    @Autowired private CdiPreferenceDestRepository cdiPreferenceRepo;
+    @Autowired private CdsCategoriaDestRepository cdsCategoriaRepo;
+    @Autowired private CdsServizioDestRepository cdsServizioRepo;
+    @Autowired private CdsSoggettoDestRepository cdsSoggettoRepo;
+    @Autowired private CdsSoggettoServizioDestRepository cdsSoggettoServizioRepo;
+    @Autowired private CodificheDestRepository codificheRepo;
+    @Autowired private CodifichePaDestRepository codifichePaRepo;
+    @Autowired private ConfigurationKeysDestRepository configurationKeysRepo;
+    @Autowired private DizionarioMetadatiDestRepository dizionarioMetadatiRepo;
+    @Autowired private ElencoServiziDestRepository elencoServiziRepo;
+    @Autowired private FtpServersDestRepository ftpServersRepo;
+    @Autowired private GdeConfigDestRepository gdeConfigRepo;
+    @Autowired private InformativeContoAccreditoDetailDestRepository informativeContoAccreditoDetailRepo;
+    @Autowired private InformativeContoAccreditoMasterDestRepository informativeContoAccreditoMasterRepo;
+    @Autowired private InformativePaDetailDestRepository informativePaDetailRepo;
+    @Autowired private InformativePaFasceDestRepository informativePaFasceRepo;
+    @Autowired private InformativePaMasterDestRepository informativePaMasterRepo;
+    @Autowired private IntermediariPaDestRepository intermediariPaRepo;
+    @Autowired private IntermediariPspDestRepository intermediariPspRepo;
+    @Autowired private PaDestRepository paRepo;
+    @Autowired private PaStazionePaDestRepository paStazionePaRepo;
+    @Autowired private PddDestRepository pddRepo;
+    @Autowired private PspCanaleTipoVersamentoDestRepository pspCanaleTipoVersamentoRepo;
+    @Autowired private PspDestRepository pspRepo;
+    @Autowired private QuadratureSchedDestRepository quadratureSchedRepo;
+    @Autowired private StazioniDestRepository stazioniRepo;
+    @Autowired private TipiVersamentoDestRepository tipiVersamentoRepo;
+    @Autowired private WfespPluginConfDestRepository wfespPluginConfRepo;
 
     @Override
     public void executeStep() throws MigrationStepException {
@@ -105,15 +144,42 @@ public class StartStep extends Step {
 
     private void truncateAllTables() throws MigrationTruncateAllTablesException {
         try {
-            // deleteAndFlush(quadratureSchedRepo)
-            // deleteAndFlush(gdeConfigRepo);
-            // deleteAndFlush(pddRepo);
-            // deleteAndFlush(ftpServerRepo);
-            // deleteAndFlush(wfespPluginConnRepo);
-            // deleteAndFlush(configurationKeysRepo);
-            // deleteAndFlush(cdsSoggettoServizioRepo);
-            // deleteAndFlush(cdsServizioRepo);
-            // TODO continue with other tables
+             deleteAndFlush(quadratureSchedRepo);
+             deleteAndFlush(gdeConfigRepo);
+             deleteAndFlush(pddRepo);
+             deleteAndFlush(ftpServersRepo);
+             deleteAndFlush(wfespPluginConfRepo);
+             deleteAndFlush(configurationKeysRepo);
+             deleteAndFlush(cdsSoggettoServizioRepo);
+             deleteAndFlush(cdsServizioRepo);
+             deleteAndFlush(cdsSoggettoRepo);
+             deleteAndFlush(cdsCategoriaRepo);
+             deleteAndFlush(elencoServiziRepo);
+             deleteAndFlush(cdiPreferenceRepo);
+             deleteAndFlush(cdiInformazioniServizioRepo);
+             deleteAndFlush(cdiFasciaCostoServizioRepo);
+             deleteAndFlush(cdiDetailRepo);
+             deleteAndFlush(cdiMasterRepo);
+             deleteAndFlush(dizionarioMetadatiRepo);
+             deleteAndFlush(pspCanaleTipoVersamentoRepo);
+             deleteAndFlush(canaleTipoVersamentoRepo);
+             deleteAndFlush(tipiVersamentoRepo);
+             deleteAndFlush(canaliRepo);
+             deleteAndFlush(canaliNodoRepo);
+             deleteAndFlush(pspRepo);
+             deleteAndFlush(intermediariPspRepo);
+             deleteAndFlush(informativePaFasceRepo);
+             deleteAndFlush(informativePaDetailRepo);
+             deleteAndFlush(informativePaMasterRepo);
+             deleteAndFlush(informativeContoAccreditoDetailRepo);
+             deleteAndFlush(informativeContoAccreditoMasterRepo);
+             deleteAndFlush(binaryFileRepo);
+             deleteAndFlush(codifichePaRepo);
+             deleteAndFlush(codificheRepo);
+             deleteAndFlush(paStazionePaRepo);
+             deleteAndFlush(stazioniRepo);
+             deleteAndFlush(paRepo);
+             deleteAndFlush(intermediariPaRepo);
         } catch (DataAccessException e) {
             throw new MigrationTruncateAllTablesException(e);
         }
