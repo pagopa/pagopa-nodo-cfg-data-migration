@@ -17,7 +17,7 @@ public class HealthCheckService {
 
     public boolean getHealthCheckForOracleDB() {
         try {
-            return postgresDbRepo.healthCheck().isPresent();
+            return oracleDbRepo.healthCheck().isPresent();
         } catch (DataAccessException e) {
             return false;
         }
@@ -26,7 +26,7 @@ public class HealthCheckService {
 
     public boolean getHealthCheckForPostgresDB() {
         try {
-            return oracleDbRepo.healthCheck().isPresent();
+            return postgresDbRepo.healthCheck().isPresent();
         } catch (DataAccessException e) {
             return false;
         }
