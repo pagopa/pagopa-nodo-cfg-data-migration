@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Slf4j
-@Service("EXECUTE_STAZIONI_TABLE_MIGRATION_STEP")
+@Service("EXECUTE_STAZIONI_TABLE_MIGRATION")
 public class ExecuteStazioniTableMigrationStep extends Step {
 
     private static final int PAGE_SIZE = 50;
