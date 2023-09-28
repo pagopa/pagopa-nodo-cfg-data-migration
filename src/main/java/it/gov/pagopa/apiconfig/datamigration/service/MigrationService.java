@@ -90,7 +90,7 @@ public class MigrationService {
         // complete migration status
         return MigrationStatus.builder()
                 .migrationStart(dataMigration.getStart().toString())
-                .migrationLastRestart(dataMigration.getRestart().toString())
+                .migrationLastRestart(dataMigration.getRestart() != null ? dataMigration.getRestart().toString() : null)
                 .elapsedTime(dataMigration.getEnd() != null ?
                         CommonUtils.getElapsedTime(dataMigration.getStart(), dataMigration.getEnd()) :
                         CommonUtils.getElapsedTime(dataMigration.getStart(), CommonUtils.now()))
