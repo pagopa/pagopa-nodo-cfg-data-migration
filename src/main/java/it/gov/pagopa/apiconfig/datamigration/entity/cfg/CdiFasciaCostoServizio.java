@@ -12,7 +12,6 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name = "CDI_FASCIA_COSTO_SERVIZIO")
-
 public class CdiFasciaCostoServizio {
 
     @Id

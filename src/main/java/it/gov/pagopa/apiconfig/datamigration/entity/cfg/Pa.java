@@ -1,6 +1,5 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.starter.entity.IbanMaster;
 import it.gov.pagopa.apiconfig.starter.util.YesNoConverter;
 import lombok.*;
 
@@ -70,15 +69,5 @@ public class Pa {
     @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkPa")
     @EqualsAndHashCode.Exclude
-    private List<IbanValidiPerPa> ibans;
-
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkPa")
-    @EqualsAndHashCode.Exclude
     private List<InformativePaMaster> informativePaMasters;
-
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkPa")
-    @EqualsAndHashCode.Exclude
-    private List<IbanMaster> ibanMasters;
 }

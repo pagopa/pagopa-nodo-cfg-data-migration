@@ -1,6 +1,5 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.starter.entity.PspCanaleTipoVersamento;
 import it.gov.pagopa.apiconfig.starter.util.YesNoConverter;
 import lombok.*;
 

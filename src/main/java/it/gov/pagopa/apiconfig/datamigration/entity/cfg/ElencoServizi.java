@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 @ToString
 @Entity
 @Table(name = "ELENCO_SERVIZI")
-
 public class ElencoServizi {
 
     @Id

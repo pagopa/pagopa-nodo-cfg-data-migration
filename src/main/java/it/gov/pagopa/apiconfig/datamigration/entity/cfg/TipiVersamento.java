@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class TipiVersamento {
 
     @Id

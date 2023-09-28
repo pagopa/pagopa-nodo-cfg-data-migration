@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PDD")
 @Builder(toBuilder = true)
-
 public class Pdd {
 
     @Id

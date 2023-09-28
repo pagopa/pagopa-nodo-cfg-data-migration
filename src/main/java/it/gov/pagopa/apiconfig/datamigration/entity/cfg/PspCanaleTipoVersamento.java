@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class PspCanaleTipoVersamento {
 
     @Id

@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CANALI_NODO")
 @Builder
-
 public class CanaliNodo {
 
     @Id

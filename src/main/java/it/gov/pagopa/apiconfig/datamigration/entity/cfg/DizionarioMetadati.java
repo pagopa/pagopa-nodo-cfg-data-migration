@@ -16,7 +16,6 @@ import java.time.ZonedDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public class DizionarioMetadati {
 
     @Id
