@@ -76,9 +76,9 @@ public class DataMigrationDetails implements Serializable {
 
     private DataMigrationStatus configurationKeys;
 
-    private DataMigrationStatus wfespPluginConn;
+    private DataMigrationStatus wfespPluginConf;
 
-    private DataMigrationStatus ftpServer;
+    private DataMigrationStatus ftpServers;
 
     private DataMigrationStatus pdd;
 

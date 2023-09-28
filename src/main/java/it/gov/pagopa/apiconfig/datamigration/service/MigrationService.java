@@ -81,8 +81,8 @@ public class MigrationService {
         details.put("CDS_SERVIZIO", getTableMigrationStatus(migrationDetails.getCdsServizio()));
         details.put("CDS_SOGGETTO_SERVIZIO", getTableMigrationStatus(migrationDetails.getCdsSoggettoServizio()));
         details.put("CONFIGURATION_KEYS", getTableMigrationStatus(migrationDetails.getConfigurationKeys()));
-        details.put("WFESP_PLUGIN_CONN", getTableMigrationStatus(migrationDetails.getWfespPluginConn()));
-        details.put("FTP_SERVER", getTableMigrationStatus(migrationDetails.getFtpServer()));
+        details.put("WFESP_PLUGIN_CONN", getTableMigrationStatus(migrationDetails.getWfespPluginConf()));
+        details.put("FTP_SERVER", getTableMigrationStatus(migrationDetails.getFtpServers()));
         details.put("PDD", getTableMigrationStatus(migrationDetails.getPdd()));
         details.put("GDE_CONFIG", getTableMigrationStatus(migrationDetails.getGdeConfig()));
         details.put("QUADRATURE_SCHED", getTableMigrationStatus(migrationDetails.getQuadratureSched()));
