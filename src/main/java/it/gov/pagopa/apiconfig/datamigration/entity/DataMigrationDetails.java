@@ -26,8 +26,6 @@ public class DataMigrationDetails implements Serializable {
 
     private DataMigrationStatus binaryFile;
 
-    private DataMigrationStatus ibanValidiPerPa;
-
     private DataMigrationStatus informativeContoAccreditoMaster;
 
     private DataMigrationStatus informativeContoAccreditoDetail;

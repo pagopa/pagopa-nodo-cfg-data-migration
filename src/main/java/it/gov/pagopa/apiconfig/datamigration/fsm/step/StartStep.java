@@ -104,7 +104,6 @@ public class StartStep extends Step {
                             .codifiche(new DataMigrationStatus())
                             .codifichePa(new DataMigrationStatus())
                             .binaryFile(new DataMigrationStatus())
-                            .ibanValidiPerPa(new DataMigrationStatus())
                             .informativeContoAccreditoMaster(new DataMigrationStatus())
                             .informativeContoAccreditoDetail(new DataMigrationStatus())
                             .informativePaMaster(new DataMigrationStatus())
