@@ -119,14 +119,14 @@ jobs:
             type=sha
 
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secrets: |
-            GH_TOKEN=${{ secrets.READ_PACKAGES_TOKEN }}
+
+          
 
 
   deploy_aks:
