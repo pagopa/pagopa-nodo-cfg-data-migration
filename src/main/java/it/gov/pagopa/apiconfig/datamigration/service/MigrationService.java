@@ -56,7 +56,6 @@ public class MigrationService {
         details.put("CODIFICHE", getTableMigrationStatus(migrationDetails.getCodifiche()));
         details.put("CODIFICHE_PA", getTableMigrationStatus(migrationDetails.getCodifichePa()));
         details.put("BINARY_FILE", getTableMigrationStatus(migrationDetails.getBinaryFile()));
-        details.put("IBAN_VALIDI_PER_PA", getTableMigrationStatus(migrationDetails.getIbanValidiPerPa()));
         details.put("INFORMATIVE_CONTO_ACCREDITO_MASTER", getTableMigrationStatus(migrationDetails.getInformativeContoAccreditoMaster()));
         details.put("INFORMATIVE_CONTO_ACCREDITO_DETAIL", getTableMigrationStatus(migrationDetails.getInformativeContoAccreditoDetail()));
         details.put("INFORMATIVE_PA_MASTER", getTableMigrationStatus(migrationDetails.getInformativePaMaster()));
