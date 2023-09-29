@@ -1,9 +1,9 @@
 microservice-chart:
-  namespace: "your-namespace" # TODO: set your AKS namespace
+  namespace: "nodo"
   nameOverride: ""
   fullnameOverride: ""
   image:
-    repository: ghcr.io/pagopa/yourname # TODO
+    repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
     tag: "0.0.0"
     pullPolicy: Always
   livenessProbe:
@@ -29,8 +29,8 @@ microservice-chart:
       - 8080
   ingress:
     create: true
-    host: "your.host" # TODO: set the host
-    path: /your-path-here/(.*) # TODO: set your path
+    host: "weudev.nodo.internal.uat.platform.pagopa.it"
+    path: /datamigration/(.*)
     servicePort: 8080
   serviceAccount:
     create: false
@@ -51,8 +51,8 @@ microservice-chart:
       cpu: "0.25"
   autoscaling:
     enable: true
-    minReplica: 3
-    maxReplica: 10
+    minReplica: 1
+    maxReplica: 1
     pollingInterval: 10 # seconds
     cooldownPeriod: 50 # seconds
     triggers:
@@ -62,25 +62,27 @@ microservice-chart:
           type: Utilization # Allowed types are 'Utilization' or 'AverageValue'
           value: "75"
   envConfig:
-    # TODO: set your name
-    WEBSITE_SITE_NAME: 'yourProjectName' # required to show cloud role name in application insights
-    ENV: 'azure-uat'
-    APP_LOGGING_LEVEL: 'DEBUG'
-    DEFAULT_LOGGING_LEVEL: 'INFO'
+    WEBSITE_SITE_NAME: 'pagopanodocfgdatamigration'
+    ENV: 'Azure Kubernetes'
+    ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1524)(HOST=db-nodo-pagamenti.u.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCA_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
+    ORACLEDB_USERNAME: "PP_NODO4_CFG"
+    ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
+    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-u-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+    POSTGRESQL_USERNAME: "cfg"
+    POSTGRESQL_DEFAULT_SCHEMA: "cfg"
+    DEFAULT_LOGGING_LEVEL: "INFO"
+    APP_LOGGING_LEVEL: "INFO"
+    SQL_LOGGING_LEVEL: "INFO"
+    SQL_BINDER_LOGGING_LEVEL: "INFO"
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
-    OTEL_SERVICE_NAME: # TODO
-    OTEL_RESOURCE_ATTRIBUTES: "deployment.environment=azure-uat"
-    OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
-    OTEL_TRACES_EXPORTER: otlp
-    OTEL_METRICS_EXPORTER: otlp
-    OTEL_LOGS_EXPORTER: none
-    OTEL_TRACES_SAMPLER: "always_on"
+    OTEL_ENDPOINT: "http://otel-collector.elastic-system.svc.cluster.local:4317"
   envSecret:
-    # required
+    ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
+    POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-u-connection-string'
-    OTEL_EXPORTER_OTLP_HEADERS: elastic-auth-header
+    OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
-    name: "pagopa-u-name-kv" #TODO
+    name: "pagopa-u-nodo-kv"
     tenantId: "7788edaf-0346-4068-9d79-c868aed15b3d"
   nodeSelector: { }
   tolerations: [ ]
@@ -93,23 +95,4 @@ microservice-chart:
                 operator: In
                 values:
                   - user
-  canaryDelivery:
-    create: true
-    ingress:
-      create: true
-      canary:
-        type: header
-        headerName: X-Canary
-        headerValue: canary
-        weightPercent: 0
-    service:
-      create: true
-    deployment:
-      create: true
-      image:
-        repository: ghcr.io/pagopa/yourname # TODO
-        tag: "0.0.0"
-        pullPolicy: Always
-      envConfig: { }
-      envSecret: { }
 
