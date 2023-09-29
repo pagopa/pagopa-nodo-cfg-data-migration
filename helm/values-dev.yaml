@@ -72,10 +72,10 @@ microservice-chart:
     POSTGRESQL_DEFAULT_SCHEMA: "cfg"
     DEFAULT_LOGGING_LEVEL: "INFO"
     APP_LOGGING_LEVEL: "INFO"
-    SQL_LOGGING_LEVEL: "DEBUG"
+    SQL_LOGGING_LEVEL: "INFO"
     SQL_BINDER_LOGGING_LEVEL: "INFO"
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
-    OTEL_ENDPOINT: "http://otel-collector.elastic-system.svc.cluster.local:4317"
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
