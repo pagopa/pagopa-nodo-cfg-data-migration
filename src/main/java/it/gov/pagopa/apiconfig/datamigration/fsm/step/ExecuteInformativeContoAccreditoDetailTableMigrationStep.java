@@ -59,7 +59,7 @@ public class ExecuteInformativeContoAccreditoDetailTableMigrationStep extends St
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_INFORMATIVE_CONTO_ACCREDITO_DETAIL_TABLE_MIGRATION;
+        return StepName.EXECUTE_INFORMATIVE_PA_MASTER_TABLE_MIGRATION;
     }
 
     @Override

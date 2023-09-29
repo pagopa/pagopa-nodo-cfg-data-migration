@@ -69,6 +69,6 @@ public class ExecuteElencoServiziTableMigrationStep extends Step {
 
     @Override
     public DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details) {
-        return details.getCdiPreferences();
+        return details.getElencoServizi();
     }
 }

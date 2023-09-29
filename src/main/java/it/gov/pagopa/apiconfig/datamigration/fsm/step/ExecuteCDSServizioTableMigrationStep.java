@@ -69,6 +69,6 @@ public class ExecuteCDSServizioTableMigrationStep extends Step {
 
     @Override
     public DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details) {
-        return details.getCdsSoggetto();
+        return details.getCdsServizio();
     }
 }
