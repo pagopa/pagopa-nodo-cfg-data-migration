@@ -46,12 +46,8 @@ public class Canali {
     @Column(name = "DESCRIZIONE", length = 70)
     private String descrizione;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_INTERMEDIARIO_PSP", nullable = false)
-    @NotNull
-    @EqualsAndHashCode.Exclude
-    private IntermediariPsp fkIntermediarioPsp;
+    @Column(name = "FK_INTERMEDIARIO_PSP", nullable = false)
+    private Long fkIntermediarioPsp;
 
     @Convert(converter = YesNoConverter.class)
     @Column(name = "PROXY_ENABLED", nullable = false)
@@ -80,10 +76,8 @@ public class Canali {
     @Column(name = "TARGET_PATH")
     private String targetPath;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_CANALI_NODO")
-    private CanaliNodo fkCanaliNodo;
+    @Column(name = "FK_CANALI_NODO")
+    private Long fkCanaliNodo;
 
     @Column(name = "TIMEOUT", nullable = false)
     private Long timeout;

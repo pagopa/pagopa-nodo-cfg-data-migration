@@ -32,10 +32,4 @@ public class CdsServizio {
 
     @Column(name = "CATEGORIA_ID", nullable = false, insertable = false, updatable = false)
     private Long categoriaId;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CATEGORIA_ID", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private CdsCategoria categoria;
 }

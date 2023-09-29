@@ -24,8 +24,6 @@ public class InformativePaFasce {
     @Column(name = "ORA_DA", length = 35)
     private String oraDa;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_INFORMATIVA_PA_DETAIL", nullable = false)
-    @ToString.Exclude
-    private InformativePaDetail fkInformativaPaDetail;
+    @Column(name = "FK_INFORMATIVA_PA_DETAIL", nullable = false)
+    private Long fkInformativaPaDetail;
 }

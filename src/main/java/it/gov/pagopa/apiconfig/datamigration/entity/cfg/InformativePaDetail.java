@@ -30,15 +30,6 @@ public class InformativePaDetail {
     @Column(name = "TIPO", length = 35)
     private String tipo;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_INFORMATIVA_PA_MASTER", nullable = false)
-    @ToString.Exclude
-    private InformativePaMaster fkInformativaPaMaster;
-
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "fkInformativaPaDetail",
-            cascade = CascadeType.REMOVE)
-    @ToString.Exclude
-    private List<InformativePaFasce> fasce;
+    @Column(name = "FK_INFORMATIVA_PA_MASTER", nullable = false)
+    private Long fkInformativaPaMaster;
 }

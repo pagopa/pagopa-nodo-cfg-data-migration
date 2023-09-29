@@ -23,7 +23,7 @@ import java.util.List;
 @Service("EXECUTE_WFESP_PLUGIN_CONF_TABLE_MIGRATION")
 public class ExecuteWFESPPluginConfTableMigrationStep extends Step {
 
-    private static final int PAGE_SIZE = 50;
+    private static final int PAGE_SIZE = 200;
 
     @Autowired
     WfespPluginConfSrcRepository srcRepo;
@@ -40,15 +40,17 @@ public class ExecuteWFESPPluginConfTableMigrationStep extends Step {
 
             // starting migration: read from source DB, then save on destination DB, until end or stop
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
+            long recordCounter = 0;
             do {
                 Page<WfespPluginConf> pagedEntities = srcRepo.findAll(pageable);
                 List<WfespPluginConf> entities = pagedEntities.getContent();
+                recordCounter += entities.size();
                 destRepo.saveAllAndFlush(entities);
                 pageable = pagedEntities.nextPageable();
             } while(canContinueReadPages(pageable));
 
             // ending migration step: update migration status
-            updateDataMigrationStatusOnStepEnd(cfgDataMigrationRepo);
+            updateDataMigrationStatusOnStepEnd(cfgDataMigrationRepo, recordCounter);
             checkExecutionBlock(cfgDataMigrationRepo, false);
 
         } catch (DataAccessException e) {

@@ -65,9 +65,4 @@ public class Pa {
 
     @Column(name = "DESCRIZIONE")
     private String description;
-
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkPa")
-    @EqualsAndHashCode.Exclude
-    private List<InformativePaMaster> informativePaMasters;
 }

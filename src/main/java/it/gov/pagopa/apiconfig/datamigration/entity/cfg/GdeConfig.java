@@ -24,8 +24,8 @@ public class GdeConfig {
     private String type;
 
     @Column(name = "EVENT_HUB")
-    private Boolean eventHubEnabled;
+    private Integer eventHubEnabled;
 
     @Column(name = "EVENT_HUB_PAYLOAD")
-    private Boolean eventHubPayloadEnabled;
+    private Integer eventHubPayloadEnabled;
 }

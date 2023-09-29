@@ -32,23 +32,12 @@ public class InformativeContoAccreditoMaster {
     @Column(name = "RAGIONE_SOCIALE", length = 70)
     private String ragioneSociale;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_PA")
-    @ToString.Exclude
-    private Pa fkPa;
+    @Column(name = "FK_PA")
+    private Long fkPa;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_BINARY_FILE")
-    @ToString.Exclude
-    private BinaryFile fkBinaryFile;
+    @Column(name = "FK_BINARY_FILE")
+    private Long fkBinaryFile;
 
     @Column(name = "VERSIONE", length = 35)
     private String versione;
-
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "fkInformativaContoAccreditoMaster",
-            cascade = CascadeType.REMOVE)
-    @ToString.Exclude
-    private List<InformativeContoAccreditoDetail> icaDetail;
 }

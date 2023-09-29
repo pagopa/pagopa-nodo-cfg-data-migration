@@ -18,10 +18,8 @@ public class CdiPreference {
     @Column(name = "OBJ_ID", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_INFORMATIVA_DETAIL", nullable = false)
-    @ToString.Exclude
-    private CdiDetail cdiDetail;
+    @Column(name = "FK_INFORMATIVA_DETAIL", nullable = false)
+    private Long fkInformativaDetail;
 
     @Column(name = "SELLER", nullable = false)
     private String seller;

@@ -19,24 +19,9 @@ public class CanaleTipoVersamento {
     @Column(name = "OBJ_ID", nullable = false)
     private Long id;
 
-    @Column(name = "FK_CANALE", nullable = false, insertable = false, updatable = false)
+    @Column(name = "FK_CANALE", nullable = false)
     private Long fkCanale;
 
-    @Column(name = "FK_TIPO_VERSAMENTO", nullable = false, insertable = false, updatable = false)
+    @Column(name = "FK_TIPO_VERSAMENTO", nullable = false)
     private Long fkTipoVersamento;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_CANALE", nullable = false)
-    private Canali canale;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_TIPO_VERSAMENTO", nullable = false)
-    private TipiVersamento tipoVersamento;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkCanaleTipoVersamento", cascade = CascadeType.REMOVE)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private List<PspCanaleTipoVersamento> pspCanaleTipoVersamentoList;
 }

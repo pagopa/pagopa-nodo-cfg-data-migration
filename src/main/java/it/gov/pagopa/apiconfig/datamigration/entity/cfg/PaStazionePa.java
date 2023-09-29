@@ -22,20 +22,11 @@ public class PaStazionePa {
     @Column(name = "PROGRESSIVO")
     private Long progressivo;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_PA", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private Pa pa;
-
-    @Column(name = "FK_PA", nullable = false, insertable = false, updatable = false)
+    @Column(name = "FK_PA", nullable = false)
     private Long fkPa;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_STAZIONE", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private Stazioni fkStazione;
+    @Column(name = "FK_STAZIONE", nullable = false)
+    private Long fkStazione;
 
     @Column(name = "AUX_DIGIT")
     private Long auxDigit;

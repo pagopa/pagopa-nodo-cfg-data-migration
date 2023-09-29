@@ -18,23 +18,9 @@ public class PspCanaleTipoVersamento {
     @Column(name = "OBJ_ID", nullable = false)
     private Long id;
 
-    @Column(
-            name = "FK_CANALE_TIPO_VERSAMENTO",
-            nullable = false,
-            insertable = false,
-            updatable = false)
+    @Column(name = "FK_CANALE_TIPO_VERSAMENTO", nullable = false)
     private Long fkCanaleTipoVersamento;
 
-    @Column(name = "FK_PSP", nullable = false, insertable = false, updatable = false)
+    @Column(name = "FK_PSP", nullable = false)
     private Long fkPsp;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_CANALE_TIPO_VERSAMENTO", nullable = false)
-    private CanaleTipoVersamento canaleTipoVersamento;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_PSP", nullable = false)
-    private Psp psp;
 }

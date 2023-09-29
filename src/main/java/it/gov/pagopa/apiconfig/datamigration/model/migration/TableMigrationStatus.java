@@ -24,4 +24,7 @@ public class TableMigrationStatus implements Serializable {
 
     @JsonProperty("elapsed_time")
     private Long elapsedTime;
+
+    @JsonProperty("records")
+    private Long records;
 }

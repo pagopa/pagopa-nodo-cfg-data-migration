@@ -20,14 +20,14 @@ public class CdsSoggettoServizio {
     @Column(name = "OBJ_ID", nullable = false)
     private Long id;
 
-    @Column(name = "FK_CDS_SOGGETTO", nullable = false, insertable = false, updatable = false)
-    private String fkCdsSoggetto;
+    @Column(name = "FK_CDS_SOGGETTO", nullable = false)
+    private Integer fkCdsSoggetto;
 
-    @Column(name = "FK_CDS_SERVIZIO", nullable = false, insertable = false, updatable = false)
-    private String fkCdsServizio;
+    @Column(name = "FK_CDS_SERVIZIO", nullable = false)
+    private Integer fkCdsServizio;
 
-    @Column(name = "STAZIONE", nullable = true, insertable = false, updatable = false)
-    private String fkStazione;
+    @Column(name = "STAZIONE")
+    private Integer fkStazione;
 
     @Column(name = "ID_SOGGETTO_SERVIZIO")
     private String idSoggettoServizio;
@@ -44,22 +44,4 @@ public class CdsSoggettoServizio {
     @Column(name = "COMMISSIONE")
     @Convert(converter = YesNoConverter.class)
     private Boolean commissione;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "STAZIONE", nullable = true)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private PaStazionePa stazionePa;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_CDS_SOGGETTO", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private CdsSoggetto soggetto;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_CDS_SERVIZIO", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private CdsServizio servizio;
 }

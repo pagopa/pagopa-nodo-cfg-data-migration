@@ -39,10 +39,8 @@ public class Psp {
     @Column(name = "RAGIONE_SOCIALE", length = 70)
     private String ragioneSociale;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_INT_QUADRATURE")
-    private IntermediariPsp fkIntQuadrature;
+    @Column(name = "FK_INT_QUADRATURE")
+    private Long fkIntQuadrature;
 
     @Column(name = "CODICE_MYBANK", length = 35)
     private String codiceMybank;
@@ -59,8 +57,4 @@ public class Psp {
 
     @Column(name = "VAT_NUMBER", length = 20)
     private String vatNumber;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "psp")
-    @ToString.Exclude
-    private List<PspCanaleTipoVersamento> pspCanaleTipoVersamentoList;
 }

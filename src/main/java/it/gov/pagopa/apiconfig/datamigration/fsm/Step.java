@@ -68,34 +68,39 @@ public abstract class Step implements Callable<StepName> {
     }
 
     protected void updateDataMigrationStatusOnStart(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
-        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.IN_PROGRESS, CommonUtils.now(), null);
+        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.IN_PROGRESS, CommonUtils.now(), null, 0);
+    }
+
+    protected void updateDataMigrationStatusOnEnd(CfgDataMigrationRepository cfgDataMigrationRepo, long records) throws InvalidMigrationStatusException {
+        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.COMPLETED, null, CommonUtils.now(), records);
     }
 
     protected void updateDataMigrationStatusOnEnd(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
-        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.COMPLETED, null, CommonUtils.now());
+        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.COMPLETED, null, CommonUtils.now(), 0);
     }
 
-    protected void updateDataMigrationStatusOnStepEnd(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
+    protected void updateDataMigrationStatusOnStepEnd(CfgDataMigrationRepository cfgDataMigrationRepo, long records) throws InvalidMigrationStatusException {
         if (this.sharedState.isBlockRequested()) {
             updateDataMigrationStatusOnBlock(cfgDataMigrationRepo);
         } else {
-            updateDataMigrationStatusOnEnd(cfgDataMigrationRepo);
+            updateDataMigrationStatusOnEnd(cfgDataMigrationRepo, records);
         }
     }
 
     protected void updateDataMigrationStatusOnFailure(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
-        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.FAILED, null, CommonUtils.now());
+        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.FAILED, null, CommonUtils.now(), 0);
     }
 
     protected void updateDataMigrationStatusOnBlock(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
-        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.BLOCKED, null, CommonUtils.now());
+        updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.BLOCKED, null, CommonUtils.now(), 0);
     }
 
-    private void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end) throws InvalidMigrationStatusException {
+    private void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end, long records) throws InvalidMigrationStatusException {
         DataMigration dataMigration = cfgDataMigrationRepo.findById(this.sharedState.getDataMigrationStateId()).orElseThrow(InvalidMigrationStatusException::new);
         dataMigration.setLastExecutedStep(getStepName());
         DataMigrationStatus migrationStatus = getDataMigrationStatus(dataMigration.getDetails());
         migrationStatus.setStatus(stepStatus.toString());
+        migrationStatus.setRecords(records);
         if (start != null) {
             migrationStatus.setStart(start);
         }

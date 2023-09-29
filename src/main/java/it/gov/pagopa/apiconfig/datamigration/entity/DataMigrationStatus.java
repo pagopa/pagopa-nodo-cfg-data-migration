@@ -19,6 +19,8 @@ public class DataMigrationStatus implements Serializable {
 
     private Timestamp end;
 
+    private Long records;
+
     public DataMigrationStatus() {
         this.status = MigrationStepStatus.TODO.toString();
     }

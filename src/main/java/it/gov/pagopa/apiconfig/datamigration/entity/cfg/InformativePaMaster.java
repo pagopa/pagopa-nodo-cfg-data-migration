@@ -30,15 +30,11 @@ public class InformativePaMaster {
     @Column(name = "DATA_PUBBLICAZIONE")
     private Timestamp dataPubblicazione;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "FK_PA", nullable = false)
-    @ToString.Exclude
-    private Pa fkPa;
+    @Column(name = "FK_PA", nullable = false)
+    private Long fkPa;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_BINARY_FILE")
-    @ToString.Exclude
-    private BinaryFile fkBinaryFile;
+    @Column(name = "FK_BINARY_FILE")
+    private Long fkBinaryFile;
 
     @Column(name = "VERSIONE", length = 35)
     private String versione;
@@ -46,11 +42,4 @@ public class InformativePaMaster {
     @Column(name = "PAGAMENTI_PRESSO_PSP")
     @Convert(converter = NumericBooleanConverter.class)
     private Boolean pagamentiPressoPsp;
-
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "fkInformativaPaMaster",
-            cascade = CascadeType.REMOVE)
-    @ToString.Exclude
-    private List<InformativePaDetail> details;
 }

@@ -21,15 +21,9 @@ public class CodifichePa {
     @Column(name = "CODICE_PA", nullable = false, length = 35)
     private String codicePa;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_CODIFICA", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private Codifiche fkCodifica;
+    @Column(name = "FK_CODIFICA", nullable = false)
+    private Long fkCodifica;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_PA", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private Pa fkPa;
+    @Column(name = "FK_PA", nullable = false)
+    private Long fkPa;
 }

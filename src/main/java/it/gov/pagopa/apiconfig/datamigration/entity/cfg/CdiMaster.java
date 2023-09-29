@@ -37,10 +37,10 @@ public class CdiMaster {
     private String urlInformazioniPsp;
 
     @Column(name = "MARCA_BOLLO_DIGITALE", nullable = false)
-    private Boolean marcaBolloDigitale;
+    private Integer marcaBolloDigitale;
 
     @Column(name = "STORNO_PAGAMENTO", nullable = false)
-    private Boolean stornoPagamento;
+    private Integer stornoPagamento;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

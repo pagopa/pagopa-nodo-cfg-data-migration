@@ -21,10 +21,8 @@ public class InformativeContoAccreditoDetail {
     @Column(name = "IBAN_ACCREDITO", length = 35)
     private String ibanAccredito;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_INFORMATIVA_CONTO_ACCREDITO_MASTER")
-    @ToString.Exclude
-    private InformativeContoAccreditoMaster fkInformativaContoAccreditoMaster;
+    @Column(name = "FK_INFORMATIVA_CONTO_ACCREDITO_MASTER", length = 35)
+    private Long fkInformativaContoAccreditoMaster;
 
     @Column(name = "ID_MERCHANT", length = 15)
     private String idMerchant;

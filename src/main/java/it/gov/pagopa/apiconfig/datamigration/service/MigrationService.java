@@ -103,6 +103,7 @@ public class MigrationService {
                 .status(dataMigrationStatus.getStatus())
                 .start(dataMigrationStatus.getStart() != null  ? dataMigrationStatus.getStart().toString() : null)
                 .elapsedTime(dataMigrationStatus.getEnd() == null ? 0L : CommonUtils.getElapsedTime(dataMigrationStatus.getStart(), dataMigrationStatus.getEnd()))
+                .records(dataMigrationStatus.getRecords())
                 .build();
     }
 }

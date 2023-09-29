@@ -61,12 +61,7 @@ public class Stazioni {
     @Column(name = "SERVIZIO_POF")
     private String servizioPof;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "FK_INTERMEDIARIO_PA", nullable = false)
-    @ToString.Exclude
-    private IntermediariPa intermediarioPa;
-
-    @Column(name = "FK_INTERMEDIARIO_PA", nullable = false, insertable = false, updatable = false)
+    @Column(name = "FK_INTERMEDIARIO_PA", nullable = false)
     private Long fkIntermediarioPa;
 
     @Column(name = "REDIRECT_PROTOCOLLO")

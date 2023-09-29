@@ -70,7 +70,7 @@ public class StartStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_INTERMEDIARI_PA_TABLE_MIGRATION;
+        return StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION;
     }
 
     @Override
@@ -143,42 +143,79 @@ public class StartStep extends Step {
 
     private void truncateAllTables() throws MigrationTruncateAllTablesException {
         try {
-             deleteAndFlush(quadratureSchedRepo);
-             deleteAndFlush(gdeConfigRepo);
-             deleteAndFlush(pddRepo);
-             deleteAndFlush(ftpServersRepo);
-             deleteAndFlush(configurationKeysRepo);
-             deleteAndFlush(cdsSoggettoServizioRepo);
-             deleteAndFlush(cdsServizioRepo);
-             deleteAndFlush(cdsSoggettoRepo);
-             deleteAndFlush(cdsCategoriaRepo);
-             deleteAndFlush(elencoServiziRepo);
-             deleteAndFlush(cdiPreferenceRepo);
-             deleteAndFlush(cdiInformazioniServizioRepo);
-             deleteAndFlush(cdiFasciaCostoServizioRepo);
-             deleteAndFlush(cdiDetailRepo);
-             deleteAndFlush(cdiMasterRepo);
-             deleteAndFlush(dizionarioMetadatiRepo);
-             deleteAndFlush(pspCanaleTipoVersamentoRepo);
-             deleteAndFlush(canaleTipoVersamentoRepo);
-             deleteAndFlush(tipiVersamentoRepo);
-             deleteAndFlush(canaliRepo);
-             deleteAndFlush(canaliNodoRepo);
-             deleteAndFlush(wfespPluginConfRepo);
-             deleteAndFlush(pspRepo);
-             deleteAndFlush(intermediariPspRepo);
-             deleteAndFlush(informativePaFasceRepo);
-             deleteAndFlush(informativePaDetailRepo);
-             deleteAndFlush(informativePaMasterRepo);
-             deleteAndFlush(informativeContoAccreditoDetailRepo);
-             deleteAndFlush(informativeContoAccreditoMasterRepo);
-             deleteAndFlush(binaryFileRepo);
-             deleteAndFlush(codifichePaRepo);
-             deleteAndFlush(codificheRepo);
-             deleteAndFlush(paStazionePaRepo);
-             deleteAndFlush(stazioniRepo);
-             deleteAndFlush(paRepo);
-             deleteAndFlush(intermediariPaRepo);
+            log.info(" - Starting deleting all data from GDE_CONFIG...");
+            deleteAndFlush(gdeConfigRepo);
+            log.info(" - Deleted all data from GDE_CONFIG. Starting deleting all data from PDD...");
+            deleteAndFlush(pddRepo);
+            log.info(" - Deleted all data from PDD. Starting deleting all data from FTP_SERVER...");
+            deleteAndFlush(ftpServersRepo);
+            log.info(" - Deleted all data from FTP_SERVER. Starting deleting all data from CONFIGURATION_KEYS...");
+            deleteAndFlush(configurationKeysRepo);
+            log.info(" - Deleted all data from CONFIGURATION_KEYS. Starting deleting all data from CDS_SOGGETTO_SERVIZIO...");
+            deleteAndFlush(cdsSoggettoServizioRepo);
+            log.info(" - Deleted all data from CDS_SOGGETTO_SERVIZIO. Starting deleting all data from CDS_SERVIZIO...");
+            deleteAndFlush(cdsServizioRepo);
+            log.info(" - Deleted all data from CDS_SERVIZIO. Starting deleting all data from CDS_SOGGETTO...");
+            deleteAndFlush(cdsSoggettoRepo);
+            log.info(" - Deleted all data from CDS_SOGGETTO. Starting deleting all data from CDS_CATEGORIA...");
+            deleteAndFlush(cdsCategoriaRepo);
+            log.info(" - Deleted all data from CDS_CATEGORIA. Starting deleting all data from ELENCO_SERVIZI...");
+            deleteAndFlush(elencoServiziRepo);
+            log.info(" - Deleted all data from ELENCO_SERVIZI. Starting deleting all data from CDI_PREFERENCES...");
+            deleteAndFlush(cdiPreferenceRepo);
+            log.info(" - Deleted all data from CDI_PREFERENCES. Starting deleting all data from CDI_INFORMAZIONI_SERVIZIO...");
+            deleteAndFlush(cdiInformazioniServizioRepo);
+            log.info(" - Deleted all data from CDI_INFORMAZIONI_SERVIZIO. Starting deleting all data from CDI_FASCIA_COSTO_SERVIZIO...");
+            deleteAndFlush(cdiFasciaCostoServizioRepo);
+            log.info(" - Deleted all data from CDI_FASCIA_COSTO_SERVIZIO. Starting deleting all data from CDI_DETAIL...");
+            deleteAndFlush(cdiDetailRepo);
+            log.info(" - Deleted all data from CDI_DETAIL. Starting deleting all data from CDI_MASTER...");
+            deleteAndFlush(cdiMasterRepo);
+            log.info(" - Deleted all data from CDI_MASTER. Starting deleting all data from DIZIONARIO_METADATI...");
+            deleteAndFlush(dizionarioMetadatiRepo);
+            log.info(" - Deleted all data from DIZIONARIO_METADATI. Starting deleting all data from PSP_CANALE_TIPO_VERSAMENTO...");
+            deleteAndFlush(pspCanaleTipoVersamentoRepo);
+            log.info(" - Deleted all data from PSP_CANALE_TIPO_VERSAMENTO. Starting deleting all data from CANALE_TIPO_VERSAMENTO...");
+            deleteAndFlush(canaleTipoVersamentoRepo);
+            log.info(" - Deleted all data from CANALE_TIPO_VERSAMENTO. Starting deleting all data from TIPI_VERSAMENTO...");
+            deleteAndFlush(tipiVersamentoRepo);
+            log.info(" - Deleted all data from TIPI_VERSAMENTO. Starting deleting all data from CANALI_REPO...");
+            deleteAndFlush(canaliRepo);
+            log.info(" - Deleted all data from CANALI_REPO. Starting deleting all data from CANALI_NODO...");
+            deleteAndFlush(canaliNodoRepo);
+            log.info(" - Deleted all data from CANALI_NODO. Starting deleting all data from WFESP_PLUGIN_CONF...");
+            deleteAndFlush(wfespPluginConfRepo);
+            log.info(" - Deleted all data from WFESP_PLUGIN_CONF. Starting deleting all data from PSP...");
+            deleteAndFlush(pspRepo);
+            log.info(" - Deleted all data from PSP. Starting deleting all data from INTERMEDIARI_PSP...");
+            deleteAndFlush(intermediariPspRepo);
+            log.info(" - Deleted all data from INTERMEDIARI_PSP. Starting deleting all data from INFORMATIVE_PA_FASCE...");
+            deleteAndFlush(informativePaFasceRepo);
+            log.info(" - Deleted all data from INFORMATIVE_PA_FASCE. Starting deleting all data from INFORMATIVE_PA_DETAIL...");
+            deleteAndFlush(informativePaDetailRepo);
+            log.info(" - Deleted all data from INFORMATIVE_PA_DETAIL. Starting deleting all data from INFORMATIVE_PA_MASTER...");
+            deleteAndFlush(informativePaMasterRepo);
+            log.info(" - Deleted all data from INFORMATIVE_PA_MASTER. Starting deleting all data from INFORMATIVE_CONTO_ACCREDITO_DETAIL...");
+            deleteAndFlush(informativeContoAccreditoDetailRepo);
+            log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_DETAIL. Starting deleting all data from INFORMATIVE_CONTO_ACCREDITO_MASTER...");
+            deleteAndFlush(informativeContoAccreditoMasterRepo);
+            log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_MASTER. Starting deleting all data from BINARY_FILE...");
+            deleteAndFlush(binaryFileRepo);
+            log.info(" - Deleted all data from BINARY_FILE. Starting deleting all data from CODIFICHE_PA...");
+            deleteAndFlush(codifichePaRepo);
+            log.info(" - Deleted all data from CODIFICHE_PA. Starting deleting all data from CODIFICHE...");
+            deleteAndFlush(codificheRepo);
+            log.info(" - Deleted all data from CODIFICHE. Starting deleting all data from PA_STAZIONE_PA...");
+            deleteAndFlush(paStazionePaRepo);
+            log.info(" - Deleted all data from PA_STAZIONE_PA. Starting deleting all data from STAZIONI...");
+            deleteAndFlush(stazioniRepo);
+            log.info(" - Deleted all data from STAZIONI. Starting deleting all data from PA...");
+            deleteAndFlush(paRepo);
+            log.info(" - Deleted all data from PA. Starting deleting all data from INTERMEDIARI_PA...");
+            deleteAndFlush(intermediariPaRepo);
+            log.info(" - Deleted all data from INTERMEDIARI_PA. Starting deleting all data from QUADRATURE_SCHED...");
+            deleteAndFlush(quadratureSchedRepo);
+            log.info(" - Deleted all data from QUADRATURE_SCHED. Ended deleting all previous data!.");
         } catch (DataAccessException e) {
             throw new MigrationTruncateAllTablesException(e);
         }
