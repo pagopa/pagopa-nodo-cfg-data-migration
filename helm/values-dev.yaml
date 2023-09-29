@@ -62,26 +62,26 @@ microservice-chart:
           type: Utilization # Allowed types are 'Utilization' or 'AverageValue'
           value: "75"
   envConfig:
-    # TODO: set your name
-    WEBSITE_SITE_NAME: 'yourProjectName' # required to show cloud role name in application insights
-    ENV: 'azure-dev'
-    APP_LOGGING_LEVEL: 'DEBUG'
-    DEFAULT_LOGGING_LEVEL: 'INFO'
+    WEBSITE_SITE_NAME: 'pagopanodocfgdatamigration'
+    ENV: 'Azure Kubernetes'
+    ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1522)(HOST=db-nodo-pagamenti.d.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCT_PP_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
+    ORACLEDB_USERNAME: "NODO4_CFG"
+    ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
+    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-d-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+    POSTGRESQL_USERNAME: "cfg"
+    POSTGRESQL_DEFAULT_SCHEMA: "cfg"
+    DEFAULT_LOGGING_LEVEL: "INFO"
+    APP_LOGGING_LEVEL: "INFO"
+    SQL_LOGGING_LEVEL: "INFO"
+    SQL_BINDER_LOGGING_LEVEL: "INFO"
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
-
-    OTEL_SERVICE_NAME: # TODO
-    OTEL_RESOURCE_ATTRIBUTES: "deployment.environment=azure-dev"
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
-    OTEL_TRACES_EXPORTER: otlp
-    OTEL_METRICS_EXPORTER: otlp
-    OTEL_LOGS_EXPORTER: none
-    OTEL_TRACES_SAMPLER: "always_on"
   envSecret:
     # required
     APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-d-connection-string'
     OTEL_EXPORTER_OTLP_HEADERS: elastic-auth-header
   keyvault:
-    name: "pagopa-d-name-kv" #TODO
+    name: "pagopa-d-name-kv"
     tenantId: "7788edaf-0346-4068-9d79-c868aed15b3d"
   nodeSelector: { }
   tolerations: [ ]
@@ -113,4 +113,3 @@ microservice-chart:
         pullPolicy: Always
       envConfig: { }
       envSecret: { }
-
