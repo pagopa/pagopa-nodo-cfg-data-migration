@@ -1,38 +1,14 @@
 version: '3.8'
 
 services:
-
-#  app:
-#    container_name: 'service'
-#    image: ${image}
-#    platform: linux/amd64
-#    build:
-#      dockerfile: Dockerfile
-#      context: ../
-#    env_file:
-#      - ./.env
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - oracle-db
-
-  oracle-db:
-    image: oracle/database:19.3.0-ee
-    container_name: db-oracle
-    environment:
-      ORACLE_SID: ORCLCDB
-      ORACLE_PDB: ORCLPDB1
-      ORACLE_PWD: oracle
-      ORACLE_CHARACTERSET: AL32UTF8
+  app:
+    container_name: 'app'
+    image: ${image}
+    platform: linux/amd64
+    build:
+      dockerfile: Dockerfile
+      context: ../
+    env_file:
+      - ./.env
     ports:
-      - "1521:1521"
-      - "5500:5500"
-
-#  postgres-db:
-#    image: postgres:13.1-alpine
-#    container_name: db-postgres
-#    environment:
-#      POSTGRES_USER: compose-postgres
-#      POSTGRES_PASSWORD: compose-postgres
-#    ports:
-#      - "5433:5433"
+      - "8080:8080"

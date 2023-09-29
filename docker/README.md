@@ -3,8 +3,7 @@
  - Download "OracleDB" zip v19.3.0, the downloaded file will be `LINUX.ARM64_1919000_db_home`. 
  - Move this zip in folder `/docker-images/OracleDatabase/SingleInstance/dockerfiles/19.3.0`.
  - As described [here](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md), run `./buildContainerImage.sh -e -v 19.3.0 -o '--build-arg SLIMMING=false'
- - From this repository in `docker` folder, run `docker-compose -f docker-compose.yml up`.
-   - if the compose does not works, execute the commands:
+ - From this repository in `docker` folder, execute the commands:
      ```
      docker run --name db-oracle \
        -p 1521:1521 -p 5500:5500 \
