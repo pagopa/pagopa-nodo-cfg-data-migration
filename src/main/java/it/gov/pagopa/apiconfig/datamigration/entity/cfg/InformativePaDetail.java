@@ -1,10 +1,9 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.starter.util.YesNoConverter;
+import it.gov.pagopa.apiconfig.datamigration.util.YesNoConverter;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter

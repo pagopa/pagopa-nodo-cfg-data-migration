@@ -1,6 +1,6 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.starter.util.NumericBooleanConverter;
+import it.gov.pagopa.apiconfig.datamigration.util.NumericBooleanConverter;
 import lombok.*;
 
 import javax.persistence.*;

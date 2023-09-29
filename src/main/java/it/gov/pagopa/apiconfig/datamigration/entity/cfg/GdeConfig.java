@@ -1,6 +1,6 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.starter.entity.GdeConfigPk;
+import it.gov.pagopa.apiconfig.datamigration.entity.cfg.pk.GdeConfigPk;
 import lombok.*;
 
 import javax.persistence.*;
