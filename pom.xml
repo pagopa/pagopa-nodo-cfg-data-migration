@@ -12,7 +12,7 @@
 
     <groupId>it.gov.pagopa.apiconfig</groupId>
     <artifactId>data-migration</artifactId>
-    <version>0.0.1-9-dev</version>
+    <version>0.0.1-10-dev</version>
     <description>A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database</description>
 
     <properties>
