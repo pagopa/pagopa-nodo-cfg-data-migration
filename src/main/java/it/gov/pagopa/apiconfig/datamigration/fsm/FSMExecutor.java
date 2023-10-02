@@ -1,15 +1,14 @@
 package it.gov.pagopa.apiconfig.datamigration.fsm;
 
 import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
 import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
 import it.gov.pagopa.apiconfig.datamigration.exception.AppError;
 import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
-import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
 import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
 import it.gov.pagopa.apiconfig.datamigration.util.Constants;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,7 @@ public class FSMExecutor {
     @Autowired
     private Map<String, Step> steps;
 
+    @Getter
     private final FSMSharedState sharedState;
 
     private StepName currentStep;
