@@ -79,7 +79,6 @@ microservice-chart:
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
-    APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-d-connection-string'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-d-nodo-kv"
