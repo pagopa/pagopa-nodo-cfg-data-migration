@@ -29,7 +29,7 @@ microservice-chart:
       - 8080
   ingress:
     create: true
-    host: "weudev.nodo.internal.dev.platform.pagopa.it"
+    host: "weudev.apiconfig.internal.dev.platform.pagopa.it"
     path: /datamigration/(.*)
     servicePort: 8080
   serviceAccount:
@@ -64,7 +64,6 @@ microservice-chart:
   envConfig:
     WEBSITE_SITE_NAME: 'pagopanodocfgdatamigration'
     ENV: 'Azure Kubernetes'
-    JAVA_OPTS: "-XX:+PrintFlagsFinal -XX:MaxHeapSize=1g"
     ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1522)(HOST=db-nodo-pagamenti.d.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCT_PP_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
@@ -82,7 +81,7 @@ microservice-chart:
     POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
-    name: "pagopa-d-nodo-kv"
+    name: "pagopa-d-apiconfig-kv"
     tenantId: "7788edaf-0346-4068-9d79-c868aed15b3d"
   nodeSelector: {}
   tolerations: []
