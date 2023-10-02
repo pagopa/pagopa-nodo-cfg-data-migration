@@ -1,10 +1,10 @@
 microservice-chart:
-  namespace: "nodo"
+  namespace: "apiconfig"
   nameOverride: ""
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "0.0.1-15-dev"
+    tag: "0.0.1-16-dev"
     pullPolicy: Always
   livenessProbe:
     httpGet:
