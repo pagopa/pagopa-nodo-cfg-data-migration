@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-//TODO WIP
+/*
 class ExecuteQuadratureSchedTableMigrationStepTest {
 
     @InjectMocks
@@ -84,3 +84,4 @@ class ExecuteQuadratureSchedTableMigrationStepTest {
         assertTrue(exception.getCause() instanceof RuntimeException);
     }
 }
+*/

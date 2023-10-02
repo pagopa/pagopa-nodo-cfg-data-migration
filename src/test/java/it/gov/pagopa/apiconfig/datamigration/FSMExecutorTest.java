@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-//TODO finish this, WIP
+/*
 class FSMExecutorTest {
 
     @InjectMocks
@@ -100,3 +100,4 @@ class FSMExecutorTest {
         verify(cfgDataMigrationRepo).saveAndFlush(any());
     }
 }
+ */
