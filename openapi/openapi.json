@@ -4,7 +4,7 @@
     "description": "A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database",
     "termsOfService": "https://www.pagopa.gov.it/",
     "title": "data-migration",
-    "version": "0.0.1-12-dev"
+    "version": "0.0.1-13-dev"
   },
   "servers": [
     {
