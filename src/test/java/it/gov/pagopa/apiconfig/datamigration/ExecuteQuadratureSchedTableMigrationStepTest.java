@@ -30,7 +30,7 @@ class ExecuteQuadratureSchedTableMigrationStepTest {
     @InjectMocks
     private ExecuteQuadratureSchedTableMigrationStep quadratureSchedTableMigrationStep;
 
-    @InjectMocks
+    @Mock
     private CfgDataMigrationRepository cfgDataMigrationRepository;
 
     @Mock
