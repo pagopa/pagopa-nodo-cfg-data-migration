@@ -52,9 +52,6 @@ public class PostgreSQLDatasourceConfiguration {
     @Value("${persistence.postgresql.hikari.keepaliveTime}")
     private String keepaliveTime;
 
-    @Value("${persistence.postgresql.hikari.connection-test-query}")
-    private String connectionTestQuery;
-
     @Bean(name = "postgresqlDataSource")
     public DataSource dataSource() {
         HikariConfig hikariConfig = new HikariConfig();
@@ -65,7 +62,6 @@ public class PostgreSQLDatasourceConfiguration {
         hikariConfig.setConnectionTimeout(Long.getLong(connectionTimeout));
         hikariConfig.setMaxLifetime(Long.getLong(maxLifetime));
         hikariConfig.setKeepaliveTime(Long.getLong(keepaliveTime));
-        hikariConfig.setConnectionTestQuery(connectionTestQuery);
         return new HikariDataSource(hikariConfig);
     }
 

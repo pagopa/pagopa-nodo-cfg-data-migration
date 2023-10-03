@@ -52,9 +52,6 @@ public class OracleDBDatasourceConfiguration {
     @Value("${persistence.oracledb.hikari.keepaliveTime}")
     private String keepaliveTime;
 
-    @Value("${persistence.oracledb.hikari.connection-test-query}")
-    private String connectionTestQuery;
-
     @Primary
     @Bean(name = "oracledbDataSource")
     public DataSource dataSource() {
@@ -66,7 +63,6 @@ public class OracleDBDatasourceConfiguration {
         hikariConfig.setConnectionTimeout(Long.getLong(connectionTimeout));
         hikariConfig.setMaxLifetime(Long.getLong(maxLifetime));
         hikariConfig.setKeepaliveTime(Long.getLong(keepaliveTime));
-        hikariConfig.setConnectionTestQuery(connectionTestQuery);
         return new HikariDataSource(hikariConfig);
     }
 
