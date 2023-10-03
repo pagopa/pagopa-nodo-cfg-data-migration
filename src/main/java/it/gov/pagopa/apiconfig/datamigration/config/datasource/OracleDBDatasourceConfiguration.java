@@ -2,6 +2,8 @@ package it.gov.pagopa.apiconfig.datamigration.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -55,15 +57,12 @@ public class OracleDBDatasourceConfiguration {
 
     @Primary
     @Bean(name = "oracleEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean (
-            EntityManagerFactoryBuilder builder,
-            @Qualifier("oracledbDataSource") DataSource dataSource
-    ) {
-        LocalContainerEntityManagerFactoryBean entityManager = builder
-                .dataSource(dataSource)
-                .packages("it.gov.pagopa.apiconfig.datamigration.entity")
-                .persistenceUnit("oracledbUnit")
-                .build();
+    @ConditionalOnBean(name = "oracledbDataSource")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean () {
+        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+        entityManager.setDataSource(dataSource());
+        entityManager.setPackagesToScan("it.gov.pagopa.apiconfig.datamigration.entity");
+        entityManager.setPersistenceUnitName("oracledbUnit");
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(vendorAdapter);
 
@@ -81,8 +80,10 @@ public class OracleDBDatasourceConfiguration {
 
     @Primary
     @Bean(name = "oracledbTransactionManager")
-    public PlatformTransactionManager transactionManager (
-            @Qualifier("oracleEntityManagerFactory")EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
+    @ConditionalOnMissingBean(type = "JpaTransactionManager")
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
     }
 }
