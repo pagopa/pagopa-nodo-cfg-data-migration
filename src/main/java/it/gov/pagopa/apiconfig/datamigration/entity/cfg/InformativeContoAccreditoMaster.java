@@ -2,7 +2,7 @@ package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 

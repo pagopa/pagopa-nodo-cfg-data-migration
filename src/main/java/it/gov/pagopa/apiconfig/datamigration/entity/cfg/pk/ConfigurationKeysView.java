@@ -1,8 +1,8 @@
 package it.gov.pagopa.apiconfig.datamigration.entity.cfg.pk;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 
 public class ConfigurationKeysView implements Serializable {
 

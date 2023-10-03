@@ -3,7 +3,7 @@ package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 import it.gov.pagopa.apiconfig.datamigration.util.YesNoConverter;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Table(name = "PA_STAZIONE_PA", uniqueConstraints = {@UniqueConstraint(columnNames = {"FK_PA", "FK_STAZIONE"})})
 @Entity

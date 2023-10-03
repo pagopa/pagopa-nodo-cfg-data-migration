@@ -3,7 +3,7 @@ package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
 import it.gov.pagopa.apiconfig.datamigration.util.YesNoConverter;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Table(name = "INTERMEDIARI_PA")
 @Entity

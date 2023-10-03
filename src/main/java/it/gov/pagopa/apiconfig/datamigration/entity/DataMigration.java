@@ -4,7 +4,7 @@ import it.gov.pagopa.apiconfig.datamigration.util.JsonBConverter;
 import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Table(name = "CFG_DATA_MIGRATION")
