@@ -9,79 +9,125 @@ import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepo
 import it.gov.pagopa.nodo.datamigration.repository.postgres.QuadratureSchedDestRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.lang.reflect.Field;
 import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 /*
+@ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = Application.class)
 class ExecuteQuadratureSchedTableMigrationStepTest {
 
+    @MockBean
+    QuadratureSchedSrcRepository srcRepo;
+
+    @MockBean
+    QuadratureSchedDestRepository destRepo;
+
+    @MockBean
+    CfgDataMigrationRepository dataMigrationRepository;
+
     @InjectMocks
-    private ExecuteQuadratureSchedTableMigrationStep quadratureSchedTableMigrationStep;
+    @Autowired
+    @Spy
+    ExecuteQuadratureSchedTableMigrationStep migrationStep;
 
     @Mock
-    private CfgDataMigrationRepository cfgDataMigrationRepository;
+    FSMSharedState sharedState;
 
-    @Mock
-    private FSMSharedState sharedState;
-
-    @Mock
-    private QuadratureSchedSrcRepository srcRepo;
-
-    @Mock
-    private QuadratureSchedDestRepository destRepo;
+    DataMigration dataMigration;
+    DataMigrationDetails dataMigrationDetails;
+    DataMigrationStatus dataMigrationStatus;
+    static int pageSize;
 
     @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        when(sharedState.getDataMigrationStateId()).thenReturn("mock");
-        quadratureSchedTableMigrationStep.attachSharedState(sharedState, cfgDataMigrationRepository);
+    void setUp() throws IllegalAccessException, NoSuchFieldException {
+        dataMigrationStatus = new DataMigrationStatus();
+        dataMigrationDetails = new DataMigrationDetails();
+        dataMigration = new DataMigration();
+
+        Field statusField = DataMigrationDetails.class.getDeclaredField("quadratureSched");
+        statusField.setAccessible(true);
+        statusField.set(dataMigrationDetails, dataMigrationStatus);
+
+        Field detailsField = DataMigration.class.getDeclaredField("details");
+        detailsField.setAccessible(true);
+        detailsField.set(dataMigration, dataMigrationDetails);
+
+        when(dataMigrationRepository.findById("1")).thenReturn(Optional.of(dataMigration));
+
+
     }
 
     @Test
-    void testExecuteStep() throws Exception {
+    void testExecuteStep() throws MigrationStepException, IllegalAccessException, NoSuchFieldException {
         QuadratureSched quadratureSched = new QuadratureSched();
-        List<QuadratureSched> quadratureSchedList = Collections.singletonList(quadratureSched);
-        Page<QuadratureSched> firstPage = new PageImpl<>(quadratureSchedList, PageRequest.of(0, 1), 2);
-        Page<QuadratureSched> secondPage = new PageImpl<>(quadratureSchedList);
-        when(srcRepo.findAll(any(Pageable.class)))
-                .thenReturn(firstPage)
-                .thenReturn(secondPage);
+        Page<QuadratureSched> pagedResponse = new PageImpl<>(Collections.singletonList(quadratureSched));
 
-        quadratureSchedTableMigrationStep.executeStep();
+        // Emulating findAll
+        Field field = ExecuteQuadratureSchedTableMigrationStep.class.getDeclaredField("PAGE_SIZE");
+        field.setAccessible(true);
+        pageSize = (int) field.get(null);
+        Pageable pageable = PageRequest.of(0, pageSize);
+        when(srcRepo.findAll(pageable)).thenReturn(pagedResponse);
 
-        verify(srcRepo, times(2)).findAll(any(Pageable.class));
-        verify(destRepo, times(2)).saveAllAndFlush(eq(quadratureSchedList));
+        when(sharedState.getDataMigrationStateId()).thenReturn("1");
+        when(dataMigrationRepository.findById(anyString())).thenReturn(Optional.of(dataMigration));
+
+        migrationStep.executeStep();
+
+        verify(srcRepo, times(1)).findAll(any(Pageable.class));
+        verify(destRepo, times(1)).saveAllAndFlush(anyList());
     }
 
     @Test
-    public void testExecuteStepThrowsException() {
-        when(srcRepo.findAll(any(Pageable.class))).thenThrow(new RuntimeException());
+    void testExecuteStepMigrationErrorOnStepException() throws MigrationStepException {
+        Pageable pageable = PageRequest.of(0, pageSize);
+        when(srcRepo.findAll(pageable)).thenThrow(new DataAccessException("Test Exception") {});
+        when(sharedState.getDataMigrationStateId()).thenReturn("1");
 
-        assertThrows(MigrationErrorOnStepException.class, () -> quadratureSchedTableMigrationStep.executeStep());
+        assertThrows(MigrationErrorOnStepException.class, () -> migrationStep.executeStep());
+
+        verify(migrationStep, times(1)).updateDataMigrationStatusOnFailure(any());
     }
 
     @Test
-    public void testExecuteStepWithSaveFailure() {
-        QuadratureSched quadratureSched = new QuadratureSched();
-        List<QuadratureSched> quadratureSchedList = Collections.singletonList(quadratureSched);
-        Page<QuadratureSched> pagedResponse = new PageImpl<>(quadratureSchedList);
-        when(srcRepo.findAll(any(Pageable.class))).thenReturn(pagedResponse);
-        doThrow(new RuntimeException()).when(destRepo).saveAllAndFlush(any());
+    void testExecuteStepMigrationInterruptedStepException() throws MigrationStepException {
+        when(sharedState.isBlockRequested()).thenReturn(true);
+        when(sharedState.getDataMigrationStateId()).thenReturn("1");
 
-        Exception exception = assertThrows(MigrationErrorOnStepException.class, () -> quadratureSchedTableMigrationStep.executeStep());
-        assertTrue(exception.getCause() instanceof RuntimeException);
+        assertThrows(MigrationInterruptedStepException.class, () -> migrationStep.executeStep());
+
+        verify(migrationStep, times(1)).updateDataMigrationStatusOnBlock(any());
+    }
+
+    @Test
+    void getNextState() {
+        StepName nextState = migrationStep.getNextState();
+        assert nextState == StepName.EXECUTE_INTERMEDIARI_PA_TABLE_MIGRATION;
+    }
+
+    @Test
+    void getStepName() {
+        String stepName = migrationStep.getStepName();
+        assert stepName.equals("EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION");
     }
 }
 */
