@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.fsm;
+package it.gov.pagopa.nodo.datamigration.fsm;
 
 import lombok.Getter;
 import lombok.Setter;

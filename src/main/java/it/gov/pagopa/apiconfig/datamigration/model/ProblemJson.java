@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.model;
+package it.gov.pagopa.nodo.datamigration.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

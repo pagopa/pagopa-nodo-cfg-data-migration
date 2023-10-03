@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.config.datasource;
+package it.gov.pagopa.nodo.datamigration.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +26,7 @@ import java.util.Properties;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "oracleEntityManagerFactory",
         transactionManagerRef = "oracledbTransactionManager",
-        basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.oracle" }
+        basePackages = { "it.gov.pagopa.nodo.datamigration.repository.oracle" }
 )
 public class OracleDBDatasourceConfiguration {
 
@@ -62,7 +62,7 @@ public class OracleDBDatasourceConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean () {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
-        entityManager.setPackagesToScan("it.gov.pagopa.apiconfig.datamigration.entity");
+        entityManager.setPackagesToScan("it.gov.pagopa.nodo.datamigration.entity");
         entityManager.setPersistenceUnitName("oracledbUnit");
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(vendorAdapter);

@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.exception;
+package it.gov.pagopa.nodo.datamigration.exception;
 
 import java.util.Formatter;
 import jakarta.validation.constraints.NotNull;

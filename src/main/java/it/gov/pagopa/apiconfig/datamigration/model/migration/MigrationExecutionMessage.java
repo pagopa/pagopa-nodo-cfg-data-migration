@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.model.migration;
+package it.gov.pagopa.nodo.datamigration.model.migration;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

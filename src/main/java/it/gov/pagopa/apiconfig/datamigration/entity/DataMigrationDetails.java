@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.entity;
+package it.gov.pagopa.nodo.datamigration.entity;
 
 import lombok.*;
 

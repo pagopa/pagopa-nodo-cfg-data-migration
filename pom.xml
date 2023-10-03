@@ -8,7 +8,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.0</version>
     </parent>
-    <groupId>it.gov.pagopa.apiconfig</groupId>
+    <groupId>it.gov.pagopa.nodo</groupId>
     <artifactId>data-migration</artifactId>
     <version>0.0.1-32-pipeline-testing</version>
     <description>A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database</description>

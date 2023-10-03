@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
+package it.gov.pagopa.nodo.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.datamigration.util.NumericBooleanConverter;
+import it.gov.pagopa.nodo.datamigration.util.NumericBooleanConverter;
 import lombok.*;
 
 import jakarta.persistence.*;

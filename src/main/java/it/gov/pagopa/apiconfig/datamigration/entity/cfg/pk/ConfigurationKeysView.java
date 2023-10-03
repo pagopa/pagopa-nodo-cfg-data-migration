@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.entity.cfg.pk;
+package it.gov.pagopa.nodo.datamigration.entity.cfg.pk;
 
 import java.io.Serializable;
 import jakarta.persistence.Column;

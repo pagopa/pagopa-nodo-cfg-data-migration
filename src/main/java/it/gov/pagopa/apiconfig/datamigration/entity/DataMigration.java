@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.entity;
+package it.gov.pagopa.nodo.datamigration.entity;
 
-import it.gov.pagopa.apiconfig.datamigration.util.JsonBConverter;
+import it.gov.pagopa.nodo.datamigration.util.JsonBConverter;
 import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
 

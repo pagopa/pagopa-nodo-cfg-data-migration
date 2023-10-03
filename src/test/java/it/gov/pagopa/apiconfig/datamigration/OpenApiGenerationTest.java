@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration;
+package it.gov.pagopa.nodo.datamigration;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

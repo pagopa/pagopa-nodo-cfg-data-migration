@@ -1,12 +1,12 @@
-package it.gov.pagopa.apiconfig.datamigration;
+package it.gov.pagopa.nodo.datamigration;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
-import it.gov.pagopa.apiconfig.datamigration.fsm.FSMExecutor;
-import it.gov.pagopa.apiconfig.datamigration.fsm.FSMSharedState;
-import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
+import it.gov.pagopa.nodo.datamigration.exception.AppException;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMExecutor;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
+import it.gov.pagopa.nodo.datamigration.fsm.Step;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

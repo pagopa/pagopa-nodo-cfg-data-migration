@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.exception.migration;
+package it.gov.pagopa.nodo.datamigration.exception.migration;
 
 public class MigrationErrorOnStepException extends MigrationStepException {
 

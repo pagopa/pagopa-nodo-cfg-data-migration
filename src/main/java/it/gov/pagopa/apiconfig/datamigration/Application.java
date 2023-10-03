@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration;
+package it.gov.pagopa.nodo.datamigration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

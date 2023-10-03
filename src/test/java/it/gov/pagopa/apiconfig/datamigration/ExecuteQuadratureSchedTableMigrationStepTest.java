@@ -1,12 +1,12 @@
-package it.gov.pagopa.apiconfig.datamigration;
+package it.gov.pagopa.nodo.datamigration;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.cfg.QuadratureSched;
-import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationErrorOnStepException;
-import it.gov.pagopa.apiconfig.datamigration.fsm.FSMSharedState;
-import it.gov.pagopa.apiconfig.datamigration.fsm.step.ExecuteQuadratureSchedTableMigrationStep;
-import it.gov.pagopa.apiconfig.datamigration.repository.oracle.QuadratureSchedSrcRepository;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.QuadratureSchedDestRepository;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.QuadratureSched;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStepException;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
+import it.gov.pagopa.nodo.datamigration.fsm.step.ExecuteQuadratureSchedTableMigrationStep;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.QuadratureSchedSrcRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.QuadratureSchedDestRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

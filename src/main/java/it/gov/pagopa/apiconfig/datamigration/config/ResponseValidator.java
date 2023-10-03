@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.config;
+package it.gov.pagopa.nodo.datamigration.config;
 
-import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
+import it.gov.pagopa.nodo.datamigration.exception.AppException;
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -27,7 +27,7 @@ public class ResponseValidator {
    * @param joinPoint not used
    * @param result    the response to validate
    */
-  @AfterReturning(pointcut = "execution(* it.gov.pagopa.apiconfig.datamigration.controller.*.*(..))", returning = "result")
+  @AfterReturning(pointcut = "execution(* it.gov.pagopa.nodo.datamigration.controller.*.*(..))", returning = "result")
   public void validateResponse(JoinPoint joinPoint, Object result) {
     if (result instanceof ResponseEntity) {
       validateResponse((ResponseEntity<?>) result);

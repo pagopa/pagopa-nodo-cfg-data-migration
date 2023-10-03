@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.repository.oracle;
+package it.gov.pagopa.nodo.datamigration.repository.oracle;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.cfg.GdeConfig;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.GdeConfig;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

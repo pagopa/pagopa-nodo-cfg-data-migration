@@ -1,12 +1,12 @@
-package it.gov.pagopa.apiconfig.datamigration.fsm.step;
+package it.gov.pagopa.nodo.datamigration.fsm.step;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
-import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
+import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
+import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.fsm.Step;
+import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;

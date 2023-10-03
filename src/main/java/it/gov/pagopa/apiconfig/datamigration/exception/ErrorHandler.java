@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.exception;
+package it.gov.pagopa.nodo.datamigration.exception;
 
-import it.gov.pagopa.apiconfig.datamigration.model.ProblemJson;
+import it.gov.pagopa.nodo.datamigration.model.ProblemJson;
 
 import java.util.ArrayList;
 import java.util.List;

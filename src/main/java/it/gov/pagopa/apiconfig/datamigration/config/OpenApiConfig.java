@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.config;
+package it.gov.pagopa.nodo.datamigration.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import it.gov.pagopa.apiconfig.datamigration.util.Constants;
+import it.gov.pagopa.nodo.datamigration.util.Constants;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

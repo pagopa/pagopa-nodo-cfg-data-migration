@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.config.datasource;
+package it.gov.pagopa.nodo.datamigration.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ import java.util.Properties;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "postgresqlEntityManagerFactory",
         transactionManagerRef = "postgresqlTransactionManager",
-        basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.postgres" }
+        basePackages = { "it.gov.pagopa.nodo.datamigration.repository.postgres" }
 )
 public class PostgreSQLDatasourceConfiguration {
 
@@ -59,7 +59,7 @@ public class PostgreSQLDatasourceConfiguration {
     ) {
         LocalContainerEntityManagerFactoryBean entityManager = builder
                 .dataSource(dataSource)
-                .packages("it.gov.pagopa.apiconfig.datamigration.entity")
+                .packages("it.gov.pagopa.nodo.datamigration.entity")
                 .persistenceUnit("postgresqlUnit")
                 .build();
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

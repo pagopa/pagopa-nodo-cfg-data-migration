@@ -1,5 +1,5 @@
 microservice-chart:
-  namespace: "apiconfig"
+  namespace: "nodo"
   nameOverride: ""
   fullnameOverride: ""
   image:
@@ -29,7 +29,7 @@ microservice-chart:
       - 8080
   ingress:
     create: true
-    host: "weudev.apiconfig.internal.dev.platform.pagopa.it"
+    host: "weudev.nodo.internal.dev.platform.pagopa.it"
     path: /datamigration/(.*)
     servicePort: 8080
   serviceAccount:
@@ -81,7 +81,7 @@ microservice-chart:
     POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
-    name: "pagopa-d-apiconfig-kv"
+    name: "pagopa-d-nodo-kv"
     tenantId: "7788edaf-0346-4068-9d79-c868aed15b3d"
   nodeSelector: {}
   tolerations: []

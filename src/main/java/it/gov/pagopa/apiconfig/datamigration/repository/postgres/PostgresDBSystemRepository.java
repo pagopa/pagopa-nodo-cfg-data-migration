@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.repository.postgres;
+package it.gov.pagopa.nodo.datamigration.repository.postgres;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

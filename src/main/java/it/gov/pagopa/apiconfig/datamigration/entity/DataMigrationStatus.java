@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.entity;
+package it.gov.pagopa.nodo.datamigration.entity;
 
-import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
+import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
 import lombok.*;
 
 import java.io.Serializable;

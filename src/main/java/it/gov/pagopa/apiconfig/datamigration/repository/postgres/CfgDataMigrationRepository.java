@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.repository.postgres;
+package it.gov.pagopa.nodo.datamigration.repository.postgres;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.config;
+package it.gov.pagopa.nodo.datamigration.config;
 
 import java.util.Arrays;
 import java.util.stream.StreamSupport;
@@ -39,17 +39,17 @@ public class LoggingAspect {
     // all rest controllers
   }
 
-  @Pointcut("execution(* it.gov.pagopa.apiconfig.datamigration.repository..*.*(..))")
+  @Pointcut("execution(* it.gov.pagopa.nodo.datamigration.repository..*.*(..))")
   public void repository() {
     // all repository methods
   }
 
-  @Pointcut("execution(* it.gov.pagopa.apiconfig.datamigration.service..*.*(..))")
+  @Pointcut("execution(* it.gov.pagopa.nodo.datamigration.service..*.*(..))")
   public void service() {
     // all service methods
   }
 
-  @Pointcut("execution(* it.gov.pagopa.apiconfig.datamigration.exception.ErrorHandler.*(..))")
+  @Pointcut("execution(* it.gov.pagopa.nodo.datamigration.exception.ErrorHandler.*(..))")
   public void errorHandler() {
     // all service methods
   }
