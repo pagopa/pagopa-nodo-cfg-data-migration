@@ -23,7 +23,7 @@ import java.util.Properties;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "oracleEntityManagerFactory",
         transactionManagerRef = "oracledbTransactionManager",
-        basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.oracle"}
+        basePackages = { "it.gov.pagopa.apiconfig.datamigration.repository.oracle" }
 )
 public class OracleDBDatasourceConfiguration {
 
@@ -55,8 +55,10 @@ public class OracleDBDatasourceConfiguration {
         entityManager.setJpaVendorAdapter(vendorAdapter);
 
         Properties props = new Properties();
-        props.putAll(properties.getOracledb().getHibernate().getProperties());
+        //props.putAll(properties.getOracledb().getHibernate().getProperties());
         props.put("hibernate.dialect", "org.hibernate.dialect.Oracle12cDialect");
+        props.put("hibernate.database-platform", "org.hibernate.dialect.Oracle12cDialect");
+        props.put("hibernate.ddl-auto", "none");
         props.put("hibernate.hbm2ddl.auto", "none");
         props.put("hibernate.default_schema", "NODO4_CFG");
         entityManager.setJpaProperties(props);

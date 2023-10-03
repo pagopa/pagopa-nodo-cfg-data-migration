@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Map;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -50,7 +51,17 @@ public class PostgreSQLDatasourceConfiguration {
                 .build();
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(vendorAdapter);
-        entityManager.setJpaPropertyMap(properties.getPostgresql().getHibernate().getProperties());
+
+
+        Properties props = new Properties();
+        //props.putAll(properties.getOracledb().getHibernate().getProperties());
+        props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        props.put("hibernate.database-platform", "org.hibernate.dialect.PostgreSQLDialect");
+        props.put("hibernate.ddl-auto", "none");
+        props.put("hibernate.hbm2ddl.auto", "none");
+        props.put("hibernate.default_schema", "cfg");
+        entityManager.setJpaProperties(props);
+
         return entityManager;
     }
 
