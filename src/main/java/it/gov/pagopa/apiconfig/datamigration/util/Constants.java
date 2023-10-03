@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.util;
+package it.gov.pagopa.nodo.datamigration.util;
 
-import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import lombok.experimental.UtilityClass;
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.controller;
+package it.gov.pagopa.nodo.datamigration.controller;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
@@ -7,9 +7,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import it.gov.pagopa.apiconfig.datamigration.model.AppInfo;
-import it.gov.pagopa.apiconfig.datamigration.model.ProblemJson;
-import it.gov.pagopa.apiconfig.datamigration.service.HealthCheckService;
+import it.gov.pagopa.nodo.datamigration.model.AppInfo;
+import it.gov.pagopa.nodo.datamigration.model.ProblemJson;
+import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

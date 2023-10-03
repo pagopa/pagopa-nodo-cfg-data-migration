@@ -1,14 +1,14 @@
-package it.gov.pagopa.apiconfig.datamigration.fsm.step;
+package it.gov.pagopa.nodo.datamigration.fsm.step;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationDetails;
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.apiconfig.datamigration.entity.cfg.IntermediariPsp;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
-import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationErrorOnStepException;
-import it.gov.pagopa.apiconfig.datamigration.exception.migration.MigrationStepException;
-import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.oracle.IntermediariPspSrcRepository;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.IntermediariPspDestRepository;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.IntermediariPsp;
+import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStepException;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
+import it.gov.pagopa.nodo.datamigration.fsm.Step;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.IntermediariPspSrcRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.IntermediariPspDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

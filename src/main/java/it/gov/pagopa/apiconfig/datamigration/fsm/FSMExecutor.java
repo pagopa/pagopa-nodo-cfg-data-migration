@@ -1,13 +1,13 @@
-package it.gov.pagopa.apiconfig.datamigration.fsm;
+package it.gov.pagopa.nodo.datamigration.fsm;
 
-import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.MigrationStepStatus;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppError;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
-import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
-import it.gov.pagopa.apiconfig.datamigration.util.Constants;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
+import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.exception.AppError;
+import it.gov.pagopa.nodo.datamigration.exception.AppException;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
+import it.gov.pagopa.nodo.datamigration.util.Constants;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

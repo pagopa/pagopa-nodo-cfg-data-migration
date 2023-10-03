@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.config;
+package it.gov.pagopa.nodo.datamigration.config;
 
-import it.gov.pagopa.apiconfig.datamigration.fsm.FSMExecutor;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMExecutor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

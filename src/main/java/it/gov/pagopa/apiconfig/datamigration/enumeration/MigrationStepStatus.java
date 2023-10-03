@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.enumeration;
+package it.gov.pagopa.nodo.datamigration.enumeration;
 
 public enum MigrationStepStatus {
     TODO, // used only for steps

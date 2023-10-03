@@ -1,9 +1,9 @@
-package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
+package it.gov.pagopa.nodo.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.datamigration.util.NumericBooleanConverter;
+import it.gov.pagopa.nodo.datamigration.util.NumericBooleanConverter;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 

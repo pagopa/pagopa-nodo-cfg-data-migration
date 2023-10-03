@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.exception;
+package it.gov.pagopa.nodo.datamigration.exception;
 
-import it.gov.pagopa.apiconfig.datamigration.model.ProblemJson;
+import it.gov.pagopa.nodo.datamigration.model.ProblemJson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
    * @param request from frontend
    * @return a {@link ProblemJson} as response with the cause and with a 400 as HTTP status
    */
-  @Override
   public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
       HttpHeaders headers, HttpStatus status, WebRequest request) {
     log.warn("Input not readable: ", ex);
@@ -66,7 +65,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
    * @param request from frontend
    * @return a {@link ProblemJson} as response with the cause and with a 400 as HTTP status
    */
-  @Override
   public ResponseEntity<Object> handleMissingServletRequestParameter(
       MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status,
       WebRequest request) {
@@ -89,7 +87,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
    * @param request the current request
    * @return a {@code ResponseEntity} instance
    */
-  @Override
   protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
       HttpStatus status, WebRequest request) {
     log.warn("Type mismatch: ", ex);
@@ -111,7 +108,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
    * @param request from frontend
    * @return a {@link ProblemJson} as response with the cause and with a 400 as HTTP status
    */
-  @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
       HttpHeaders headers, HttpStatus status, WebRequest request) {
     List<String> details = new ArrayList<>();
@@ -128,9 +124,9 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
 
-  @ExceptionHandler({javax.validation.ConstraintViolationException.class})
+  @ExceptionHandler({jakarta.validation.ConstraintViolationException.class})
   public ResponseEntity<ProblemJson> handleConstraintViolationException(
-      final javax.validation.ConstraintViolationException ex, final WebRequest request) {
+      final jakarta.validation.ConstraintViolationException ex, final WebRequest request) {
     log.warn("Validation Error raised:", ex);
     var errorResponse = ProblemJson.builder()
         .status(HttpStatus.BAD_REQUEST.value())

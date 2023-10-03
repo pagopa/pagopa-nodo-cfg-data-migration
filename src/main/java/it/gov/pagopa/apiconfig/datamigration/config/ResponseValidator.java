@@ -1,9 +1,9 @@
-package it.gov.pagopa.apiconfig.datamigration.config;
+package it.gov.pagopa.nodo.datamigration.config;
 
-import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
+import it.gov.pagopa.nodo.datamigration.exception.AppException;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -22,12 +22,12 @@ public class ResponseValidator {
 
 
   /**
-   * This method validates the response annotated with the {@link javax.validation.constraints}
+   * This method validates the response annotated with the {@link jakarta.validation.constraints}
    *
    * @param joinPoint not used
    * @param result    the response to validate
    */
-  @AfterReturning(pointcut = "execution(* it.gov.pagopa.apiconfig.datamigration.controller.*.*(..))", returning = "result")
+  @AfterReturning(pointcut = "execution(* it.gov.pagopa.nodo.datamigration.controller.*.*(..))", returning = "result")
   public void validateResponse(JoinPoint joinPoint, Object result) {
     if (result instanceof ResponseEntity) {
       validateResponse((ResponseEntity<?>) result);

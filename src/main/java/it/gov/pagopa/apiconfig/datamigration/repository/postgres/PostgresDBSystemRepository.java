@@ -1,12 +1,12 @@
-package it.gov.pagopa.apiconfig.datamigration.repository.postgres;
+package it.gov.pagopa.nodo.datamigration.repository.postgres;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import java.util.Optional;
 
 @Repository

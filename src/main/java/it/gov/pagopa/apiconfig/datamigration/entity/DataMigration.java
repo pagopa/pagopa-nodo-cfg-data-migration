@@ -1,10 +1,10 @@
-package it.gov.pagopa.apiconfig.datamigration.entity;
+package it.gov.pagopa.nodo.datamigration.entity;
 
-import it.gov.pagopa.apiconfig.datamigration.util.JsonBConverter;
+import it.gov.pagopa.nodo.datamigration.util.JsonBConverter;
 import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Table(name = "CFG_DATA_MIGRATION")

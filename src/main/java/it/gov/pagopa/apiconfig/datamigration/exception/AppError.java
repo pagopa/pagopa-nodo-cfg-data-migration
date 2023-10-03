@@ -1,6 +1,6 @@
-package it.gov.pagopa.apiconfig.datamigration.exception;
+package it.gov.pagopa.nodo.datamigration.exception;
 
-import it.gov.pagopa.apiconfig.datamigration.util.Constants;
+import it.gov.pagopa.nodo.datamigration.util.Constants;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

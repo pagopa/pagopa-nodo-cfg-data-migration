@@ -1,9 +1,9 @@
-package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
+package it.gov.pagopa.nodo.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.datamigration.util.YesNoConverter;
+import it.gov.pagopa.nodo.datamigration.util.YesNoConverter;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Table(name = "PSP")

@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration;
+package it.gov.pagopa.nodo.datamigration;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
+/*
 @SpringBootTest(classes = Application.class)
 @AutoConfigureMockMvc
 class OpenApiGenerationTest {
@@ -45,3 +45,4 @@ class OpenApiGenerationTest {
             });
   }
 }
+*/

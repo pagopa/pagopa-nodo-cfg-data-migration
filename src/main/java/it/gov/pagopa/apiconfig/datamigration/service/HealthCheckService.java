@@ -1,7 +1,7 @@
-package it.gov.pagopa.apiconfig.datamigration.service;
+package it.gov.pagopa.nodo.datamigration.service;
 
-import it.gov.pagopa.apiconfig.datamigration.repository.oracle.OracleDBSystemRepository;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.PostgresDBSystemRepository;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.OracleDBSystemRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.PostgresDBSystemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;

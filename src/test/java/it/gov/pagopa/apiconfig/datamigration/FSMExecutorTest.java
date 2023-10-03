@@ -1,13 +1,12 @@
-/*import it.gov.pagopa.apiconfig.datamigration.entity.DataMigration;
-import it.gov.pagopa.apiconfig.datamigration.enumeration.StepName;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppError;
-import it.gov.pagopa.apiconfig.datamigration.exception.AppException;
-import it.gov.pagopa.apiconfig.datamigration.fsm.FSMExecutor;
-import it.gov.pagopa.apiconfig.datamigration.fsm.FSMSharedState;
-import it.gov.pagopa.apiconfig.datamigration.fsm.Step;
-import it.gov.pagopa.apiconfig.datamigration.repository.postgres.CfgDataMigrationRepository;
-import it.gov.pagopa.apiconfig.datamigration.util.CommonUtils;
-import it.gov.pagopa.apiconfig.datamigration.util.Constants;
+package it.gov.pagopa.nodo.datamigration;
+
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
+import it.gov.pagopa.nodo.datamigration.exception.AppException;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMExecutor;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
+import it.gov.pagopa.nodo.datamigration.fsm.Step;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -21,8 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class FSMExecutorTest {
 
+public class FSMExecutorTest {
+/* 
     private FSMExecutor fsmExecutor;
 
     @Mock
@@ -64,6 +64,43 @@ public class FSMExecutorTest {
         // Add assertions here to verify the behavior of your code 
     }
 
-// Add more test cases as needed to cover other scenarios
-}
+    @Test
+    void testRestartWhenLocked() {
+        when(fsmSharedStateMock.isInLock()).thenReturn(true);
+        assertThrows(AppException.class, () -> fsmExecutor.restart());
+        verify(cfgDataMigrationRepo, never()).findTopByOrderByStartDesc();
+    }
+
+    @Test
+    void testRestartWhenInProgress() {
+        when(cfgDataMigrationRepo.findTopByOrderByStartDesc()).thenReturn(Optional.of(dataMigrationMock));
+        when(dataMigrationMock.getStatus()).thenReturn(MigrationStepStatus.IN_PROGRESS.toString());
+        assertThrows(AppException.class, () -> fsmExecutor.restart());
+        verify(cfgDataMigrationRepo).findTopByOrderByStartDesc();
+    }
+
+    @Test
+    void testForceStopWhenNotLocked() {
+        when(fsmSharedStateMock.isInLock()).thenReturn(false);
+        assertThrows(AppException.class, () -> fsmExecutor.forceStop());
+    }
+
+    @Test
+    void testForceStopWhenLockedAndBlockNotRequested() {
+        when(fsmSharedStateMock.isInLock()).thenReturn(true);
+        when(fsmSharedStateMock.isBlockRequested()).thenReturn(false);
+        fsmExecutor.forceStop();
+        verify(fsmSharedStateMock).requestBlock();
+    }
+
+    @Test
+    void testRestart() {
+        when(cfgDataMigrationRepo.findTopByOrderByStartDesc()).thenReturn(Optional.of(dataMigrationMock));
+        when(dataMigrationMock.getStatus()).thenReturn(MigrationStepStatus.COMPLETED.toString());
+        fsmExecutor.restart();
+        verify(cfgDataMigrationRepo).findTopByOrderByStartDesc();
+        verify(cfgDataMigrationRepo).saveAndFlush(any());
+    }
  */
+}
+

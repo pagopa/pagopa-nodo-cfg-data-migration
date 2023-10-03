@@ -1,8 +1,8 @@
-package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
+package it.gov.pagopa.nodo.datamigration.entity.cfg;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Table(name = "CDI_DETAIL")

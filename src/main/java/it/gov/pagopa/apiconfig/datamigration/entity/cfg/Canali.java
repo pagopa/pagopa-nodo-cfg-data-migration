@@ -1,10 +1,10 @@
-package it.gov.pagopa.apiconfig.datamigration.entity.cfg;
+package it.gov.pagopa.nodo.datamigration.entity.cfg;
 
-import it.gov.pagopa.apiconfig.datamigration.util.YesNoConverter;
+import it.gov.pagopa.nodo.datamigration.util.YesNoConverter;
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Getter
 @Setter

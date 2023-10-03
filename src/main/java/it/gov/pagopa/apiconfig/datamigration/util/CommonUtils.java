@@ -1,4 +1,4 @@
-package it.gov.pagopa.apiconfig.datamigration.util;
+package it.gov.pagopa.nodo.datamigration.util;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
