@@ -2,8 +2,8 @@ apiVersion: v2
 name: pagopa-nodo-cfg-data-migration
 description: A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database
 type: application
-version: 0.30.0
-appVersion: 0.0.1-28-pipeline-testing
+version: 0.31.0
+appVersion: 0.0.1-29-pipeline-testing
 dependencies:
   - name: microservice-chart
     version: 2.8.0
