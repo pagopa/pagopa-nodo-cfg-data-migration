@@ -10,7 +10,7 @@
     </parent>
     <groupId>it.gov.pagopa.apiconfig</groupId>
     <artifactId>data-migration</artifactId>
-    <version>0.0.1-19-pipeline-testing</version>
+    <version>0.0.1-20-pipeline-testing</version>
     <description>A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database</description>
     <properties>
         <java.version>11</java.version>
