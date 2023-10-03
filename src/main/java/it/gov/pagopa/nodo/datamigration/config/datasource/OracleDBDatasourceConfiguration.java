@@ -1,5 +1,7 @@
 package it.gov.pagopa.nodo.datamigration.config.datasource;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -45,15 +47,31 @@ public class OracleDBDatasourceConfiguration {
     @Value("${persistence.oracledb.driver-class-name}")
     private String driverClassName;
 
+    @Value("${persistence.oracledb.hikari.connectionTimeout}")
+    private String connectionTimeout;
+
+    @Value("${persistence.oracledb.hikari.maxLifetime}")
+    private String maxLifetime;
+
+    @Value("${persistence.oracledb.hikari.keepaliveTime}")
+    private String keepaliveTime;
+
+    @Value("${persistence.oracledb.hikari.connection-test-query}")
+    private String connectionTestQuery;
+
     @Primary
     @Bean(name = "oracledbDataSource")
     public DataSource dataSource() {
-        return DataSourceBuilder.create()
-                .username(username)
-                .password(password)
-                .url(jdbcUrl)
-                .driverClassName(driverClassName)
-                .build();
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setUsername(username);
+        hikariConfig.setPassword(password);
+        hikariConfig.setJdbcUrl(jdbcUrl);
+        hikariConfig.setDriverClassName(driverClassName);
+        hikariConfig.setConnectionTimeout(Long.getLong(connectionTimeout));
+        hikariConfig.setMaxLifetime(Long.getLong(maxLifetime));
+        hikariConfig.setKeepaliveTime(Long.getLong(keepaliveTime));
+        hikariConfig.setConnectionTestQuery(connectionTestQuery);
+        return new HikariDataSource(hikariConfig);
     }
 
     @Primary

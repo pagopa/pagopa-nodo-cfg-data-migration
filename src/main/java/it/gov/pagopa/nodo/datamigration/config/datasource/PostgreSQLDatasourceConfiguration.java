@@ -1,11 +1,14 @@
 package it.gov.pagopa.nodo.datamigration.config.datasource;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -42,14 +45,30 @@ public class PostgreSQLDatasourceConfiguration {
     @Value("${persistence.postgresql.driver-class-name}")
     private String driverClassName;
 
+    @Value("${persistence.postgresql.hikari.connectionTimeout}")
+    private String connectionTimeout;
+
+    @Value("${persistence.postgresql.hikari.maxLifetime}")
+    private String maxLifetime;
+
+    @Value("${persistence.postgresql.hikari.keepaliveTime}")
+    private String keepaliveTime;
+
+    @Value("${persistence.postgresql.hikari.connection-test-query}")
+    private String connectionTestQuery;
+
     @Bean(name = "postgresqlDataSource")
     public DataSource dataSource() {
-        return DataSourceBuilder.create()
-                .username(username)
-                .password(password)
-                .url(jdbcUrl)
-                .driverClassName(driverClassName)
-                .build();
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setUsername(username);
+        hikariConfig.setPassword(password);
+        hikariConfig.setJdbcUrl(jdbcUrl);
+        hikariConfig.setDriverClassName(driverClassName);
+        hikariConfig.setConnectionTimeout(Long.getLong(connectionTimeout));
+        hikariConfig.setMaxLifetime(Long.getLong(maxLifetime));
+        hikariConfig.setKeepaliveTime(Long.getLong(keepaliveTime));
+        hikariConfig.setConnectionTestQuery(connectionTestQuery);
+        return new HikariDataSource(hikariConfig);
     }
 
     @Bean(name = "postgresqlEntityManagerFactory")
