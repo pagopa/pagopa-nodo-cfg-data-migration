@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManagerFactory;
+
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Repository
@@ -22,6 +24,6 @@ public class OracleDBSystemRepository {
         String newSequenceLastNumber = emFactory.createEntityManager()
                 .createNativeQuery("SELECT last_number FROM all_sequences WHERE sequence_name = 'HIBERNATE_SEQUENCE'")
                 .getSingleResult().toString();
-        return Long.parseLong(newSequenceLastNumber);
+        return new BigDecimal(newSequenceLastNumber).longValue();
     }
 }
