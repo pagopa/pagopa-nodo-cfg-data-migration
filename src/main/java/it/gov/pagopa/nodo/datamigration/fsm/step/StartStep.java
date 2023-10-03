@@ -5,11 +5,14 @@ import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.exception.migration.DatabaseConnectionException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStatusSavingException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationTruncateAllTablesException;
 import it.gov.pagopa.nodo.datamigration.fsm.Step;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.OracleDBSystemRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.*;
+import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +63,17 @@ public class StartStep extends Step {
     @Autowired private TipiVersamentoDestRepository tipiVersamentoRepo;
     @Autowired private WfespPluginConfDestRepository wfespPluginConfRepo;
 
+    @Autowired private HealthCheckService healthCheckService;
+
     @Override
     public void executeStep() throws MigrationStepException {
+        // execute an health check and find if a DB is inaccessible
+        if (!this.healthCheckService.getHealthCheckForOracleDB()) {
+            throw new DatabaseConnectionException("OracleDB");
+        }
+        if (!this.healthCheckService.getHealthCheckForPostgresDB()) {
+            throw new DatabaseConnectionException("PostgreSQL");
+        }
         // resetting flags and creating a new record in the CFG_DATA_MIGRATION table
         activateMigration();
         // deleting all data in all tables
