@@ -60,9 +60,9 @@ public class OracleDBDatasourceConfiguration {
         hikariConfig.setPassword(password);
         hikariConfig.setJdbcUrl(jdbcUrl);
         hikariConfig.setDriverClassName(driverClassName);
-        hikariConfig.setConnectionTimeout(Long.getLong(connectionTimeout));
-        hikariConfig.setMaxLifetime(Long.getLong(maxLifetime));
-        hikariConfig.setKeepaliveTime(Long.getLong(keepaliveTime));
+        hikariConfig.setConnectionTimeout(Long.parseLong(connectionTimeout));
+        hikariConfig.setMaxLifetime(Long.parseLong(maxLifetime));
+        hikariConfig.setKeepaliveTime(Long.parseLong(keepaliveTime));
         return new HikariDataSource(hikariConfig);
     }
 
