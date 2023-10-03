@@ -1,7 +1,7 @@
 package it.gov.pagopa.apiconfig.datamigration.config.datasource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -27,17 +27,30 @@ import java.util.Properties;
 )
 public class OracleDBDatasourceConfiguration {
 
-    private final PersistenceProperties properties;
+    @Value("${persistence.oracledb.jdbc-url}")
+    private String jdbcUrl;
 
-    public OracleDBDatasourceConfiguration(PersistenceProperties properties) {
-        this.properties = properties;
-    }
+    @Value("${persistence.oracledb.username}")
+    private String username;
+
+    @Value("${persistence.oracledb.password}")
+    private String password;
+
+    @Value("${persistence.oracledb.default_schema}")
+    private String defaultSchema;
+
+    @Value("${persistence.oracledb.driver-class-name}")
+    private String driverClassName;
 
     @Primary
     @Bean(name = "oracledbDataSource")
-    @ConfigurationProperties(prefix = "persistence.oracledb")
     public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create()
+                .username(username)
+                .password(password)
+                .url(jdbcUrl)
+                .driverClassName(driverClassName)
+                .build();
     }
 
     @Primary
@@ -55,12 +68,12 @@ public class OracleDBDatasourceConfiguration {
         entityManager.setJpaVendorAdapter(vendorAdapter);
 
         Properties props = new Properties();
-        //props.putAll(properties.getOracledb().getHibernate().getProperties());
         props.put("hibernate.dialect", "org.hibernate.dialect.Oracle12cDialect");
         props.put("hibernate.database-platform", "org.hibernate.dialect.Oracle12cDialect");
         props.put("hibernate.ddl-auto", "none");
         props.put("hibernate.hbm2ddl.auto", "none");
-        props.put("hibernate.default_schema", "NODO4_CFG");
+        props.put("hibernate.default_schema", defaultSchema);
+        props.put("hibernate.jdbc.lob.non_contextual_creation", "true");
         entityManager.setJpaProperties(props);
 
         return entityManager;
