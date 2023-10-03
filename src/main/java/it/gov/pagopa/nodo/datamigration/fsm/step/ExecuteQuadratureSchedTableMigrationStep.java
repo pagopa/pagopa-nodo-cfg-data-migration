@@ -2,7 +2,6 @@ package it.gov.pagopa.nodo.datamigration.fsm.step;
 
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.nodo.datamigration.entity.cfg.Canali;
 import it.gov.pagopa.nodo.datamigration.entity.cfg.QuadratureSched;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStepException;

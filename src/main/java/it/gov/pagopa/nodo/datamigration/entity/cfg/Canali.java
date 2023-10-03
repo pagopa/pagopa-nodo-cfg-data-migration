@@ -4,7 +4,6 @@ import it.gov.pagopa.nodo.datamigration.util.YesNoConverter;
 import lombok.*;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 @Getter
 @Setter

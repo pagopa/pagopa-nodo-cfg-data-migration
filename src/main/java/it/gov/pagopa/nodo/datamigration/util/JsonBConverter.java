@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.persistence.AttributeConverter;
 import java.io.IOException;

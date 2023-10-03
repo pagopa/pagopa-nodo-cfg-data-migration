@@ -1,24 +1,7 @@
 package it.gov.pagopa.nodo.datamigration;
 
-import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
-import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
-import it.gov.pagopa.nodo.datamigration.exception.AppException;
-import it.gov.pagopa.nodo.datamigration.fsm.FSMExecutor;
-import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
-import it.gov.pagopa.nodo.datamigration.fsm.Step;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 
 public class FSMExecutorTest {

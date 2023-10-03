@@ -5,7 +5,6 @@ import lombok.*;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Table(name = "INFORMATIVE_PA_MASTER")
 @Entity

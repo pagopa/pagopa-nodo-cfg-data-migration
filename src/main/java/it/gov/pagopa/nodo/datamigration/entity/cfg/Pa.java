@@ -5,9 +5,8 @@ import lombok.*;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import java.util.List;
 
-    @Table(name = "PA")
+@Table(name = "PA")
     @Entity
     @Getter
     @Setter
