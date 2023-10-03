@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -52,7 +53,14 @@ public class OracleDBDatasourceConfiguration {
                 .build();
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(vendorAdapter);
-        entityManager.setJpaPropertyMap(properties.getOracledb().getHibernate().getProperties());
+
+        Properties props = new Properties();
+        props.putAll(properties.getOracledb().getHibernate().getProperties());
+        props.put("hibernate.dialect", "org.hibernate.dialect.Oracle12cDialect");
+        props.put("hibernate.hbm2ddl.auto", "none");
+        props.put("hibernate.default_schema", "NODO4_CFG");
+        entityManager.setJpaProperties(props);
+
         return entityManager;
     }
 
