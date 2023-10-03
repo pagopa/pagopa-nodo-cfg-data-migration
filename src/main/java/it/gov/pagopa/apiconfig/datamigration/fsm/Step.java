@@ -67,7 +67,7 @@ public abstract class Step implements Callable<StepName> {
         }
     }
 
-    protected void updateDataMigrationStatusOnStart(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
+    public void updateDataMigrationStatusOnStart(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.IN_PROGRESS, CommonUtils.now(), null, 0);
     }
 
@@ -87,15 +87,15 @@ public abstract class Step implements Callable<StepName> {
         }
     }
 
-    protected void updateDataMigrationStatusOnFailure(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
+    public void updateDataMigrationStatusOnFailure(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.FAILED, null, CommonUtils.now(), 0);
     }
 
-    protected void updateDataMigrationStatusOnBlock(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
+    public void updateDataMigrationStatusOnBlock(CfgDataMigrationRepository cfgDataMigrationRepo) throws InvalidMigrationStatusException {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.BLOCKED, null, CommonUtils.now(), 0);
     }
 
-    private void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end, long records) throws InvalidMigrationStatusException {
+    public void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end, long records) throws InvalidMigrationStatusException {
         DataMigration dataMigration = cfgDataMigrationRepo.findById(this.sharedState.getDataMigrationStateId()).orElseThrow(InvalidMigrationStatusException::new);
         dataMigration.setLastExecutedStep(getStepName());
         DataMigrationStatus migrationStatus = getDataMigrationStatus(dataMigration.getDetails());
