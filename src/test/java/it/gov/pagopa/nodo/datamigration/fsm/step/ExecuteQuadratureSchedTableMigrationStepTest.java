@@ -1,4 +1,4 @@
-package it.gov.pagopa.nodo.datamigration.executetablemigrationtest;
+package it.gov.pagopa.nodo.datamigration.fsm.step;
 
 import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
@@ -9,7 +9,6 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStep
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationInterruptedStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
-import it.gov.pagopa.nodo.datamigration.fsm.step.ExecuteQuadratureSchedTableMigrationStep;
 import it.gov.pagopa.nodo.datamigration.repository.oracle.QuadratureSchedSrcRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.QuadratureSchedDestRepository;

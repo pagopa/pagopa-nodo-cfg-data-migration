@@ -1,4 +1,4 @@
-package it.gov.pagopa.nodo.datamigration;
+package it.gov.pagopa.nodo.datamigration.fsm;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
