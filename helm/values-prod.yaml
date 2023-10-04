@@ -29,7 +29,7 @@ microservice-chart:
       - 8080
   ingress:
     create: true
-    host: "weudev.nodo.internal.platform.pagopa.it"
+    host: "weuprod.nodo.internal.platform.pagopa.it"
     path: /datamigration/(.*)
     servicePort: 8080
   serviceAccount:
