@@ -59,8 +59,11 @@ class ExecuteQuadratureSchedTableMigrationStepTest {
     FSMSharedState sharedState;
 
     DataMigration dataMigration;
+
     DataMigrationDetails dataMigrationDetails;
+
     DataMigrationStatus dataMigrationStatus;
+
     static int pageSize;
 
     @BeforeEach
