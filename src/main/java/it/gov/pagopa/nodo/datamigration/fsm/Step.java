@@ -95,7 +95,7 @@ public abstract class Step implements Callable<StepName> {
         updateDataMigrationStatus(cfgDataMigrationRepo, MigrationStepStatus.BLOCKED, null, CommonUtils.now(), 0);
     }
 
-    public void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end, long records) throws InvalidMigrationStatusException {
+    protected void updateDataMigrationStatus(CfgDataMigrationRepository cfgDataMigrationRepo, MigrationStepStatus stepStatus, Timestamp start, Timestamp end, long records) throws InvalidMigrationStatusException {
         DataMigration dataMigration = cfgDataMigrationRepo.findById(this.sharedState.getDataMigrationStateId()).orElseThrow(InvalidMigrationStatusException::new);
         dataMigration.setLastExecutedStep(getStepName());
         DataMigrationStatus migrationStatus = getDataMigrationStatus(dataMigration.getDetails());
