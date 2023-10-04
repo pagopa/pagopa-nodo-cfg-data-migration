@@ -1,10 +1,44 @@
-package it.gov.pagopa.nodo.datamigration;
+package it.gov.pagopa.nodo.datamigration.executetablemigrationtest;
+
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.QuadratureSched;
+import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStepException;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationInterruptedStepException;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
+import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
+import it.gov.pagopa.nodo.datamigration.fsm.step.ExecuteQuadratureSchedTableMigrationStep;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.QuadratureSchedSrcRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.QuadratureSchedDestRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
-/*
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = ExecuteQuadratureSchedTableMigrationStep.class)
 class ExecuteQuadratureSchedTableMigrationStepTest {
 
     @MockBean
@@ -44,8 +78,6 @@ class ExecuteQuadratureSchedTableMigrationStepTest {
         detailsField.set(dataMigration, dataMigrationDetails);
 
         when(dataMigrationRepository.findById("1")).thenReturn(Optional.of(dataMigration));
-
-
     }
 
     @Test
@@ -102,4 +134,3 @@ class ExecuteQuadratureSchedTableMigrationStepTest {
         assert stepName.equals("EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION");
     }
 }
-*/
