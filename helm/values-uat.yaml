@@ -10,14 +10,14 @@ microservice-chart:
     httpGet:
       path: /actuator/health/liveness
       port: 8080
-    initialDelaySeconds: 90
+    initialDelaySeconds: 180
     failureThreshold: 6
     periodSeconds: 10
   readinessProbe:
     httpGet:
       path: /actuator/health/readiness
       port: 8080
-    initialDelaySeconds: 90
+    initialDelaySeconds: 180
     failureThreshold: 6
     periodSeconds: 10
   deployment:
@@ -44,11 +44,11 @@ microservice-chart:
     allowPrivilegeEscalation: false
   resources:
     requests:
-      memory: "512Mi"
-      cpu: "0.25"
+      memory: "1Gi"
+      cpu: "0.40"
     limits:
-      memory: "512Mi"
-      cpu: "0.25"
+      memory: "1Gi"
+      cpu: "0.5"
   autoscaling:
     enable: true
     minReplica: 1
@@ -75,7 +75,7 @@ microservice-chart:
     SQL_LOGGING_LEVEL: "INFO"
     SQL_BINDER_LOGGING_LEVEL: "INFO"
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
-    OTEL_ENDPOINT: "http://otel-collector.elastic-system.svc.cluster.local:4317"
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
