@@ -68,7 +68,7 @@ public class EndStep extends Step {
         return null;
     }
 
-    private void updateSequenceLastValue() {
+    void updateSequenceLastValue() {
         try {
             Long sequenceLastNumber = oracleSystemRepo.readHibernateSequence();
             postgresSystemRepo.updateHibernateSequence(sequenceLastNumber);
