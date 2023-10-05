@@ -52,6 +52,9 @@ public class PostgreSQLDatasourceConfiguration {
     @Value("${persistence.postgresql.hikari.keepaliveTime}")
     private String keepaliveTime;
 
+    @Value("${persistence.postgresql.jdbc.batch.size}")
+    private Integer jdbcBatchSize;
+
     @Bean(name = "postgresqlDataSource")
     public DataSource dataSource() {
         HikariConfig hikariConfig = new HikariConfig();
@@ -82,6 +85,7 @@ public class PostgreSQLDatasourceConfiguration {
         Properties props = new Properties();
         props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         props.put("hibernate.database-platform", "org.hibernate.dialect.PostgreSQLDialect");
+        props.put("hibernate.jdbc.batch_size", jdbcBatchSize);
         props.put("hibernate.ddl-auto", "none");
         props.put("hibernate.hbm2ddl.auto", "none");
         props.put("hibernate.default_schema", defaultSchema);
