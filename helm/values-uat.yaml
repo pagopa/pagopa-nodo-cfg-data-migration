@@ -65,7 +65,7 @@ microservice-chart:
     WEBSITE_SITE_NAME: 'pagopanodocfgdatamigration'
     ENV: 'Azure Kubernetes'
     ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1524)(HOST=db-nodo-pagamenti.u.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCA_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
-    ORACLEDB_USERNAME: "PP_NODO4_CFG"
+    ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
     POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-u-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_USERNAME: "cfg"
@@ -78,7 +78,7 @@ microservice-chart:
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
-    POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
+    POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-u-nodo-kv"

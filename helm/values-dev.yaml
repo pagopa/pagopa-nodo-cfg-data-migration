@@ -78,7 +78,7 @@ microservice-chart:
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
-    POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
+    POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-d-nodo-kv"
