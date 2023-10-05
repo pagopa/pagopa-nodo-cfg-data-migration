@@ -20,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessException;
@@ -63,7 +64,8 @@ class ExecuteInformativeContoAccreditoMasterTableMigrationStepTest {
 
     DataMigrationStatus dataMigrationStatus;
 
-    static int pageSize;
+    @Value("${step.informative_conto_accredito_master.batch.size}")
+    int PAGE_SIZE;
 
     @BeforeEach
     void setUp() throws IllegalAccessException, NoSuchFieldException {
@@ -88,10 +90,7 @@ class ExecuteInformativeContoAccreditoMasterTableMigrationStepTest {
         Page<InformativeContoAccreditoMaster> pagedResponse = new PageImpl<>(Collections.singletonList(informativeContoAccreditoMaster));
 
         // Emulating findAll
-        Field field = ExecuteInformativeContoAccreditoMasterTableMigrationStep.class.getDeclaredField("PAGE_SIZE");
-        field.setAccessible(true);
-        pageSize = (int) field.get(null);
-        Pageable pageable = PageRequest.of(0, pageSize);
+        Pageable pageable = PageRequest.of(0, PAGE_SIZE);
         when(srcRepo.findAll(pageable)).thenReturn(pagedResponse);
 
         when(sharedState.getDataMigrationStateId()).thenReturn("1");
@@ -105,7 +104,7 @@ class ExecuteInformativeContoAccreditoMasterTableMigrationStepTest {
 
     @Test
     void testExecuteStepMigrationErrorOnStepException() throws MigrationStepException {
-        Pageable pageable = PageRequest.of(0, pageSize);
+        Pageable pageable = PageRequest.of(0, PAGE_SIZE);
         when(srcRepo.findAll(pageable)).thenThrow(new DataAccessException("Test Exception") {});
         when(sharedState.getDataMigrationStateId()).thenReturn("1");
 
