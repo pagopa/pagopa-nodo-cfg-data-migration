@@ -11,6 +11,7 @@ import it.gov.pagopa.nodo.datamigration.repository.oracle.IntermediariPspSrcRepo
 import it.gov.pagopa.nodo.datamigration.repository.postgres.IntermediariPspDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,8 @@ import java.util.List;
 @Service("EXECUTE_INTERMEDIARI_PSP_TABLE_MIGRATION")
 public class ExecuteIntermediariPSPTableMigrationStep extends Step {
 
-    private static final int PAGE_SIZE = 200;
+    @Value("${step.intermediari_psp.batch.size}")
+    private Integer PAGE_SIZE;
 
     @Autowired
     IntermediariPspSrcRepository srcRepo;

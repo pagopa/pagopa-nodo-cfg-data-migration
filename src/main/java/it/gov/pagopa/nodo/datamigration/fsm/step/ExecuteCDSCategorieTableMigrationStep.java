@@ -11,6 +11,7 @@ import it.gov.pagopa.nodo.datamigration.repository.oracle.CdsCategoriaSrcReposit
 import it.gov.pagopa.nodo.datamigration.repository.postgres.CdsCategoriaDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,8 @@ import java.util.List;
 @Service("EXECUTE_CDS_CATEGORIE_TABLE_MIGRATION")
 public class ExecuteCDSCategorieTableMigrationStep extends Step {
 
-    private static final int PAGE_SIZE = 200;
+    @Value("${step.cds_categorie.batch.size}")
+    private Integer PAGE_SIZE;
 
     @Autowired
     CdsCategoriaSrcRepository srcRepo;

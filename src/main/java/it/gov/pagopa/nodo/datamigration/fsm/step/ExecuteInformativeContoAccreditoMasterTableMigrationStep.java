@@ -11,6 +11,7 @@ import it.gov.pagopa.nodo.datamigration.repository.oracle.InformativeContoAccred
 import it.gov.pagopa.nodo.datamigration.repository.postgres.InformativeContoAccreditoMasterDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,8 @@ import java.util.List;
 @Service("EXECUTE_INFORMATIVE_CONTO_ACCREDITO_MASTER_TABLE_MIGRATION")
 public class ExecuteInformativeContoAccreditoMasterTableMigrationStep extends Step {
 
-    private static final int PAGE_SIZE = 200;
+    @Value("${step.informative_conto_accredito_master.batch.size}")
+    private Integer PAGE_SIZE;
 
     @Autowired
     InformativeContoAccreditoMasterSrcRepository srcRepo;
