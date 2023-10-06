@@ -1,7 +1,11 @@
 package it.gov.pagopa.nodo.datamigration.fsm.step;
 
+import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.exception.migration.DatabaseConnectionException;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStatusSavingException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
+import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationTruncateAllTablesException;
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.*;
 import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
@@ -12,10 +16,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.dao.DataAccessException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(classes = HealthCheckService.class)
@@ -78,20 +82,47 @@ class StartStepTest {
     }
 
     @Test
-    void testExecuteStepMigrationStepExceptionOracleDB() {
+    void testExecuteStepDatabaseConnectionExceptionExceptionOracleDB() {
         when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(false);
 
-        assertThrows(MigrationStepException.class, () -> startStep.executeStep());
+        assertThrows(DatabaseConnectionException.class, () -> startStep.executeStep());
 
         verify(healthCheckService).getHealthCheckForOracleDB();
     }
 
     @Test
-    void testExecuteStepMigrationStepExceptionPostgresDB() {
+    void testExecuteStepDatabaseConnectionExceptionPostgresDB() {
         when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
         when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(false);
 
-        assertThrows(MigrationStepException.class, () -> startStep.executeStep());
+        assertThrows(DatabaseConnectionException.class, () -> startStep.executeStep());
+
+        verify(healthCheckService).getHealthCheckForOracleDB();
+        verify(healthCheckService).getHealthCheckForPostgresDB();
+    }
+
+    @Test
+    void testExecuteStepMigrationTruncateAllTablesException() {
+        when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
+        when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
+
+        doThrow(new DataAccessException("Test exception") {}).when(binaryFileRepo).deleteAll();
+
+        assertThrows(MigrationTruncateAllTablesException.class, () -> startStep.executeStep());
+
+        verify(healthCheckService).getHealthCheckForOracleDB();
+        verify(healthCheckService).getHealthCheckForPostgresDB();
+    }
+
+    @Test
+    void testExecuteStepMigrationStatusSavingException() {
+        when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
+        when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
+
+        doThrow(new DataAccessException("Test exception") {}).when(dataMigrationRepository)
+                .save(any(DataMigration.class));
+
+        assertThrows(MigrationStatusSavingException.class, () -> startStep.executeStep());
 
         verify(healthCheckService).getHealthCheckForOracleDB();
         verify(healthCheckService).getHealthCheckForPostgresDB();
