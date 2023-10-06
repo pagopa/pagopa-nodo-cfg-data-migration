@@ -1,17 +1,14 @@
 package it.gov.pagopa.nodo.datamigration.util;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest(classes = YesNoConverterTest.class)
 public class YesNoConverterTest {
 
-    private YesNoConverter converter;
-
-    @BeforeEach
-    void setUp() {
-        converter = new YesNoConverter();
-    }
+    private static final YesNoConverter converter = new YesNoConverter();
 
     @Test
     void testConvertToDatabaseColumnTrue() {

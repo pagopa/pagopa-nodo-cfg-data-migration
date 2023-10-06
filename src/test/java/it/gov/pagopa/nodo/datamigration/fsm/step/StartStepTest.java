@@ -1,6 +1,8 @@
 package it.gov.pagopa.nodo.datamigration.fsm.step;
 
 import it.gov.pagopa.nodo.datamigration.entity.DataMigration;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
+import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.exception.migration.DatabaseConnectionException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStatusSavingException;
@@ -106,7 +108,7 @@ class StartStepTest {
         when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
         when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
 
-        doThrow(new DataAccessException("Test exception") {}).when(binaryFileRepo).deleteAll();
+        doThrow(new DataAccessException("Test Exception") {}).when(binaryFileRepo).deleteAll();
 
         assertThrows(MigrationTruncateAllTablesException.class, () -> startStep.executeStep());
 
@@ -119,13 +121,19 @@ class StartStepTest {
         when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
         when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
 
-        doThrow(new DataAccessException("Test exception") {}).when(dataMigrationRepository)
+        doThrow(new DataAccessException("Test Exception") {}).when(dataMigrationRepository)
                 .save(any(DataMigration.class));
 
         assertThrows(MigrationStatusSavingException.class, () -> startStep.executeStep());
 
         verify(healthCheckService).getHealthCheckForOracleDB();
         verify(healthCheckService).getHealthCheckForPostgresDB();
+    }
+
+    @Test
+    void getDataMigrationStatus() {
+        DataMigrationStatus dataMigrationStatus = startStep.getDataMigrationStatus(new DataMigrationDetails());
+        assert dataMigrationStatus == null;
     }
 
     @Test
