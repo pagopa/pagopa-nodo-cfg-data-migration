@@ -4,7 +4,7 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "0.1.0-17-dev"
+    tag: "0.1.0-18-dev"
     pullPolicy: Always
   livenessProbe:
     httpGet:
