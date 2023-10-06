@@ -126,7 +126,7 @@ public class StartStep extends Step {
 
     private void truncateAllTables() throws MigrationTruncateAllTablesException {
         try {
-            EntityManager em = emFactory.createEntityManager();
+            EntityManager em = null;
             log.info(" - Starting deleting all data from GDE_CONFIG...");
             deleteAndFlush(em, "GDE_CONFIG");
             log.info(" - Deleted all data from GDE_CONFIG. Starting deleting all data from PDD...");
@@ -206,7 +206,8 @@ public class StartStep extends Step {
     }
 
     @Transactional
-    private void deleteAndFlush(EntityManager destEM, String table) {
+    private void deleteAndFlush(EntityManager em, String table) {
+        EntityManager destEM = emFactory.createEntityManager();
         destEM.getTransaction().begin();
         destEM.createNativeQuery(String.format("DELETE FROM %s.%s", schema, table))
                 .executeUpdate();
