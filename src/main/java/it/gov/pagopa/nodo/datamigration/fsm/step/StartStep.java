@@ -16,6 +16,7 @@ import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +25,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
@@ -35,10 +38,7 @@ import java.util.UUID;
 public class StartStep extends Step {
 
     @PersistenceContext(unitName="postgresqlUnit")
-    private EntityManager destEM;
-
-    @Resource @Qualifier("postgresqlTransactionManager")
-    private PlatformTransactionManager transactionManager;
+    private EntityManagerFactory emFactory;
 
     @Value("${persistence.postgresql.default_schema}")
     private String schema;
@@ -135,89 +135,91 @@ public class StartStep extends Step {
 
     private void truncateAllTables() throws MigrationTruncateAllTablesException {
         try {
+            EntityManager em = emFactory.createEntityManager();
             log.info(" - Starting deleting all data from GDE_CONFIG...");
-            deleteAndFlush("GDE_CONFIG");
+            deleteAndFlush(em, "GDE_CONFIG");
             log.info(" - Deleted all data from GDE_CONFIG. Starting deleting all data from PDD...");
-            deleteAndFlush("PDD");
+            deleteAndFlush(em, "PDD");
             log.info(" - Deleted all data from PDD. Starting deleting all data from FTP_SERVER...");
-            deleteAndFlush("FTP_SERVER");
+            deleteAndFlush(em, "FTP_SERVER");
             log.info(" - Deleted all data from FTP_SERVER. Starting deleting all data from CONFIGURATION_KEYS...");
-            deleteAndFlush("CONFIGURATION_KEYS");
+            deleteAndFlush(em, "CONFIGURATION_KEYS");
             log.info(" - Deleted all data from CONFIGURATION_KEYS. Starting deleting all data from CDS_SOGGETTO_SERVIZIO...");
-            deleteAndFlush("CDS_SOGGETTO_SERVIZIO");
+            deleteAndFlush(em, "CDS_SOGGETTO_SERVIZIO");
             log.info(" - Deleted all data from CDS_SOGGETTO_SERVIZIO. Starting deleting all data from CDS_SERVIZIO...");
-            deleteAndFlush("CDS_SERVIZIO");
+            deleteAndFlush(em, "CDS_SERVIZIO");
             log.info(" - Deleted all data from CDS_SERVIZIO. Starting deleting all data from CDS_SOGGETTO...");
-            deleteAndFlush("CDS_SOGGETTO");
+            deleteAndFlush(em, "CDS_SOGGETTO");
             log.info(" - Deleted all data from CDS_SOGGETTO. Starting deleting all data from CDS_CATEGORIA...");
-            deleteAndFlush("CDS_CATEGORIA");
+            deleteAndFlush(em, "CDS_CATEGORIA");
             log.info(" - Deleted all data from CDS_CATEGORIA. Starting deleting all data from ELENCO_SERVIZI...");
-            deleteAndFlush("ELENCO_SERVIZI");
+            deleteAndFlush(em, "ELENCO_SERVIZI");
             log.info(" - Deleted all data from ELENCO_SERVIZI. Starting deleting all data from CDI_PREFERENCES...");
-            deleteAndFlush("CDI_PREFERENCES");
+            deleteAndFlush(em, "CDI_PREFERENCES");
             log.info(" - Deleted all data from CDI_PREFERENCES. Starting deleting all data from CDI_INFORMAZIONI_SERVIZIO...");
-            deleteAndFlush("CDI_INFORMAZIONI_SERVIZIO");
+            deleteAndFlush(em, "CDI_INFORMAZIONI_SERVIZIO");
             log.info(" - Deleted all data from CDI_INFORMAZIONI_SERVIZIO. Starting deleting all data from CDI_FASCIA_COSTO_SERVIZIO...");
-            deleteAndFlush("CDI_FASCIA_COSTO_SERVIZIO");
+            deleteAndFlush(em, "CDI_FASCIA_COSTO_SERVIZIO");
             log.info(" - Deleted all data from CDI_FASCIA_COSTO_SERVIZIO. Starting deleting all data from CDI_DETAIL...");
-            deleteAndFlush("CDI_DETAIL");
+            deleteAndFlush(em, "CDI_DETAIL");
             log.info(" - Deleted all data from CDI_DETAIL. Starting deleting all data from CDI_MASTER...");
-            deleteAndFlush("CDI_MASTER");
+            deleteAndFlush(em, "CDI_MASTER");
             log.info(" - Deleted all data from CDI_MASTER. Starting deleting all data from DIZIONARIO_METADATI...");
-            deleteAndFlush("DIZIONARIO_METADATI");
+            deleteAndFlush(em, "DIZIONARIO_METADATI");
             log.info(" - Deleted all data from DIZIONARIO_METADATI. Starting deleting all data from PSP_CANALE_TIPO_VERSAMENTO...");
-            deleteAndFlush("PSP_CANALE_TIPO_VERSAMENTO");
+            deleteAndFlush(em, "PSP_CANALE_TIPO_VERSAMENTO");
             log.info(" - Deleted all data from PSP_CANALE_TIPO_VERSAMENTO. Starting deleting all data from CANALE_TIPO_VERSAMENTO...");
-            deleteAndFlush("CANALE_TIPO_VERSAMENTO");
+            deleteAndFlush(em, "CANALE_TIPO_VERSAMENTO");
             log.info(" - Deleted all data from CANALE_TIPO_VERSAMENTO. Starting deleting all data from TIPI_VERSAMENTO...");
-            deleteAndFlush("TIPI_VERSAMENTO");
+            deleteAndFlush(em, "TIPI_VERSAMENTO");
             log.info(" - Deleted all data from TIPI_VERSAMENTO. Starting deleting all data from CANALI_REPO...");
-            deleteAndFlush("CANALI_REPO");
+            deleteAndFlush(em, "CANALI_REPO");
             log.info(" - Deleted all data from CANALI_REPO. Starting deleting all data from CANALI_NODO...");
-            deleteAndFlush("CANALI_NODO");
+            deleteAndFlush(em, "CANALI_NODO");
             log.info(" - Deleted all data from CANALI_NODO. Starting deleting all data from WFESP_PLUGIN_CONF...");
-            deleteAndFlush("WFESP_PLUGIN_CONF");
+            deleteAndFlush(em, "WFESP_PLUGIN_CONF");
             log.info(" - Deleted all data from WFESP_PLUGIN_CONF. Starting deleting all data from PSP...");
-            deleteAndFlush("PSP");
+            deleteAndFlush(em, "PSP");
             log.info(" - Deleted all data from PSP. Starting deleting all data from INTERMEDIARI_PSP...");
-            deleteAndFlush("INTERMEDIARI_PSP");
+            deleteAndFlush(em, "INTERMEDIARI_PSP");
             log.info(" - Deleted all data from INTERMEDIARI_PSP. Starting deleting all data from INFORMATIVE_PA_FASCE...");
-            deleteAndFlush("INFORMATIVE_PA_FASCE");
+            deleteAndFlush(em, "INFORMATIVE_PA_FASCE");
             log.info(" - Deleted all data from INFORMATIVE_PA_FASCE. Starting deleting all data from INFORMATIVE_PA_DETAIL...");
-            deleteAndFlush("INFORMATIVE_PA_DETAIL");
+            deleteAndFlush(em, "INFORMATIVE_PA_DETAIL");
             log.info(" - Deleted all data from INFORMATIVE_PA_DETAIL. Starting deleting all data from INFORMATIVE_PA_MASTER...");
-            deleteAndFlush("INFORMATIVE_PA_MASTER");
+            deleteAndFlush(em, "INFORMATIVE_PA_MASTER");
             log.info(" - Deleted all data from INFORMATIVE_PA_MASTER. Starting deleting all data from INFORMATIVE_CONTO_ACCREDITO_DETAIL...");
-            deleteAndFlush("INFORMATIVE_CONTO_ACCREDITO_DETAIL");
+            deleteAndFlush(em, "INFORMATIVE_CONTO_ACCREDITO_DETAIL");
             log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_DETAIL. Starting deleting all data from INFORMATIVE_CONTO_ACCREDITO_MASTER...");
-            deleteAndFlush("INFORMATIVE_CONTO_ACCREDITO_MASTER");
+            deleteAndFlush(em, "INFORMATIVE_CONTO_ACCREDITO_MASTER");
             log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_MASTER. Starting deleting all data from BINARY_FILE...");
-            deleteAndFlush("BINARY_FILE");
+            deleteAndFlush(em, "BINARY_FILE");
             log.info(" - Deleted all data from BINARY_FILE. Starting deleting all data from CODIFICHE_PA...");
-            deleteAndFlush("CODIFICHE_PA");
+            deleteAndFlush(em, "CODIFICHE_PA");
             log.info(" - Deleted all data from CODIFICHE_PA. Starting deleting all data from CODIFICHE...");
-            deleteAndFlush("CODIFICHE");
+            deleteAndFlush(em, "CODIFICHE");
             log.info(" - Deleted all data from CODIFICHE. Starting deleting all data from PA_STAZIONE_PA...");
-            deleteAndFlush("PA_STAZIONE_PA");
+            deleteAndFlush(em, "PA_STAZIONE_PA");
             log.info(" - Deleted all data from PA_STAZIONE_PA. Starting deleting all data from STAZIONI...");
-            deleteAndFlush("STAZIONI");
+            deleteAndFlush(em, "STAZIONI");
             log.info(" - Deleted all data from STAZIONI. Starting deleting all data from PA...");
-            deleteAndFlush("PA");
+            deleteAndFlush(em, "PA");
             log.info(" - Deleted all data from PA. Starting deleting all data from INTERMEDIARI_PA...");
-            deleteAndFlush("INTERMEDIARI_PA");
+            deleteAndFlush(em, "INTERMEDIARI_PA");
             log.info(" - Deleted all data from INTERMEDIARI_PA. Starting deleting all data from QUADRATURE_SCHED...");
-            deleteAndFlush("QUADRATURE_SCHED");
+            deleteAndFlush(em, "QUADRATURE_SCHED");
             log.info(" - Deleted all data from QUADRATURE_SCHED. Ended deleting all previous data!.");
         } catch (DataAccessException e) {
             throw new MigrationTruncateAllTablesException(e);
         }
     }
 
-    @Transactional
-    private void deleteAndFlush(String table) {
+    private void deleteAndFlush(EntityManager destEM, String table) {
+        destEM.getTransaction().begin();
         destEM.createNativeQuery(String.format("DELETE FROM %s.%s", schema, table))
                 .executeUpdate();
         destEM.flush();
         destEM.clear();
+        destEM.getTransaction().commit();
     }
 }
