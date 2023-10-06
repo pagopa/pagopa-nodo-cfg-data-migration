@@ -10,26 +10,17 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStatusSavin
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationTruncateAllTablesException;
 import it.gov.pagopa.nodo.datamigration.fsm.Step;
-import it.gov.pagopa.nodo.datamigration.repository.oracle.OracleDBSystemRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.*;
 import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
-import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -214,6 +205,7 @@ public class StartStep extends Step {
         }
     }
 
+    @Transactional
     private void deleteAndFlush(EntityManager destEM, String table) {
         destEM.getTransaction().begin();
         destEM.createNativeQuery(String.format("DELETE FROM %s.%s", schema, table))
