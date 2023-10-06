@@ -126,13 +126,13 @@ public class StartStep extends Step {
 
     private void truncateAllTables() throws MigrationTruncateAllTablesException {
         try {
-            EntityManager em = null;
+            EntityManager em = emFactory.createEntityManager();
             log.info(" - Starting deleting all data from GDE_CONFIG...");
             deleteAndFlush(em, "GDE_CONFIG");
             log.info(" - Deleted all data from GDE_CONFIG. Starting deleting all data from PDD...");
             deleteAndFlush(em, "PDD");
-            log.info(" - Deleted all data from PDD. Starting deleting all data from FTP_SERVER...");
-            deleteAndFlush(em, "FTP_SERVER");
+            log.info(" - Deleted all data from PDD. Starting deleting all data from FTP_SERVERS...");
+            deleteAndFlush(em, "FTP_SERVERS");
             log.info(" - Deleted all data from FTP_SERVER. Starting deleting all data from CONFIGURATION_KEYS...");
             deleteAndFlush(em, "CONFIGURATION_KEYS");
             log.info(" - Deleted all data from CONFIGURATION_KEYS. Starting deleting all data from CDS_SOGGETTO_SERVIZIO...");
@@ -142,8 +142,8 @@ public class StartStep extends Step {
             log.info(" - Deleted all data from CDS_SERVIZIO. Starting deleting all data from CDS_SOGGETTO...");
             deleteAndFlush(em, "CDS_SOGGETTO");
             log.info(" - Deleted all data from CDS_SOGGETTO. Starting deleting all data from CDS_CATEGORIA...");
-            deleteAndFlush(em, "CDS_CATEGORIA");
-            log.info(" - Deleted all data from CDS_CATEGORIA. Starting deleting all data from ELENCO_SERVIZI...");
+            deleteAndFlush(em, "CDS_CATEGORIE");
+            log.info(" - Deleted all data from CDS_CATEGORIE. Starting deleting all data from ELENCO_SERVIZI...");
             deleteAndFlush(em, "ELENCO_SERVIZI");
             log.info(" - Deleted all data from ELENCO_SERVIZI. Starting deleting all data from CDI_PREFERENCES...");
             deleteAndFlush(em, "CDI_PREFERENCES");
@@ -164,7 +164,7 @@ public class StartStep extends Step {
             log.info(" - Deleted all data from CANALE_TIPO_VERSAMENTO. Starting deleting all data from TIPI_VERSAMENTO...");
             deleteAndFlush(em, "TIPI_VERSAMENTO");
             log.info(" - Deleted all data from TIPI_VERSAMENTO. Starting deleting all data from CANALI_REPO...");
-            deleteAndFlush(em, "CANALI_REPO");
+            deleteAndFlush(em, "CANALI");
             log.info(" - Deleted all data from CANALI_REPO. Starting deleting all data from CANALI_NODO...");
             deleteAndFlush(em, "CANALI_NODO");
             log.info(" - Deleted all data from CANALI_NODO. Starting deleting all data from WFESP_PLUGIN_CONF...");
@@ -206,8 +206,7 @@ public class StartStep extends Step {
     }
 
     @Transactional
-    private void deleteAndFlush(EntityManager em, String table) {
-        EntityManager destEM = emFactory.createEntityManager();
+    private void deleteAndFlush(EntityManager destEM, String table) {
         destEM.getTransaction().begin();
         destEM.createNativeQuery(String.format("DELETE FROM %s.%s", schema, table))
                 .executeUpdate();
