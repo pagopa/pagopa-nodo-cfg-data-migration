@@ -14,7 +14,7 @@ import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ import java.util.UUID;
 @Service("START")
 public class StartStep extends Step {
 
-    @PersistenceContext(unitName="postgresqlUnit")
+    @PersistenceUnit(unitName="postgresqlUnit")
     private EntityManagerFactory emFactory;
 
     @Value("${persistence.postgresql.default_schema}")
