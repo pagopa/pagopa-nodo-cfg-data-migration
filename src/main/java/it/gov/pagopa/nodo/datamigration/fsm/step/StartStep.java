@@ -15,6 +15,7 @@ import it.gov.pagopa.nodo.datamigration.repository.postgres.*;
 import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,9 +207,12 @@ public class StartStep extends Step {
     }
 
     private void deleteAndFlush(String table) {
+        EntityTransaction transaction = destEM.getTransaction();
+        transaction.begin();
         destEM.createNativeQuery(String.format("DELETE FROM %s.%s", schema, table))
                 .executeUpdate();
         destEM.flush();
         destEM.clear();
+        transaction.commit();
     }
 }
