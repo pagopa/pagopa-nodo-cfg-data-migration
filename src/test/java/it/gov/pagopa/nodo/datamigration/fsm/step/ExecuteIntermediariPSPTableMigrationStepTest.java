@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -126,12 +127,12 @@ class ExecuteIntermediariPSPTableMigrationStepTest {
     @Test
     void getNextState() {
         StepName nextState = migrationStep.getNextState();
-        assert nextState == StepName.EXECUTE_PSP_TABLE_MIGRATION;
+        assertEquals(StepName.EXECUTE_PSP_TABLE_MIGRATION, nextState);
     }
 
     @Test
     void getStepName() {
         String stepName = migrationStep.getStepName();
-        assert stepName.equals("EXECUTE_INTERMEDIARI_PSP_TABLE_MIGRATION");
+        assertEquals("EXECUTE_INTERMEDIARI_PSP_TABLE_MIGRATION", stepName);
     }
 }

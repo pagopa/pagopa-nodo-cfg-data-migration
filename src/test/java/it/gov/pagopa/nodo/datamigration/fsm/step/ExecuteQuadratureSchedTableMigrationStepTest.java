@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -126,12 +127,12 @@ class ExecuteQuadratureSchedTableMigrationStepTest {
     @Test
     void getNextState() {
         StepName nextState = migrationStep.getNextState();
-        assert nextState == StepName.EXECUTE_INTERMEDIARI_PA_TABLE_MIGRATION;
+        assertEquals(StepName.EXECUTE_INTERMEDIARI_PA_TABLE_MIGRATION, nextState);
     }
 
     @Test
     void getStepName() {
         String stepName = migrationStep.getStepName();
-        assert stepName.equals("EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION");
+        assertEquals("EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION", stepName);
     }
 }

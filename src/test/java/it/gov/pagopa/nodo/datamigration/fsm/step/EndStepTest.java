@@ -19,6 +19,8 @@ import org.springframework.dao.DataAccessException;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -88,18 +90,18 @@ class EndStepTest {
     @Test
     void getDataMigrationStatus() {
         DataMigrationStatus dataMigrationStatus = endStep.getDataMigrationStatus(new DataMigrationDetails());
-        assert dataMigrationStatus == null;
+        assertNull(dataMigrationStatus);
     }
 
     @Test
     void getNextState() {
         StepName nextState = endStep.getNextState();
-        assert nextState == null;
+        assertNull(nextState);
     }
 
     @Test
     void getStepName() {
         String stepName = endStep.getStepName();
-        assert stepName.equals("END");
+        assertEquals("END", stepName);
     }
 }

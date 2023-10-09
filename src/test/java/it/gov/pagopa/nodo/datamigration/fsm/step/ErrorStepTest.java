@@ -18,6 +18,8 @@ import org.springframework.dao.DataAccessException;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -82,12 +84,12 @@ class ErrorStepTest {
     @Test
     void getNextState() {
         StepName nextState = errorStep.getNextState();
-        assert nextState == null;
+        assertNull(nextState);
     }
 
     @Test
     void getStepName() {
         String stepName = errorStep.getStepName();
-        assert stepName.equals("ERROR");
+        assertEquals("ERROR", stepName);
     }
 }

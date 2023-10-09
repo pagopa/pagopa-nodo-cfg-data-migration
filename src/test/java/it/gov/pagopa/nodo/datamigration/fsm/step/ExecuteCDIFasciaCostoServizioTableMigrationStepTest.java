@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -126,12 +127,12 @@ class ExecuteCDIFasciaCostoServizioTableMigrationStepTest {
     @Test
     void getNextState() {
         StepName nextState = migrationStep.getNextState();
-        assert nextState == StepName.EXECUTE_CDI_INFORMAZIONI_SERVIZIO_TABLE_MIGRATION;
+        assertEquals(StepName.EXECUTE_CDI_INFORMAZIONI_SERVIZIO_TABLE_MIGRATION, nextState);
     }
 
     @Test
     void getStepName() {
         String stepName = migrationStep.getStepName();
-        assert stepName.equals("EXECUTE_CDI_FASCIA_COSTO_SERVIZIO_TABLE_MIGRATION");
+        assertEquals("EXECUTE_CDI_FASCIA_COSTO_SERVIZIO_TABLE_MIGRATION", stepName);
     }
 }
