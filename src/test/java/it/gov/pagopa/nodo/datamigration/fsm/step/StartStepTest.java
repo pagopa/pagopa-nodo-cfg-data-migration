@@ -11,16 +11,19 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationTruncateAll
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.*;
 import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
+import jakarta.persistence.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessException;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -70,12 +73,18 @@ class StartStepTest {
     @MockBean private CfgDataMigrationRepository dataMigrationRepository;
     @MockBean private HealthCheckService healthCheckService;
 
+    @Mock private EntityManagerFactory emFactory;
+    @Mock private EntityManager em;
+    @Mock private Query query;
     @Mock private FSMSharedState fsmSharedState;
 
     @Test
     void testExecuteStep() throws MigrationStepException, IllegalAccessException, NoSuchFieldException {
         when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
         when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
+        when(emFactory.createEntityManager()).thenReturn(em);
+        when(em.getTransaction()).thenReturn(mock(EntityTransaction.class));
+        when(em.createNativeQuery(anyString())).thenReturn(query);
 
         startStep.executeStep();
 
@@ -107,8 +116,10 @@ class StartStepTest {
     void testExecuteStepMigrationTruncateAllTablesException() {
         when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
         when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
+        when(emFactory.createEntityManager()).thenReturn(em);
+        when(em.getTransaction()).thenReturn(mock(EntityTransaction.class));
 
-        doThrow(new DataAccessException("Test Exception") {}).when(binaryFileRepo).deleteAll();
+        doThrow(new DataAccessException("Test Exception") {}).when(em).createNativeQuery(anyString());
 
         assertThrows(MigrationTruncateAllTablesException.class, () -> startStep.executeStep());
 
@@ -133,18 +144,18 @@ class StartStepTest {
     @Test
     void getDataMigrationStatus() {
         DataMigrationStatus dataMigrationStatus = startStep.getDataMigrationStatus(new DataMigrationDetails());
-        assert dataMigrationStatus == null;
+        assertNull(dataMigrationStatus);
     }
 
     @Test
     void getNextState() {
         StepName nextState = startStep.getNextState();
-        assert nextState == StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION;
+        assertEquals(StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION, nextState);
     }
 
     @Test
     void getStepName() {
         String stepName = startStep.getStepName();
-        assert stepName.equals("START");
+        assertEquals("START", stepName);
     }
 }
