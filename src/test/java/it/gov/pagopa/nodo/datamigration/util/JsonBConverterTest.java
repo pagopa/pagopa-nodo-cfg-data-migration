@@ -61,7 +61,8 @@ public class JsonBConverterTest {
             doAnswer(invocation -> {
                 System.err.println("Error message: " + invocation.getArgument(0));
                 return null;
-            }).when(logger).error(anyString(), any(IOException.class));            DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(jsonbContent);
+            }).when(logger).error(anyString(), any(IOException.class));
+            DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(jsonbContent);
             assertNull(detailsContent);
         }
 }
