@@ -5,6 +5,7 @@ import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.nodo.datamigration.entity.cfg.BinaryFile;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
+import it.gov.pagopa.nodo.datamigration.exception.migration.InvalidMigrationStatusException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationInterruptedStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.fsm.step.ExecuteBinaryFileTableMigrationStep;
@@ -160,25 +161,12 @@ class StepTest {
     }
 
     @Test
-    void testCheckExecutionBlockBlockRequested() throws NoSuchMethodException {
+    void testCheckExecutionBlockBlockRequested() throws InvalidMigrationStatusException {
         when(fsmSharedState.isBlockRequested()).thenReturn(true);
+        doNothing().when(step).updateDataMigrationStatusOnStart(any(cfgDataMigrationRepository.getClass()));
+        when(cfgDataMigrationRepository.findById(any())).thenReturn(Optional.empty());
 
-        Method method = Step.class.getDeclaredMethod("checkExecutionBlock", CfgDataMigrationRepository.class, boolean.class);
-        method.setAccessible(true);
-
-        assertThrows(InvocationTargetException.class, () ->
-                method.invoke(step, cfgDataMigrationRepository, false));
-    }
-
-    @Test
-    void testCheckExecutionBlockBlockAndUpdateStatus() throws NoSuchMethodException {
-        when(fsmSharedState.isBlockRequested()).thenReturn(true);
-
-        Method method = Step.class.getDeclaredMethod("checkExecutionBlock", CfgDataMigrationRepository.class, boolean.class);
-        method.setAccessible(true);
-
-        assertThrows(InvocationTargetException.class, () ->
-                method.invoke(step, cfgDataMigrationRepository, true));
+        assertThrows(InvalidMigrationStatusException.class, () -> step.executeStep());
     }
 
     private Page<BinaryFile> createMockPage() {
