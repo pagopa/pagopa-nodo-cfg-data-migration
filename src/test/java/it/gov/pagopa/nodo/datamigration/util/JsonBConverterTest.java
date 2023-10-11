@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -15,20 +16,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
-public class JsonBConverterTest {
+class JsonBConverterTest {
 
     private JsonBConverter jsonBConverter;
     ObjectMapper objectMapper;
     private Logger logger;
+
     @Before
-    public void setUp() {
+    void setUp() {
         jsonBConverter = Mockito.spy(new JsonBConverter());
         objectMapper = Mockito.mock(ObjectMapper.class);
         logger = Mockito.mock(Logger.class);
     }
 
     @Test
-    public void testConvertToDatabaseColumn() throws IOException {
+    void testConvertToDatabaseColumn() throws IOException {
         DataMigrationDetails details = new DataMigrationDetails();
         details.setPa(DataMigrationStatus
                 .builder()
@@ -43,7 +45,7 @@ public class JsonBConverterTest {
     }
 
     @Test
-    public void testConvertToEntityAttribute() throws IOException {
+    void testConvertToEntityAttribute() throws IOException {
         DataMigrationDetails details = TestUtil.readObjectFromFile("JsonTest.json", DataMigrationDetails.class);
         String stringDetails = TestUtil.readStringFromFile("JsonTest.json");
         DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(stringDetails);
@@ -56,7 +58,7 @@ public class JsonBConverterTest {
     }
 
         @Test
-        public void testConvertToEntityAttributeWithInvalidJson() throws IOException {
+        void testConvertToEntityAttributeWithInvalidJson() throws IOException {
             String jsonbContent = ":" + TestUtil.readStringFromFile("JsonTest.json");
             doAnswer(invocation -> {
                 System.err.println("Error message: " + invocation.getArgument(0));

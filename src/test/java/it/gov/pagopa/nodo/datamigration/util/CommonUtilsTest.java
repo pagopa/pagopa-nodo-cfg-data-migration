@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CommonUtilis {
+class CommonUtilsTest {
     @Test
     void testNow() {
         Timestamp currentTimestamp = CommonUtils.now();

@@ -33,4 +33,14 @@ class HomeControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
     }
+
+    @Test
+    public void testHomeEndpoint() throws Exception {
+        when(healthCheckService.getHealthCheckForOracleDB()).thenReturn(true);
+        when(healthCheckService.getHealthCheckForPostgresDB()).thenReturn(true);
+
+        mockMvc.perform(MockMvcRequestBuilders.get(""))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/swagger-ui.html"));
+    }
 }

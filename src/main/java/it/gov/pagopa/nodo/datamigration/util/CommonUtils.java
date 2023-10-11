@@ -2,8 +2,6 @@ package it.gov.pagopa.nodo.datamigration.util;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 
 public class CommonUtils {
 

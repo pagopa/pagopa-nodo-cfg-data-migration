@@ -5,8 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = YesNoConverterTest.class)
-public class YesNoConverterTest {
+class YesNoConverterTest {
 
     private static final YesNoConverter converter = new YesNoConverter();
 
