@@ -54,17 +54,16 @@ class JsonBConverterTest {
         Assertions.assertEquals(details.getPa().getEnd(), detailsContent.getPa().getEnd());
         Assertions.assertEquals(details.getPa().getRecords(), detailsContent.getPa().getRecords());
         Assertions.assertEquals(details.getPa().getStart(), detailsContent.getPa().getStart());
-
     }
 
-        @Test
-        void testConvertToEntityAttributeWithInvalidJson() throws IOException {
-            String jsonbContent = ":" + TestUtil.readStringFromFile("JsonTest.json");
-            doAnswer(invocation -> {
-                System.err.println("Error message: " + invocation.getArgument(0));
-                return null;
-            }).when(logger).error(anyString(), any(IOException.class));
-            DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(jsonbContent);
-            Assertions.assertNull(detailsContent);
-        }
+    @Test
+    void testConvertToEntityAttributeWithInvalidJson() throws IOException {
+        String jsonbContent = ":" + TestUtil.readStringFromFile("JsonTest.json");
+        doAnswer(invocation -> {
+            System.err.println("Error message: " + invocation.getArgument(0));
+            return null;
+        }).when(logger).error(anyString(), any(IOException.class));
+        DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(jsonbContent);
+        Assertions.assertNull(detailsContent);
+    }
 }
