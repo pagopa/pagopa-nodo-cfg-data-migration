@@ -1,0 +1,123 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="liquibase" id="202110201734" dbms="oracle">
+        <sql>
+            ALTER SEQUENCE ${schema}."HIBERNATE_SEQUENCE" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."PSP_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."PDD_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."AUTH_PERMISSIONS_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."PA_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."STAZIONI_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."QUADRATURE_SCHED_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDS_SOGGETTO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDS_SOGGETTO_SERVIZIO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."PSP_CANALE_TIPO_VERSAMENTO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDI_MASTER_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CANALI_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."PA_STAZIONE_PA_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."ELENCO_SERVIZI_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."AUTH_ROLES_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."AUTH_USERS_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."WFESP_PLUGIN_CONF_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CODIFICHE_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_PA_FASCE_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDI_FASCIA_COSTO_SERVIZIO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDI_DETAIL_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."TIPI_VERSAMENTO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDI_PREFERENCES_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."FTP_SERVERS_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_CONTO_ACCREDITO_MASTER_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INTERMEDIARI_PA_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CANALI_NODO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_PA_MASTER_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_CONTO_ACCREDITO_DETAIL_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CANALE_TIPO_VERSAMENTO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDI_INFORMAZIONI_SERVIZIO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."SYNC_STATUS_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INTERMEDIARI_PSP_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."BINARY_FILE_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CDS_SERVIZIO_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."CODIFICHE_PA_SEQ" INCREMENT BY 1000000;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_PA_DETAIL_SEQ" INCREMENT BY 1000000;
+
+            SELECT ${schema}."HIBERNATE_SEQUENCE".NEXTVAL from dual;
+            SELECT ${schema}."PSP_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."PDD_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."AUTH_PERMISSIONS_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."PA_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."STAZIONI_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."QUADRATURE_SCHED_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDS_SOGGETTO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDS_SOGGETTO_SERVIZIO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."PSP_CANALE_TIPO_VERSAMENTO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDI_MASTER_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CANALI_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."PA_STAZIONE_PA_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."ELENCO_SERVIZI_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."AUTH_ROLES_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."AUTH_USERS_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."WFESP_PLUGIN_CONF_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CODIFICHE_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INFORMATIVE_PA_FASCE_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDI_FASCIA_COSTO_SERVIZIO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDI_DETAIL_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."TIPI_VERSAMENTO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDI_PREFERENCES_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."FTP_SERVERS_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INFORMATIVE_CONTO_ACCREDITO_MASTER_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INTERMEDIARI_PA_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CANALI_NODO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INFORMATIVE_PA_MASTER_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INFORMATIVE_CONTO_ACCREDITO_DETAIL_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CANALE_TIPO_VERSAMENTO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDI_INFORMAZIONI_SERVIZIO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."SYNC_STATUS_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INTERMEDIARI_PSP_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."BINARY_FILE_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CDS_SERVIZIO_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."CODIFICHE_PA_SEQ".NEXTVAL from dual;
+            SELECT ${schema}."INFORMATIVE_PA_DETAIL_SEQ".NEXTVAL from dual;
+
+            ALTER SEQUENCE ${schema}."HIBERNATE_SEQUENCE" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."PSP_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."PDD_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."AUTH_PERMISSIONS_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."PA_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."STAZIONI_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."QUADRATURE_SCHED_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDS_SOGGETTO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDS_SOGGETTO_SERVIZIO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."PSP_CANALE_TIPO_VERSAMENTO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDI_MASTER_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CANALI_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."PA_STAZIONE_PA_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."ELENCO_SERVIZI_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."AUTH_ROLES_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."AUTH_USERS_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."WFESP_PLUGIN_CONF_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CODIFICHE_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_PA_FASCE_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDI_FASCIA_COSTO_SERVIZIO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDI_DETAIL_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."TIPI_VERSAMENTO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDI_PREFERENCES_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."FTP_SERVERS_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_CONTO_ACCREDITO_MASTER_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INTERMEDIARI_PA_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CANALI_NODO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_PA_MASTER_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_CONTO_ACCREDITO_DETAIL_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CANALE_TIPO_VERSAMENTO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDI_INFORMAZIONI_SERVIZIO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."SYNC_STATUS_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INTERMEDIARI_PSP_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."BINARY_FILE_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CDS_SERVIZIO_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."CODIFICHE_PA_SEQ" INCREMENT BY 1;
+            ALTER SEQUENCE ${schema}."INFORMATIVE_PA_DETAIL_SEQ" INCREMENT BY 1;
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

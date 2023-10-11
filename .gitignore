@@ -38,3 +38,10 @@ hs_err_pid*
 # Helm
 /helm/charts/*
 **/.terraform/
+
+**/.DS_Store
+
+# utility folder
+utility/dumping/data/*
+utility/dumping/results/*
+utility/dumping/template/*
