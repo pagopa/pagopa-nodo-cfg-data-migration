@@ -1,0 +1,73 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="liquibase" id="202206141232">
+        <createSequence  cacheSize="20000"
+                         incrementBy="1"
+                         sequenceName="CDS_CATEGORIE_SEQ"
+                         startValue="1"/>
+    </changeSet>
+
+    <changeSet author="liquibase" id="202206141233">
+        <createTable tableName="CDS_CATEGORIE">
+            <column name="OBJ_ID" type="NUMBER" defaultValueSequenceNext="CDS_CATEGORIE_SEQ" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIZIONE" type="VARCHAR2(70 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey
+                columnNames="OBJ_ID"
+                constraintName="PK_CDS_CATEGORIE"
+                tableName="CDS_CATEGORIE"
+                tablespace="${tablespaceIdx}"/>
+        <addUniqueConstraint  columnNames="DESCRIZIONE"
+                              constraintName="CDS_CATEGORIE_DESCRIZIONE_UNIQUE"
+                              deferrable="false"
+                              initiallyDeferred="false"
+                              tableName="CDS_CATEGORIE"
+                              tablespace="${tablespaceIdx}"
+                              validate="true"/>
+    </changeSet>
+
+    <changeSet author="liquibase" id="202206141234">
+        <insert tableName="CDS_CATEGORIE">
+            <column name="DESCRIZIONE"  value="Altro"/>
+        </insert>
+        <insert tableName="CDS_CATEGORIE">
+            <column name="DESCRIZIONE"  value="Tassa automobilistica"/>
+        </insert>
+        <insert tableName="CDS_CATEGORIE">
+            <column name="DESCRIZIONE"  value="Donazioni"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="liquibase" id="202206141235">
+        <addColumn tableName="CDS_SERVIZIO">
+            <column name="CATEGORIA_ID" type="NUMBER" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <update tableName="CDS_SERVIZIO">
+            <column name="CATEGORIA_ID" value="2"/>
+            <where>XSD_RIFERIMENTO like 'TassaAutomobilistica%'</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="liquibase" id="202206141236">
+        <addForeignKeyConstraint  baseColumnNames="CATEGORIA_ID"
+                                  baseTableName="CDS_SERVIZIO"
+                                  constraintName="FK_CATEGORIA_ID_CDSSERVIZIO_CDSCATEGORIE"
+                                  deferrable="false"
+                                  initiallyDeferred="false"
+                                  onDelete="RESTRICT"
+                                  onUpdate="RESTRICT"
+                                  referencedColumnNames="OBJ_ID"
+                                  referencedTableName="CDS_CATEGORIE"
+                                  validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>
