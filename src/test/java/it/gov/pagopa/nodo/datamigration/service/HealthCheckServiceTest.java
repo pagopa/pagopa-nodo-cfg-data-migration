@@ -5,7 +5,6 @@ import it.gov.pagopa.nodo.datamigration.repository.postgres.PostgresDBSystemRepo
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,6 +12,7 @@ import org.springframework.dao.DataAccessException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(classes = HealthCheckService.class)
@@ -29,7 +29,7 @@ class HealthCheckServiceTest {
 
     @Test
     public void testHealthCheckForOracleDBSuccess() {
-        Mockito.when(oracleDbRepo.healthCheck()).thenReturn(java.util.Optional.of("OK"));
+        when(oracleDbRepo.healthCheck()).thenReturn(java.util.Optional.of("OK"));
 
         boolean result = healthCheckService.getHealthCheckForOracleDB();
 
@@ -38,7 +38,7 @@ class HealthCheckServiceTest {
 
     @Test
     public void testHealthCheckForOracleDBFailure() {
-        Mockito.when(oracleDbRepo.healthCheck()).thenThrow(new DataAccessException("Connection Error") {});
+        when(oracleDbRepo.healthCheck()).thenThrow(new DataAccessException("Connection Error") {});
 
         boolean result = healthCheckService.getHealthCheckForOracleDB();
 
@@ -47,7 +47,7 @@ class HealthCheckServiceTest {
 
     @Test
     public void testHealthCheckForPostgresDBSuccess() {
-        Mockito.when(postgresDbRepo.healthCheck()).thenReturn(java.util.Optional.of("OK"));
+        when(postgresDbRepo.healthCheck()).thenReturn(java.util.Optional.of("OK"));
 
         boolean result = healthCheckService.getHealthCheckForPostgresDB();
 
@@ -56,7 +56,7 @@ class HealthCheckServiceTest {
 
     @Test
     public void testHealthCheckForPostgresDBFailure() {
-        Mockito.when(postgresDbRepo.healthCheck()).thenThrow(new DataAccessException("Connection Error") {});
+        when(postgresDbRepo.healthCheck()).thenThrow(new DataAccessException("Connection Error") {});
 
         boolean result = healthCheckService.getHealthCheckForPostgresDB();
 
