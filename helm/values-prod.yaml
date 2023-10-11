@@ -4,20 +4,20 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "0.0.0"
+    tag: "1.0.0"
     pullPolicy: Always
   livenessProbe:
     httpGet:
       path: /actuator/health/liveness
       port: 8080
-    initialDelaySeconds: 90
+    initialDelaySeconds: 180
     failureThreshold: 6
     periodSeconds: 10
   readinessProbe:
     httpGet:
       path: /actuator/health/readiness
       port: 8080
-    initialDelaySeconds: 90
+    initialDelaySeconds: 180
     failureThreshold: 6
     periodSeconds: 10
   deployment:
@@ -29,14 +29,14 @@ microservice-chart:
       - 8080
   ingress:
     create: true
-    host: "weudev.nodo.internal.platform.pagopa.it"
+    host: "weuprod.nodo.internal.platform.pagopa.it"
     path: /datamigration/(.*)
     servicePort: 8080
   serviceAccount:
     create: false
-    annotations: { }
+    annotations: {}
     name: ""
-  podAnnotations: { }
+  podAnnotations: {}
   podSecurityContext:
     seccompProfile:
       type: RuntimeDefault
@@ -44,11 +44,11 @@ microservice-chart:
     allowPrivilegeEscalation: false
   resources:
     requests:
-      memory: "512Mi"
-      cpu: "0.25"
+      memory: "1Gi"
+      cpu: "0.40"
     limits:
-      memory: "512Mi"
-      cpu: "0.25"
+      memory: "1Gi"
+      cpu: "0.5"
   autoscaling:
     enable: true
     minReplica: 1
@@ -70,22 +70,59 @@ microservice-chart:
     POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-p-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_USERNAME: "cfg"
     POSTGRESQL_DEFAULT_SCHEMA: "cfg"
+    POSTGRESQL_JDBC_BATCH_SIZE: '500'
     DEFAULT_LOGGING_LEVEL: "INFO"
     APP_LOGGING_LEVEL: "INFO"
     SQL_LOGGING_LEVEL: "INFO"
     SQL_BINDER_LOGGING_LEVEL: "INFO"
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
-    OTEL_ENDPOINT: "http://otel-collector.elastic-system.svc.cluster.local:4317"
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
+    # Variables for define batch size for all steps
+    STEP_BINARYFILE_BATCH_SIZE: '500'
+    STEP_CANALETIPOVERSAMENTO_BATCH_SIZE: '1000'
+    STEP_CANALINODO_BATCH_SIZE: '1000'
+    STEP_CANALI_BATCH_SIZE: '1000'
+    STEP_CDIDETAIL_BATCH_SIZE: '1000'
+    STEP_CDIFASCIA_BATCH_SIZE: '1000'
+    STEP_CDIINFORMAZIONISERVIZIO_BATCH_SIZE: '1000'
+    STEP_CDIMASTER_BATCH_SIZE: '1000'
+    STEP_CDIPREFERENCES_BATCH_SIZE: '1000'
+    STEP_CDSCATEGORIE_BATCH_SIZE: '1000'
+    STEP_CDSSERVIZIO_BATCH_SIZE: '1000'
+    STEP_CDSSOGGETTOSERVIZIO_BATCH_SIZE: '1000'
+    STEP_CDSSOGGETTO_BATCH_SIZE: '1000'
+    STEP_CODIFICHEPA_BATCH_SIZE: '2000'
+    STEP_CODIFICHE_BATCH_SIZE: '1000'
+    STEP_CONFIGURATIONKEYS_BATCH_SIZE: '1000'
+    STEP_DIZIONARIOMETADATI_BATCH_SIZE: '1000'
+    STEP_ELENCOSERVIZI_BATCH_SIZE: '500'
+    STEP_FTPSERVERS_BATCH_SIZE: '1000'
+    STEP_GDECONFIG_BATCH_SIZE: '1000'
+    STEP_INFORMATIVECONTOACCREDITODETAIL_BATCH_SIZE: '2000'
+    STEP_INFORMATIVECONTOACCREDITOMASTER_BATCH_SIZE: '1000'
+    STEP_INFORMATIVEPADETAIL_BATCH_SIZE: '1000'
+    STEP_INFORMATIVEPAFASCE_BATCH_SIZE: '1000'
+    STEP_INFORMATIVEPAMASTER_BATCH_SIZE: '1000'
+    STEP_INTERMEDIARIPA_BATCH_SIZE: '1000'
+    STEP_INTERMEDIARIPSP_BATCH_SIZE: '1000'
+    STEP_PASTAZIONEPA_BATCH_SIZE: '2000'
+    STEP_PA_BATCH_SIZE: '1000'
+    STEP_PDD_BATCH_SIZE: '1000'
+    STEP_PSPCANALETIPOVERSAMENTO_BATCH_SIZE: '1000'
+    STEP_PSP_BATCH_SIZE: '1000'
+    STEP_QUADRATURESCHED_BATCH_SIZE: '1000'
+    STEP_STAZIONI_BATCH_SIZE: '1000'
+    STEP_TIPIVERSAMENTO_BATCH_SIZE: '1000'
+    STEP_WFESPPLUGINCONF_BATCH_SIZE: '1000'
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
-    POSTGRESQL_PASSWORD: 'postgresql-db-cfg-password'
-    APPLICATIONINSIGHTS_CONNECTION_STRING: 'ai-p-connection-string'
+    POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-p-nodo-kv"
     tenantId: "7788edaf-0346-4068-9d79-c868aed15b3d"
-  nodeSelector: { }
-  tolerations: [ ]
+  nodeSelector: {}
+  tolerations: []
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -95,4 +132,5 @@ microservice-chart:
                 operator: In
                 values:
                   - user
-
+  canaryDelivery:
+    create: false

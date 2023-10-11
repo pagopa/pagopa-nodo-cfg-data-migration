@@ -42,8 +42,10 @@ done
 
 
 stack_name=$(cd .. && basename "$PWD")
-docker compose -p "${stack_name}" up -d --remove-orphans --force-recreate --build
-
+#docker compose -p "${stack_name}" up -d --remove-orphans --force-recreate --build
+echo $GITHUB_TOKEN_READ_PACKAGES >> ./secrets
+DOCKER_BUILDKIT=1 docker build -t ${image} --secret id=GH_TOKEN,src=./secrets ..
+docker run -d -p 8080:8080 --env-file .env ${image}
 
 # waiting the containers
 printf 'Waiting for the service'

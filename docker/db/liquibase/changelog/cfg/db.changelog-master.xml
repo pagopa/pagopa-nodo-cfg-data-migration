@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"				
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+  http://www.liquibase.org/xml/ns/pro 
+  http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd" >
+
+  <include file="./db.changelog-0.xml" />
+  <include file="./db.changelog-202110201734_fix_sequences.xml"/>
+
+  <!-- 2.11 -->
+  <include file="./db.changelog-202206201000_pa_send_rt_48_retries.xml"/>
+
+  <!-- 3.0 -->
+  <include file="./db.changelog-202206081516_cdsServizio_version.xml" />
+  <include file="./db.changelog-202206080000_demandPaymentNotice.xml"/>
+  <include file="./db.changelog-202206141232_create_cdsCategorie.xml"/>
+  <include file="./db.changelog-20220606211658_alter_cdsSoggettoServizio.xml"/>
+
+  <!-- 3.1 -->
+  <include file="./db.changelog-202206241530_invioRtIstantanea_stazioni.xml"/>
+
+  <!-- 3.3 -->
+  <include file="./db.changelog-20220720000000_metadata_dict.xml"/>
+
+  <!-- 3.4 -->
+  <include file="./db.changelog-20220803103800_delete_conf_checkPosition.xml"/>
+  <include file="./db.changelog-20220805103600_versionePrimitive_canaliNodo.xml"/>
+  <include file="./db.changelog-20220809103600_cache_version.xml"/>
+
+  <!-- 3.6 -->
+  <include file="./db.changelog-20220912125300_set_retry_gec_getfees.xml"/>
+  <include file="./db.changelog-20220915102900_toggle_onoff_gecservice.xml"/>
+  <include file="./db.changelog-20220915115600_conf_pspEcommerce_pspAppIO_pspCheckout.xml"/>
+
+  <!-- 3.8 -->
+  <include file="./db.changelog-20221104000000_target_columns.xml"/>
+  <include file="./db.changelog-20221107102800_view_gestione_cdi.xml"/>
+
+  <!-- 3.9 -->
+  <include file="./db.changelog-20221128151200_view canali_canali_nodo.xml"/>
+
+  <!-- 3.10 -->
+  <include file="./db.changelog-20221205102000_replace_elenco_servizi_view_canali_nodo.xml"/>
+  <include file="./db.changelog-20221205102100_delete_unused_keys_column.xml"/>
+  <include file="./db.changelog-20221205161400_delete_key_chiediElencoFlussiRendicontazioneDayLimit.xml"/>
+  <include file="./db.changelog-20221212091400_delete_unused_keys_column-2.xml"/>
+  <include file="./db.changelog-20221220095600_lispay.xml"/>
+  <include file="./db.changelog-20230120114500_restore_dropped_column.xml"/>
+  <include file="./db.changelog-20230124172900_fix_column_type.xml"/>
+  <include file="./db.changelog-20230124172900_set_default_values.xml"/>
+
+  <!-- 3.12 -->
+  <include file="./db.changelog-20230221101400_add_unique_constraint.xml"/>
+  <include file="./db.changelog-20230223101500_update_conf_keys.xml"/>
+
+  <!-- 3.14 -->
+  <include file="./db.changelog-20230314090150_target_columns.xml"/>
+
+  <!-- 3.15 -->
+  <include file="./db.changelog-20230320153200_rimozione_univocit_soggetto_servizio_stazione.xml"/>
+
+  <!-- 3.17 -->
+  <include file="./db.changelog-20230427133700_add_column_to_canali_nodo_and_canali_view.xml"/>
+
+  <!-- 3.19 -->
+  <include file="./db.changelog-20230517113500_remove_LMI_columns.xml"/>
+  <include file="./db.changelog-20230517153200_parked_rtps_config.xml"/>
+
+  <!-- 3.21 -->
+  <include file="./db.changelog-20230609153200_new_iban_tables.xml"/>
+  <include file="./db.changelog-20230628153200_update_iban_master.xml"/>
+
+  <!-- 3.22 -->
+  <include file="./db.changelog-20230630120000_delete_denylist_table.xml"/>
+  <include file="./db.changelog-20230628110100_delete_column_new_password.xml"/>
+
+
+</databaseChangeLog>
