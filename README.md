@@ -1,19 +1,16 @@
 # Nodo Data Migration
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pagopa-api-config-data-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=pagopa-api-config-data-migration)
-[![Integration Tests](https://github.com/pagopa/pagopa-api-config-data-migration/actions/workflows/integration_test.yml/badge.svg?branch=main)](https://github.com/pagopa/pagopa-api-config-data-migration/actions/workflows/integration_test.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pagopa-api-config-data-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=pagopa-nodo-cfg-data-migration)
 
 A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database
 
 TODO: generate a index with this tool: https://ecotrust-canada.github.io/markdown-toc/
 
-TODO: resolve all the TODOs in this template
-
 ---
 
 ## Api Documentation 📖
 
-See the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubusercontent.com/pagopa/<TODO-repo>/main/openapi/openapi.json)
+See the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubusercontent.com/pagopa/pagopa-nodo-cfg-data-migration/main/openapi/openapi.json)
 
 ---
 
@@ -24,8 +21,6 @@ See the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubuserc
 - Spring Web
 - Hibernate
 - JPA
-- ...
-- TODO
 
 ---
 
@@ -71,19 +66,6 @@ Start the springboot application with this command:
 To run the **Junit** tests:
 
 `mvn clean verify`
-
-#### Integration testing
-
-From `./integration-test/src`
-
-1. `yarn install`
-2. `yarn test`
-
-#### Performance testing
-
-install [k6](https://k6.io/) and then from `./performance-test/src`
-
-1. `k6 run --env VARS=local.environment.json --env TEST_TYPE=./test-types/load.json main_scenario.js`
 
 ---
 
