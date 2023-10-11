@@ -3,9 +3,12 @@ package it.gov.pagopa.nodo.datamigration.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,13 +19,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest(classes = JsonBConverterTest.class)
 class JsonBConverterTest {
 
     private JsonBConverter jsonBConverter;
     ObjectMapper objectMapper;
     private Logger logger;
 
-    @Before
+    @BeforeEach
     void setUp() {
         jsonBConverter = Mockito.spy(new JsonBConverter());
         objectMapper = Mockito.mock(ObjectMapper.class);
@@ -41,7 +45,7 @@ class JsonBConverterTest {
                 .build());
         String expectedJson = TestUtil.readStringFromFile("JsonTest.json");
         String jsonbContent = jsonBConverter.convertToDatabaseColumn(details);
-        assertEquals(expectedJson, jsonbContent);
+        Assertions.assertEquals(expectedJson, jsonbContent);
     }
 
     @Test
@@ -49,11 +53,11 @@ class JsonBConverterTest {
         DataMigrationDetails details = TestUtil.readObjectFromFile("JsonTest.json", DataMigrationDetails.class);
         String stringDetails = TestUtil.readStringFromFile("JsonTest.json");
         DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(stringDetails);
-        assertEquals(details.toString(), detailsContent.toString());
-        assertEquals(details.getPa().getStatus(), detailsContent.getPa().getStatus());
-        assertEquals(details.getPa().getEnd(), detailsContent.getPa().getEnd());
-        assertEquals(details.getPa().getRecords(), detailsContent.getPa().getRecords());
-        assertEquals(details.getPa().getStart(), detailsContent.getPa().getStart());
+        Assertions.assertEquals(details.toString(), detailsContent.toString());
+        Assertions.assertEquals(details.getPa().getStatus(), detailsContent.getPa().getStatus());
+        Assertions.assertEquals(details.getPa().getEnd(), detailsContent.getPa().getEnd());
+        Assertions.assertEquals(details.getPa().getRecords(), detailsContent.getPa().getRecords());
+        Assertions.assertEquals(details.getPa().getStart(), detailsContent.getPa().getStart());
 
     }
 
@@ -65,6 +69,6 @@ class JsonBConverterTest {
                 return null;
             }).when(logger).error(anyString(), any(IOException.class));
             DataMigrationDetails detailsContent = jsonBConverter.convertToEntityAttribute(jsonbContent);
-            assertNull(detailsContent);
+            Assertions.assertNull(detailsContent);
         }
 }
