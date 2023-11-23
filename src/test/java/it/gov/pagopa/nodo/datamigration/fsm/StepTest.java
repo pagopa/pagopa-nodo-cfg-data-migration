@@ -11,7 +11,7 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepExcepti
 import it.gov.pagopa.nodo.datamigration.fsm.step.ExecuteBinaryFileTableMigrationStep;
 import it.gov.pagopa.nodo.datamigration.repository.oracle.BinaryFileSrcRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.BinaryFileDestRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor//(access = AccessLevel.PRIVATE)
 @ToString
 public class DataMigrationStatus implements Serializable {
 

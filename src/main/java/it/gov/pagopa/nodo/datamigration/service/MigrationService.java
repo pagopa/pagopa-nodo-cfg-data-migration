@@ -18,6 +18,7 @@ import java.util.Map;
 
 @Service
 public class MigrationService {
+
     @Autowired
     @Qualifier("executor")
     private FSMExecutor fsmExecutor;
@@ -41,7 +42,7 @@ public class MigrationService {
     }
 
     @Async
-    private void asyncStart(StepName lastExecutedName) {
+    protected void asyncStart(StepName lastExecutedName) {
         fsmExecutor.start(lastExecutedName);
     }
 

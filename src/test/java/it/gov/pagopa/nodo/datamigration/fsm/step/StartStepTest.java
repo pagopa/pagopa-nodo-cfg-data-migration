@@ -9,6 +9,7 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStatusSavin
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationTruncateAllTablesException;
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.*;
 import it.gov.pagopa.nodo.datamigration.service.HealthCheckService;
 import jakarta.persistence.EntityManager;
@@ -71,7 +72,8 @@ class StartStepTest {
     @MockBean TipiVersamentoDestRepository tipiVersamentoRepo;
     @MockBean WfespPluginConfDestRepository wfespPluginConfRepo;
 
-    @MockBean CfgDataMigrationRepository dataMigrationRepository;
+    @MockBean
+    CfgDataMigrationRepository dataMigrationRepository;
     @MockBean HealthCheckService healthCheckService;
 
     @Mock private EntityManagerFactory emFactory;

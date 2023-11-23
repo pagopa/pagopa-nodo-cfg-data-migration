@@ -5,7 +5,7 @@ import it.gov.pagopa.nodo.datamigration.enumeration.MigrationStepStatus;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.exception.AppError;
 import it.gov.pagopa.nodo.datamigration.exception.AppException;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

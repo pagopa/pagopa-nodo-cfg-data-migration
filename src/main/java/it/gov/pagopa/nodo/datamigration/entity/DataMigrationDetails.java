@@ -1,15 +1,20 @@
 package it.gov.pagopa.nodo.datamigration.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor//(access = AccessLevel.PRIVATE)
 @ToString
+@Slf4j
 public class DataMigrationDetails implements Serializable {
 
     private DataMigrationStatus intermediariPa;
@@ -83,4 +88,49 @@ public class DataMigrationDetails implements Serializable {
     private DataMigrationStatus gdeConfig;
 
     private DataMigrationStatus quadratureSched;
+
+
+    public DataMigrationDetails(String jsonContent) {
+        try {
+            DataMigrationDetails details = new ObjectMapper().readValue(jsonContent, DataMigrationDetails.class);
+            this.setIntermediariPa(details.getIntermediariPa());
+            this.setPa(details.getPa());
+            this.setStazioni(details.getStazioni());
+            this.setPaStazioniPa(details.getPaStazioniPa());
+            this.setCodifiche(details.getCodifiche());
+            this.setCodifichePa(details.getCodifichePa());
+            this.setBinaryFile(details.getBinaryFile());
+            this.setInformativeContoAccreditoMaster(details.getInformativeContoAccreditoMaster());
+            this.setInformativeContoAccreditoDetail(details.getInformativeContoAccreditoDetail());
+            this.setInformativePaMaster(details.getInformativePaMaster());
+            this.setInformativePaDetail(details.getInformativePaDetail());
+            this.setInformativePaFasce(details.getInformativePaFasce());
+            this.setIntermediariPsp(details.getIntermediariPsp());
+            this.setPsp(details.getPsp());
+            this.setCanaliNodo(details.getCanaliNodo());
+            this.setCanali(details.getCanali());
+            this.setTipiVersamento(details.getTipiVersamento());
+            this.setCanaleTipoVersamento(details.getCanaleTipoVersamento());
+            this.setPspCanaleTipoVersamento(details.getPspCanaleTipoVersamento());
+            this.setDizionarioMetadati(details.getDizionarioMetadati());
+            this.setCdiMaster(details.getCdiMaster());
+            this.setCdiDetail(details.getCdiDetail());
+            this.setCdiFasciaCostoServizio(details.getCdiFasciaCostoServizio());
+            this.setCdiInformazioniServizio(details.getCdiInformazioniServizio());
+            this.setCdiPreferences(details.getCdiPreferences());
+            this.setElencoServizi(details.getElencoServizi());
+            this.setCdsCategorie(details.getCdsCategorie());
+            this.setCdsSoggetto(details.getCdsSoggetto());
+            this.setCdsServizio(details.getCdsServizio());
+            this.setCdsSoggettoServizio(details.getCdsSoggettoServizio());
+            this.setConfigurationKeys(details.getConfigurationKeys());
+            this.setWfespPluginConf(details.getWfespPluginConf());
+            this.setFtpServers(details.getFtpServers());
+            this.setPdd(details.getPdd());
+            this.setGdeConfig(details.getGdeConfig());
+            this.setQuadratureSched(details.getQuadratureSched());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

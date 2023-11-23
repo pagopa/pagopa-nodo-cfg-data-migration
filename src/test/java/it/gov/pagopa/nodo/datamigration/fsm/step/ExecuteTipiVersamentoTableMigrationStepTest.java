@@ -10,7 +10,7 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationInterrupted
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
 import it.gov.pagopa.nodo.datamigration.repository.oracle.TipiVersamentoSrcRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.TipiVersamentoDestRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

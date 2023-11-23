@@ -7,7 +7,7 @@ import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.fsm.FSMExecutor;
 import it.gov.pagopa.nodo.datamigration.model.migration.MigrationStatus;
 import it.gov.pagopa.nodo.datamigration.model.migration.TableMigrationStatus;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
