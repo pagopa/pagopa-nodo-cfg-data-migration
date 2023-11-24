@@ -96,6 +96,6 @@ public class CanaliNodo {
     private Integer versionePrimitive;
 
     @Convert(converter = YesNoConverter.class)
-    @Column(name = "FLAG_PSP_CP", nullable = false)
+    @Column(name = "FLAG_TRAVASO", nullable = false)
     private Boolean flagPspCp = false;
 }
