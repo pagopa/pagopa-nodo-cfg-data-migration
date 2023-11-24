@@ -86,7 +86,7 @@ public class H2DatasourceConfiguration {
         props.put("hibernate.database-platform", "org.hibernate.dialect.H2Dialect");
         props.put("hibernate.jdbc.batch_size", jdbcBatchSize);
         props.put("hibernate.ddl-auto", "none");
-        props.put("hibernate.hbm2ddl.auto", "create");
+        props.put("hibernate.hbm2ddl.auto", "create-drop");
         props.put("hibernate.jdbc.lob.non_contextual_creation", "true");
         entityManager.setJpaProperties(props);
 
