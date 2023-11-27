@@ -2,13 +2,16 @@ package it.gov.pagopa.nodo.datamigration.fsm.step;
 
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.nodo.datamigration.entity.cfg.CodifichePa;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.Iban;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.IcaBinaryFile;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.fsm.Step;
-import it.gov.pagopa.nodo.datamigration.repository.oracle.CodifichePaSrcRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CodifichePaDestRepository;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.IbanSrcRepository;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.IcaBinaryFileSrcRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.IbanDestRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.IcaBinaryFileDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,17 +24,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Slf4j
-@Service("EXECUTE_CODIFICHE_PA_TABLE_MIGRATION")
-public class ExecuteCodifichePATableMigrationStep extends Step {
+@Service("EXECUTE_ICA_BINARY_FILE_TABLE_MIGRATION")
+public class ExecuteIcaBinaryFileTableMigrationStep extends Step {
 
-    @Value("${step.codifiche_pa.batch.size}")
+    @Value("${step.dizionario_metadati.batch.size}")
     private Integer PAGE_SIZE;
 
     @Autowired
-    CodifichePaSrcRepository srcRepo;
+    IcaBinaryFileSrcRepository srcRepo;
 
     @Autowired
-    CodifichePaDestRepository destRepo;
+    IcaBinaryFileDestRepository destRepo;
 
     @Override
     public void executeStep() throws MigrationStepException {
@@ -44,8 +47,8 @@ public class ExecuteCodifichePATableMigrationStep extends Step {
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
             long recordCounter = 0;
             do {
-                Page<CodifichePa> pagedEntities = srcRepo.findAll(pageable);
-                List<CodifichePa> entities = pagedEntities.getContent();
+                Page<IcaBinaryFile> pagedEntities = srcRepo.findAll(pageable);
+                List<IcaBinaryFile> entities = pagedEntities.getContent();
                 recordCounter += entities.size();
                 destRepo.saveAllAndFlush(entities);
                 pageable = pagedEntities.nextPageable();
@@ -63,18 +66,16 @@ public class ExecuteCodifichePATableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-//        return StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION;
-        return StepName.EXECUTE_IBAN_TABLE_MIGRATION;
+        return StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION;
     }
 
     @Override
     public String getStepName() {
-        return StepName.EXECUTE_CODIFICHE_PA_TABLE_MIGRATION.toString();
+        return StepName.EXECUTE_ICA_BINARY_FILE_TABLE_MIGRATION.toString();
     }
 
     @Override
     public DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details) {
-        return details.getCodifichePa();
+        return details.getIcaBinaryFile();
     }
 }
-

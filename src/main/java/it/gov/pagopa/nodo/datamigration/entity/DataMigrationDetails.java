@@ -31,6 +31,16 @@ public class DataMigrationDetails implements Serializable {
 
     private DataMigrationStatus binaryFile;
 
+    private DataMigrationStatus iban;
+
+    private DataMigrationStatus ibanAttributes;
+
+    private DataMigrationStatus ibanMaster;
+
+    private DataMigrationStatus ibanAttributesMaster;
+
+    private DataMigrationStatus icaBinaryFile;
+
     private DataMigrationStatus informativeContoAccreditoMaster;
 
     private DataMigrationStatus informativeContoAccreditoDetail;
@@ -129,6 +139,11 @@ public class DataMigrationDetails implements Serializable {
             this.setPdd(details.getPdd());
             this.setGdeConfig(details.getGdeConfig());
             this.setQuadratureSched(details.getQuadratureSched());
+            this.setIban(details.getIban());
+            this.setIbanAttributes(details.getIbanAttributes());
+            this.setIbanAttributesMaster(details.getIbanAttributesMaster());
+            this.setIbanMaster(details.getIbanMaster());
+            this.setIcaBinaryFile(details.getIcaBinaryFile());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

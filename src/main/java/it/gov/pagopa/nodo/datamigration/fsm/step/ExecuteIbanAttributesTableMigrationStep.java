@@ -2,13 +2,13 @@ package it.gov.pagopa.nodo.datamigration.fsm.step;
 
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
-import it.gov.pagopa.nodo.datamigration.entity.cfg.CodifichePa;
+import it.gov.pagopa.nodo.datamigration.entity.cfg.IbanAttributes;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationErrorOnStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
 import it.gov.pagopa.nodo.datamigration.fsm.Step;
-import it.gov.pagopa.nodo.datamigration.repository.oracle.CodifichePaSrcRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CodifichePaDestRepository;
+import it.gov.pagopa.nodo.datamigration.repository.oracle.IbanAttributesSrcRepository;
+import it.gov.pagopa.nodo.datamigration.repository.postgres.IbanAttributesDestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,17 +21,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Slf4j
-@Service("EXECUTE_CODIFICHE_PA_TABLE_MIGRATION")
-public class ExecuteCodifichePATableMigrationStep extends Step {
+@Service("EXECUTE_IBAN_ATTRIBUTES_TABLE_MIGRATION")
+public class ExecuteIbanAttributesTableMigrationStep extends Step {
 
-    @Value("${step.codifiche_pa.batch.size}")
+    @Value("${step.dizionario_metadati.batch.size}")
     private Integer PAGE_SIZE;
 
     @Autowired
-    CodifichePaSrcRepository srcRepo;
+    IbanAttributesSrcRepository srcRepo;
 
     @Autowired
-    CodifichePaDestRepository destRepo;
+    IbanAttributesDestRepository destRepo;
 
     @Override
     public void executeStep() throws MigrationStepException {
@@ -44,8 +44,8 @@ public class ExecuteCodifichePATableMigrationStep extends Step {
             Pageable pageable = PageRequest.of(0, PAGE_SIZE);
             long recordCounter = 0;
             do {
-                Page<CodifichePa> pagedEntities = srcRepo.findAll(pageable);
-                List<CodifichePa> entities = pagedEntities.getContent();
+                Page<IbanAttributes> pagedEntities = srcRepo.findAll(pageable);
+                List<IbanAttributes> entities = pagedEntities.getContent();
                 recordCounter += entities.size();
                 destRepo.saveAllAndFlush(entities);
                 pageable = pagedEntities.nextPageable();
@@ -63,18 +63,16 @@ public class ExecuteCodifichePATableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-//        return StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION;
-        return StepName.EXECUTE_IBAN_TABLE_MIGRATION;
+        return StepName.EXECUTE_IBAN_MASTER_TABLE_MIGRATION;
     }
 
     @Override
     public String getStepName() {
-        return StepName.EXECUTE_CODIFICHE_PA_TABLE_MIGRATION.toString();
+        return StepName.EXECUTE_IBAN_ATTRIBUTES_TABLE_MIGRATION.toString();
     }
 
     @Override
     public DataMigrationStatus getDataMigrationStatus(DataMigrationDetails details) {
-        return details.getCodifichePa();
+        return details.getIbanAttributes();
     }
 }
-

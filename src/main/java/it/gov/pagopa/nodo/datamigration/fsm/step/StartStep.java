@@ -87,6 +87,11 @@ public class StartStep extends Step {
                             .codifiche(new DataMigrationStatus())
                             .codifichePa(new DataMigrationStatus())
                             .binaryFile(new DataMigrationStatus())
+                            .iban(new DataMigrationStatus())
+                            .ibanAttributes(new DataMigrationStatus())
+                            .ibanMaster(new DataMigrationStatus())
+                            .ibanAttributesMaster(new DataMigrationStatus())
+                            .icaBinaryFile(new DataMigrationStatus())
                             .informativeContoAccreditoMaster(new DataMigrationStatus())
                             .informativeContoAccreditoDetail(new DataMigrationStatus())
                             .informativePaMaster(new DataMigrationStatus())
@@ -183,7 +188,17 @@ public class StartStep extends Step {
             deleteAndFlush(em, "INFORMATIVE_CONTO_ACCREDITO_DETAIL");
             log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_DETAIL. Starting deleting all data from INFORMATIVE_CONTO_ACCREDITO_MASTER...");
             deleteAndFlush(em, "INFORMATIVE_CONTO_ACCREDITO_MASTER");
-            log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_MASTER. Starting deleting all data from BINARY_FILE...");
+            log.info(" - Deleted all data from INFORMATIVE_CONTO_ACCREDITO_MASTER. Starting deleting all data from IBAN_ATTRIBUTES_MASTER...");
+            deleteAndFlush(em, "IBAN_ATTRIBUTES_MASTER");
+            log.info(" - Deleted all data from IBAN_ATTRIBUTES_MASTER. Starting deleting all data from IBAN_MASTER...");
+            deleteAndFlush(em, "IBAN_MASTER");
+            log.info(" - Deleted all data from IBAN_MASTER. Starting deleting all data from IBAN_ATTRIBUTES...");
+            deleteAndFlush(em, "IBAN_ATTRIBUTES");
+            log.info(" - Deleted all data from IBAN_ATTRIBUTES. Starting deleting all data from IBAN...");
+            deleteAndFlush(em, "IBAN");
+            log.info(" - Deleted all data from IBAN. Starting deleting all data from ICA_BINARY_FILE...");
+            deleteAndFlush(em, "ICA_BINARY_FILE");
+            log.info(" - Deleted all data from ICA_BINARY_FILE. Starting deleting all data from BINARY_FILE...");
             deleteAndFlush(em, "BINARY_FILE");
             log.info(" - Deleted all data from BINARY_FILE. Starting deleting all data from CODIFICHE_PA...");
             deleteAndFlush(em, "CODIFICHE_PA");
