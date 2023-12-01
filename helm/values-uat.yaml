@@ -68,6 +68,7 @@ microservice-chart:
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
 # NEXI    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.u.db-nodo-pagamenti.com:5445/ndpspca?prepareThreshold=0&currentSchema=NODO4_CFG"
+# NEXI PRF    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp-prf.u.db-nodo-pagamenti.com:5445/ndpspca?prepareThreshold=0&currentSchema=NODO4_CFG"
     POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-u-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
 # NEXI   POSTGRESQL_USERNAME: "pp_nodo4_cfg"
     POSTGRESQL_USERNAME: "cfg"
@@ -116,9 +117,15 @@ microservice-chart:
     STEP_STAZIONI_BATCH_SIZE: '1000'
     STEP_TIPIVERSAMENTO_BATCH_SIZE: '1000'
     STEP_WFESPPLUGINCONF_BATCH_SIZE: '1000'
+    STEP_IBANATTRIBUTESMASTER_BATCH_SIZE: '1000'
+    STEP_IBANATTRIBUTES_BATCH_SIZE: '1000'
+    STEP_IBANMASTER_BATCH_SIZE: '1000'
+    STEP_IBAN_BATCH_SIZE: '1000'
+    STEP_ICABINARYFILE_BATCH_SIZE: '1000'
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
 # NEXI    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password'
+# NEXI PRF    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password-prf'
     POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:

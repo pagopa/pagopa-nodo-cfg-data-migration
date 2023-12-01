@@ -27,7 +27,7 @@ import java.util.List;
 @Service("EXECUTE_ICA_BINARY_FILE_TABLE_MIGRATION")
 public class ExecuteIcaBinaryFileTableMigrationStep extends Step {
 
-    @Value("${step.dizionario_metadati.batch.size}")
+    @Value("${step.ica_binary_file.batch.size}")
     private Integer PAGE_SIZE;
 
     @Autowired

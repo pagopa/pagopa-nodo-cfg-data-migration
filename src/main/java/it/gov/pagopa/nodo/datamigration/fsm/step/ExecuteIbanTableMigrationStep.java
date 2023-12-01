@@ -24,7 +24,7 @@ import java.util.List;
 @Service("EXECUTE_IBAN_TABLE_MIGRATION")
 public class ExecuteIbanTableMigrationStep extends Step {
 
-    @Value("${step.dizionario_metadati.batch.size}")
+    @Value("${step.iban.batch.size}")
     private Integer PAGE_SIZE;
 
     @Autowired
