@@ -68,7 +68,7 @@ microservice-chart:
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
 #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.u.db-nodo-pagamenti.com:5445/ndpspca?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI UAT
-    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp-prf.u.db-nodo-pagamenti.com:5445/ndpspcq?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI PRF
+    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp-prf.u.db-nodo-pagamenti.com:5444/ndpspcq?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI PRF
 #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-u-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_USERNAME: "pp_nodo4_cfg" # NEXI
 #    POSTGRESQL_USERNAME: "cfg"
