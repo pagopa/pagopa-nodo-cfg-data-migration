@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>it.gov.pagopa.nodo</groupId>
 	<artifactId>data-migration</artifactId>
-	<version>1.0.0-10-config-for-nexi</version>
+	<version>1.0.0-11-config-for-nexi</version>
 	<description>A microservice that permits the migration from Nexi's Oracle database to PagoPA's PostgreSQL database</description>
 	<properties>
 		<java.version>17</java.version>
