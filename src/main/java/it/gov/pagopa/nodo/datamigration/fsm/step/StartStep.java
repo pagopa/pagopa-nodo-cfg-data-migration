@@ -53,7 +53,8 @@ public class StartStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION;
+//        return StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION;
+        return StepName.EXECUTE_IBAN_TABLE_MIGRATION;
     }
 
     @Override
@@ -200,21 +201,23 @@ public class StartStep extends Step {
             deleteAndFlush(em, "ICA_BINARY_FILE");
             log.info(" - Deleted all data from ICA_BINARY_FILE. Starting deleting all data from BINARY_FILE...");
             deleteAndFlush(em, "BINARY_FILE");
-            log.info(" - Deleted all data from BINARY_FILE. Starting deleting all data from CODIFICHE_PA...");
-            deleteAndFlush(em, "CODIFICHE_PA");
-            log.info(" - Deleted all data from CODIFICHE_PA. Starting deleting all data from CODIFICHE...");
-            deleteAndFlush(em, "CODIFICHE");
-            log.info(" - Deleted all data from CODIFICHE. Starting deleting all data from PA_STAZIONE_PA...");
-            deleteAndFlush(em, "PA_STAZIONE_PA");
-            log.info(" - Deleted all data from PA_STAZIONE_PA. Starting deleting all data from STAZIONI...");
-            deleteAndFlush(em, "STAZIONI");
-            log.info(" - Deleted all data from STAZIONI. Starting deleting all data from PA...");
-            deleteAndFlush(em, "PA");
-            log.info(" - Deleted all data from PA. Starting deleting all data from INTERMEDIARI_PA...");
-            deleteAndFlush(em, "INTERMEDIARI_PA");
-            log.info(" - Deleted all data from INTERMEDIARI_PA. Starting deleting all data from QUADRATURE_SCHED...");
-            deleteAndFlush(em, "QUADRATURE_SCHED");
-            log.info(" - Deleted all data from QUADRATURE_SCHED. Ended deleting all previous data!.");
+            log.info(" - Deleted all data from BINARY_FILE.");
+//            log.info(" - Starting deleting all data from CODIFICHE_PA...");
+//            deleteAndFlush(em, "CODIFICHE_PA");
+//            log.info(" - Deleted all data from CODIFICHE_PA. Starting deleting all data from CODIFICHE...");
+//            deleteAndFlush(em, "CODIFICHE");
+//            log.info(" - Deleted all data from CODIFICHE. Starting deleting all data from PA_STAZIONE_PA...");
+//            deleteAndFlush(em, "PA_STAZIONE_PA");
+//            log.info(" - Deleted all data from PA_STAZIONE_PA. Starting deleting all data from STAZIONI...");
+//            deleteAndFlush(em, "STAZIONI");
+//            log.info(" - Deleted all data from STAZIONI. Starting deleting all data from PA...");
+//            deleteAndFlush(em, "PA");
+//            log.info(" - Deleted all data from PA. Starting deleting all data from INTERMEDIARI_PA...");
+//            deleteAndFlush(em, "INTERMEDIARI_PA");
+//            log.info(" - Deleted all data from INTERMEDIARI_PA. Starting deleting all data from QUADRATURE_SCHED...");
+//            deleteAndFlush(em, "QUADRATURE_SCHED");
+//            log.info(" - Deleted all data from QUADRATURE_SCHED. Ended deleting all previous data!.");
+            log.info(" - Ended deleting all previous data!.");
         } catch (DataAccessException e) {
             throw new MigrationTruncateAllTablesException(e);
         }
