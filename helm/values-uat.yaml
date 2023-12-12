@@ -4,7 +4,7 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "1.0.0-11-config-for-nexi"
+    tag: "1.0.1"
     pullPolicy: Always
   livenessProbe:
     httpGet:
@@ -67,12 +67,12 @@ microservice-chart:
     ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1524)(HOST=db-nodo-pagamenti.u.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCA_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
-#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.u.db-nodo-pagamenti.com:5445/ndpspca?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI UAT
-#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp-prf.u.db-nodo-pagamenti.com:5444/ndpspcq?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI PRF
+    #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.u.db-nodo-pagamenti.com:5445/ndpspca?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI UAT
+    #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp-prf.u.db-nodo-pagamenti.com:5444/ndpspcq?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI PRF
     POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-u-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
-#    POSTGRESQL_USERNAME: "pp_nodo4_cfg" # NEXI
+    #    POSTGRESQL_USERNAME: "pp_nodo4_cfg" # NEXI
     POSTGRESQL_USERNAME: "cfg"
-#    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG" # NEXI
+    #    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG" # NEXI
     POSTGRESQL_DEFAULT_SCHEMA: "cfg"
     POSTGRESQL_JDBC_BATCH_SIZE: '30'
     DEFAULT_LOGGING_LEVEL: "INFO"
@@ -120,8 +120,8 @@ microservice-chart:
     STEP_WFESPPLUGINCONF_BATCH_SIZE: '1000'
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
-#    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password' # NEXI UAT
-#    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password-prf' # NEXI PRF
+    #    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password' # NEXI UAT
+    #    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password-prf' # NEXI PRF
     POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
