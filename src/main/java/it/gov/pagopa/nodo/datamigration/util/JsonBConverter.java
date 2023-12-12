@@ -1,6 +1,7 @@
 package it.gov.pagopa.nodo.datamigration.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.gov.pagopa.nodo.datamigration.entity.DataMigrationDetails;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,6 @@ import java.io.IOException;
 
 @Slf4j
 public class JsonBConverter implements AttributeConverter<DataMigrationDetails, String> {
-
 
     @Override
     public String convertToDatabaseColumn(DataMigrationDetails object) {
@@ -32,7 +32,9 @@ public class JsonBConverter implements AttributeConverter<DataMigrationDetails, 
         DataMigrationDetails castedContent = null;
         try {
             if (!StringUtils.isBlank(jsonbContent)) {
-                castedContent = new ObjectMapper().readValue(jsonbContent, DataMigrationDetails.class);
+                ObjectMapper mapper = new ObjectMapper();
+
+                castedContent = mapper.readValue(jsonbContent, DataMigrationDetails.class);
             }
         } catch (final IOException e) {
             log.error("Error while converting JSONB to object.", e);

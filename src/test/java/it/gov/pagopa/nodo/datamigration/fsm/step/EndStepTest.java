@@ -6,7 +6,7 @@ import it.gov.pagopa.nodo.datamigration.entity.DataMigrationStatus;
 import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
 import it.gov.pagopa.nodo.datamigration.repository.oracle.OracleDBSystemRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.PostgresDBSystemRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

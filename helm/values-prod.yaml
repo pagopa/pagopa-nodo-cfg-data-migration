@@ -4,7 +4,7 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "1.0.0"
+    tag: "1.0.0-11-config-for-nexi"
     pullPolicy: Always
   livenessProbe:
     httpGet:
@@ -67,9 +67,12 @@ microservice-chart:
     ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1521)(HOST=db-nodo-pagamenti.p.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCP_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
-    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-p-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.p.internal.postgresql.pagopa.it:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_USERNAME: "cfg"
     POSTGRESQL_DEFAULT_SCHEMA: "cfg"
+#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.p.db-nodo-pagamenti.com:5444/ndpspcp?prepareThreshold=0&currentSchema=NODO4_CFG" # NEXI
+#    POSTGRESQL_USERNAME: "pp_nodo4_cfg" # NEXI
+#    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG"
     POSTGRESQL_JDBC_BATCH_SIZE: '500'
     DEFAULT_LOGGING_LEVEL: "INFO"
     APP_LOGGING_LEVEL: "INFO"
@@ -78,7 +81,7 @@ microservice-chart:
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
     # Variables for define batch size for all steps
-    STEP_BINARYFILE_BATCH_SIZE: '500'
+    STEP_BINARYFILE_BATCH_SIZE: '100'
     STEP_CANALETIPOVERSAMENTO_BATCH_SIZE: '1000'
     STEP_CANALINODO_BATCH_SIZE: '1000'
     STEP_CANALI_BATCH_SIZE: '1000'
@@ -91,7 +94,7 @@ microservice-chart:
     STEP_CDSSERVIZIO_BATCH_SIZE: '1000'
     STEP_CDSSOGGETTOSERVIZIO_BATCH_SIZE: '1000'
     STEP_CDSSOGGETTO_BATCH_SIZE: '1000'
-    STEP_CODIFICHEPA_BATCH_SIZE: '2000'
+    STEP_CODIFICHEPA_BATCH_SIZE: '1000'
     STEP_CODIFICHE_BATCH_SIZE: '1000'
     STEP_CONFIGURATIONKEYS_BATCH_SIZE: '1000'
     STEP_DIZIONARIOMETADATI_BATCH_SIZE: '1000'
@@ -105,7 +108,7 @@ microservice-chart:
     STEP_INFORMATIVEPAMASTER_BATCH_SIZE: '1000'
     STEP_INTERMEDIARIPA_BATCH_SIZE: '1000'
     STEP_INTERMEDIARIPSP_BATCH_SIZE: '1000'
-    STEP_PASTAZIONEPA_BATCH_SIZE: '2000'
+    STEP_PASTAZIONEPA_BATCH_SIZE: '1000'
     STEP_PA_BATCH_SIZE: '1000'
     STEP_PDD_BATCH_SIZE: '1000'
     STEP_PSPCANALETIPOVERSAMENTO_BATCH_SIZE: '1000'
@@ -114,9 +117,15 @@ microservice-chart:
     STEP_STAZIONI_BATCH_SIZE: '1000'
     STEP_TIPIVERSAMENTO_BATCH_SIZE: '1000'
     STEP_WFESPPLUGINCONF_BATCH_SIZE: '1000'
+    STEP_IBANATTRIBUTESMASTER_BATCH_SIZE: '1000'
+    STEP_IBANATTRIBUTES_BATCH_SIZE: '1000'
+    STEP_IBANMASTER_BATCH_SIZE: '1000'
+    STEP_IBAN_BATCH_SIZE: '1000'
+    STEP_ICABINARYFILE_BATCH_SIZE: '1000'
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     POSTGRESQL_PASSWORD: 'db-cfg-password'
+#    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password' # NEXI
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-p-nodo-kv"

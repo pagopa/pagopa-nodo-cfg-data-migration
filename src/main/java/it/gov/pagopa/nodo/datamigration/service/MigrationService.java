@@ -18,6 +18,7 @@ import java.util.Map;
 
 @Service
 public class MigrationService {
+
     @Autowired
     @Qualifier("executor")
     private FSMExecutor fsmExecutor;
@@ -41,7 +42,7 @@ public class MigrationService {
     }
 
     @Async
-    private void asyncStart(StepName lastExecutedName) {
+    protected void asyncStart(StepName lastExecutedName) {
         fsmExecutor.start(lastExecutedName);
     }
 
@@ -85,6 +86,11 @@ public class MigrationService {
         details.put("PDD", getTableMigrationStatus(migrationDetails.getPdd()));
         details.put("GDE_CONFIG", getTableMigrationStatus(migrationDetails.getGdeConfig()));
         details.put("QUADRATURE_SCHED", getTableMigrationStatus(migrationDetails.getQuadratureSched()));
+        details.put("IBAN", getTableMigrationStatus(migrationDetails.getIban()));
+        details.put("IBAN_ATTRIBUTES", getTableMigrationStatus(migrationDetails.getIbanAttributes()));
+        details.put("IBAN_ATTRIBUTES_MASTER", getTableMigrationStatus(migrationDetails.getIbanAttributesMaster()));
+        details.put("IBAN_MASTER", getTableMigrationStatus(migrationDetails.getIbanMaster()));
+        details.put("ICA_BINARY_FILE", getTableMigrationStatus(migrationDetails.getIcaBinaryFile()));
 
         // complete migration status
         return MigrationStatus.builder()

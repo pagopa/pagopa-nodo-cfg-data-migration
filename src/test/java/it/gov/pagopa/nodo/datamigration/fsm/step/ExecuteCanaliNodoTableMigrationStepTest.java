@@ -11,7 +11,7 @@ import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepExcepti
 import it.gov.pagopa.nodo.datamigration.fsm.FSMSharedState;
 import it.gov.pagopa.nodo.datamigration.repository.oracle.CanaliNodoSrcRepository;
 import it.gov.pagopa.nodo.datamigration.repository.postgres.CanaliNodoDestRepository;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -63,7 +63,8 @@ public class ExecuteCodifichePATableMigrationStep extends Step {
 
     @Override
     public StepName getNextState() {
-        return StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION;
+//        return StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION;
+        return StepName.EXECUTE_IBAN_TABLE_MIGRATION;
     }
 
     @Override

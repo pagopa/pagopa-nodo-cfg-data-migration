@@ -8,7 +8,7 @@ import it.gov.pagopa.nodo.datamigration.enumeration.StepName;
 import it.gov.pagopa.nodo.datamigration.exception.migration.InvalidMigrationStatusException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationInterruptedStepException;
 import it.gov.pagopa.nodo.datamigration.exception.migration.MigrationStepException;
-import it.gov.pagopa.nodo.datamigration.repository.postgres.CfgDataMigrationRepository;
+import it.gov.pagopa.nodo.datamigration.repository.h2.CfgDataMigrationRepository;
 import it.gov.pagopa.nodo.datamigration.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
