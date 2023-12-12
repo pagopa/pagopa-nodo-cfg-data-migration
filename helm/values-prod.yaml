@@ -47,7 +47,7 @@ microservice-chart:
       memory: "1Gi"
       cpu: "0.40"
     limits:
-      memory: "1Gi"
+      memory: "4Gi"
       cpu: "0.5"
   autoscaling:
     enable: true
@@ -64,6 +64,7 @@ microservice-chart:
   envConfig:
     WEBSITE_SITE_NAME: 'pagopanodocfgdatamigration'
     ENV: 'Azure Kubernetes'
+    JAVA_OPTS: "-Dspring.jpa.show-sql=false -XX:MaxHeapSize=2g"
     ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1521)(HOST=db-nodo-pagamenti.p.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCP_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
