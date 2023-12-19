@@ -4,7 +4,7 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "1.0.1-1-nexi-conf"
+    tag: "1.0.1-2-nexi-conf"
     pullPolicy: Always
   livenessProbe:
     httpGet:
@@ -125,7 +125,7 @@ microservice-chart:
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     POSTGRESQL_PASSWORD: 'db-nexi-cfg-password' # NEXI
-#    POSTGRESQL_PASSWORD: 'db-cfg-password'
+    #    POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-d-nodo-kv"
