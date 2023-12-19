@@ -4,7 +4,7 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "1.0.1"
+    tag: "1.0.1-1-nexi-conf"
     pullPolicy: Always
   livenessProbe:
     httpGet:
@@ -69,10 +69,10 @@ microservice-chart:
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
     POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.d.db-nodo-pagamenti.com:5444/ndpspct?prepareThreshold=0&currentSchema=NODO4_CFG" #NEXI
     POSTGRESQL_USERNAME: "pp_nodo4_cfg" #NEXI
-    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG"  #NEXI
-#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-d-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
-#    POSTGRESQL_USERNAME: "cfg"
-#    POSTGRESQL_DEFAULT_SCHEMA: "cfg"
+    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG" #NEXI
+    #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://pagopa-d-weu-nodo-flexible-postgresql.postgres.database.azure.com:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+    #    POSTGRESQL_USERNAME: "cfg"
+    #    POSTGRESQL_DEFAULT_SCHEMA: "cfg"
     POSTGRESQL_JDBC_BATCH_SIZE: '30'
     DEFAULT_LOGGING_LEVEL: "INFO"
     APP_LOGGING_LEVEL: "INFO"
