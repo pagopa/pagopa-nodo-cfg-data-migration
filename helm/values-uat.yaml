@@ -125,8 +125,8 @@ microservice-chart:
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     #    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password' # NEXI UAT
-    #    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password-prf' # NEXI PRF
-    POSTGRESQL_PASSWORD: 'db-cfg-password'
+    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password-prf' # NEXI PRF
+#    POSTGRESQL_PASSWORD: 'db-cfg-password'
     OTEL_AUTH_BEARER: "otel-auth-bearer"
   keyvault:
     name: "pagopa-u-nodo-kv"
