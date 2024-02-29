@@ -66,8 +66,8 @@ microservice-chart:
     ENV: 'Azure Kubernetes'
     #   SRC
 #    ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1524)(HOST=db-nodo-pagamenti.u.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCA_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
-#    jdbc:oracle:thin:@db-nodo-pagamenti.u.db-nodo-pagamenti.com:1524/NDPSPCA_PP_NODO4_CFG
-    ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1524)(HOST=db-nodo-pagamenti-prf.u.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCST_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
+#    jdbc:oracle:thin:@db-nodo-pagamenti-prf.u.db-nodo-pagamenti.com:1524/NDPSPCST
+    ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1524)(HOST=db-nodo-pagamenti-prf.u.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCST))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
     #   DST
