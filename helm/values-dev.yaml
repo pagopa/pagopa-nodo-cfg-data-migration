@@ -75,8 +75,8 @@ microservice-chart:
     #    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG" #NEXI
 
     #    PAGOPA
-#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa:6432/nodo-replica?sslmode=require&prepareThreshold=0&currentSchema=cfg"
-    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa.it:6432/nodo-replica?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa.it:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_USERNAME: "cfg"
     POSTGRESQL_DEFAULT_SCHEMA: "cfg"
     POSTGRESQL_JDBC_BATCH_SIZE: '30'
