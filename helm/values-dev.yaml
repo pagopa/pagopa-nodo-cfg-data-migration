@@ -4,7 +4,7 @@ microservice-chart:
   fullnameOverride: ""
   image:
     repository: ghcr.io/pagopa/pagopa-nodo-cfg-data-migration
-    tag: "1.0.1-9-nexi-conf"
+    tag: "1.0.1-10-nexi-conf"
     pullPolicy: Always
   livenessProbe:
     httpGet:
@@ -68,19 +68,13 @@ microservice-chart:
     ORACLEDB_CONNECTION_STRING: "jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=tcp)(PORT=1522)(HOST=db-nodo-pagamenti.d.db-nodo-pagamenti.com))(CONNECT_DATA=(SERVICE_NAME=NDPSPCT_PP_NODO4_CFG))(SO_KEEPALIVE=true)(TCP_KEEPIDLE=60)(TCP_KEEPINTVL=30)(TCP_KEEPCNT=15))"
     ORACLEDB_USERNAME: "NODO4_CFG"
     ORACLEDB_DEFAULT_SCHEMA: "NODO4_CFG"
-    #   DST
-    #   NEXI
-    #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://db-postgres-ndp.d.db-nodo-pagamenti.com:5444/ndpspct?prepareThreshold=0&currentSchema=NODO4_CFG" #NEXI
-    #    POSTGRESQL_USERNAME: "pp_nodo4_cfg" #NEXI
-    #    POSTGRESQL_DEFAULT_SCHEMA: "NODO4_CFG" #NEXI
-
     #    PAGOPA
-#    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa.it:6432/nodo-replica?sslmode=require&prepareThreshold=0&currentSchema=cfg"
+
+    #    POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa.it:6432/nodo-replica?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_CONNECTION_STRING: "jdbc:postgresql://nodo-db.d.internal.postgresql.pagopa.it:6432/nodo?sslmode=require&prepareThreshold=0&currentSchema=cfg"
     POSTGRESQL_USERNAME: "cfg"
     POSTGRESQL_DEFAULT_SCHEMA: "cfg"
     POSTGRESQL_JDBC_BATCH_SIZE: '30'
-
     DEFAULT_LOGGING_LEVEL: "INFO"
     APP_LOGGING_LEVEL: "INFO"
     SQL_LOGGING_LEVEL: "INFO"
