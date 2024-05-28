@@ -143,14 +143,14 @@ public class Stazioni {
     @Column(name = "VERSIONE_PRIMITIVE")
     private Integer versionePrimitive;
 
-    @Column(name = "PROTOCOLO_AVV")
-    private String protocollo4Avv;
+    @Column(name = "PROTOCOLLO_AVV")
+    private String protocolloAvv;
 
     @Column(name = "IP_AVV")
-    private String ip4Avv;
+    private String ipAvv;
 
     @Column(name = "PORTA_AVV")
-    private Long porta4Avv;
+    private Long portaAvv;
 
     @Column(name = "SERVIZIO_AVV")
     private String servizioAvv;
