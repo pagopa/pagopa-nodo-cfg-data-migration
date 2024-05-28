@@ -53,4 +53,7 @@ public class Iban {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkIban")
   @EqualsAndHashCode.Exclude
   private List<IbanMaster> ibanMasters;
+
+  @Column(name = "RAGIONE_SOCIALE")
+  private String ragioneSociale;
 }
