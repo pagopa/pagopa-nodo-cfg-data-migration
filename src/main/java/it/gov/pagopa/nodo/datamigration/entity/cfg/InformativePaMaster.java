@@ -41,4 +41,7 @@ public class InformativePaMaster {
     @Column(name = "PAGAMENTI_PRESSO_PSP")
     @Convert(converter = NumericBooleanConverter.class)
     private Boolean pagamentiPressoPsp;
+
+    @Column(name = "FK_ICA_BINARY_FILE")
+    private Long fkIcaBinaryFile;
 }

@@ -58,4 +58,10 @@ public class CdiMaster {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "fkCdiMaster", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     private List<CdiDetail> cdiDetail;
+
+    @Column(name = "URL_INFORMATIVA_PSP")
+    private String urlInformativaPsp;
+
+    @Column(name = "URL_CONVENZIONI_PSP")
+    private String urlConvenzioniPsp;
 }

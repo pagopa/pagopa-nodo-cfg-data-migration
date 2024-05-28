@@ -98,4 +98,8 @@ public class CanaliNodo {
     @Convert(converter = YesNoConverter.class)
     @Column(name = "FLAG_TRAVASO", nullable = false)
     private Boolean flagPspCp = false;
+
+    @Column(name = "FLAG_STANDIN")
+    @Convert(converter = YesNoConverter.class)
+    private Boolean flagStandin;
 }
