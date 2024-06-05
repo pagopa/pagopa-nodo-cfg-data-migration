@@ -64,4 +64,7 @@ public class Pa {
 
     @Column(name = "DESCRIZIONE")
     private String description;
+
+    @Column(name = "CBILL")
+    private String cbill;
 }

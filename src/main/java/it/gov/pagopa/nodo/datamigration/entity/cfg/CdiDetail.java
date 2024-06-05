@@ -40,4 +40,7 @@ public class CdiDetail {
     @Column(name = "LOGO_SERVIZIO")
     @ToString.Exclude
     private byte[] logoServizio;
+
+    @Column(name = "CANALE_APP")
+    private Long canaleApp;
 }

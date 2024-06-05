@@ -142,4 +142,23 @@ public class Stazioni {
 
     @Column(name = "VERSIONE_PRIMITIVE")
     private Integer versionePrimitive;
+
+    @Column(name = "PROTOCOLLO_AVV")
+    private String protocolloAvv;
+
+    @Column(name = "IP_AVV")
+    private String ipAvv;
+
+    @Column(name = "PORTA_AVV")
+    private Long portaAvv;
+
+    @Column(name = "SERVIZIO_AVV")
+    private String servizioAvv;
+
+    @Column(name = "TIMEOUT")
+    private Long timeout;
+
+    @Column(name = "FLAG_STANDIN")
+    @Convert(converter = YesNoConverter.class)
+    private Boolean flagStandin;
 }

@@ -127,7 +127,7 @@ class ExecuteCodifichePATableMigrationStepTest {
     @Test
     void getNextState() {
         StepName nextState = migrationStep.getNextState();
-        assertEquals(StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION, nextState);
+        assertEquals(StepName.EXECUTE_IBAN_TABLE_MIGRATION, nextState);
     }
 
     @Test

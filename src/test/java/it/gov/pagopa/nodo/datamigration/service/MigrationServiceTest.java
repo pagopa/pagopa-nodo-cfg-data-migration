@@ -72,6 +72,11 @@ class MigrationServiceTest {
                 .codifiche(new DataMigrationStatus())
                 .codifichePa(new DataMigrationStatus())
                 .binaryFile(new DataMigrationStatus())
+                .iban(new DataMigrationStatus())
+                .ibanAttributes(new DataMigrationStatus())
+                .ibanAttributesMaster(new DataMigrationStatus())
+                .ibanMaster(new DataMigrationStatus())
+                .icaBinaryFile(new DataMigrationStatus())
                 .informativeContoAccreditoMaster(new DataMigrationStatus())
                 .informativeContoAccreditoDetail(new DataMigrationStatus())
                 .informativePaMaster(new DataMigrationStatus())
@@ -117,6 +122,11 @@ class MigrationServiceTest {
         details.put("CODIFICHE", getTableMigrationStatus(dataMigrationDetails.getCodifiche()));
         details.put("CODIFICHE_PA", getTableMigrationStatus(dataMigrationDetails.getCodifichePa()));
         details.put("BINARY_FILE", getTableMigrationStatus(dataMigrationDetails.getBinaryFile()));
+        details.put("IBAN", getTableMigrationStatus(dataMigrationDetails.getIban()));
+        details.put("IBAN_ATTRIBUTES", getTableMigrationStatus(dataMigrationDetails.getIbanAttributes()));
+        details.put("IBAN_ATTRIBUTES_MASTER", getTableMigrationStatus(dataMigrationDetails.getIbanAttributesMaster()));
+        details.put("IBAN_MASTER", getTableMigrationStatus(dataMigrationDetails.getIbanMaster()));
+        details.put("ICA_BINARY_FILE", getTableMigrationStatus(dataMigrationDetails.getIcaBinaryFile()));
         details.put("INFORMATIVE_CONTO_ACCREDITO_MASTER", getTableMigrationStatus(dataMigrationDetails.getInformativeContoAccreditoMaster()));
         details.put("INFORMATIVE_CONTO_ACCREDITO_DETAIL", getTableMigrationStatus(dataMigrationDetails.getInformativeContoAccreditoDetail()));
         details.put("INFORMATIVE_PA_MASTER", getTableMigrationStatus(dataMigrationDetails.getInformativePaMaster()));
