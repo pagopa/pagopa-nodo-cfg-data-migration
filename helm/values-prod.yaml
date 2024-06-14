@@ -81,6 +81,7 @@ microservice-chart:
     SQL_BINDER_LOGGING_LEVEL: "INFO"
     CORS_CONFIGURATION: '{"origins": ["*"], "methods": ["*"]}'
     OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.elastic-system.svc:4317"
+    JAVA_OPTS: "-XX:MaxHeapSize=2g"
     # Variables for define batch size for all steps
     STEP_BINARYFILE_BATCH_SIZE: '100'
     STEP_CANALETIPOVERSAMENTO_BATCH_SIZE: '1000'
