@@ -53,8 +53,7 @@ public class StartStep extends Step {
 
     @Override
     public StepName getNextState() {
-        //return StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION;
-        return StepName.EXECUTE_BINARY_FILE_TABLE_MIGRATION;
+        return StepName.EXECUTE_QUADRATURE_SCHED_TABLE_MIGRATION;
     }
 
     @Override
@@ -220,6 +219,7 @@ public class StartStep extends Step {
             log.info(" - Deleted all data from QUADRATURE_SCHED. Ended deleting all previous data!.");
             log.info(" - Ended deleting all previous data!.");
              */
+            log.info(" - Skipped deletion of all previous data!.");
         } catch (DataAccessException e) {
             throw new MigrationTruncateAllTablesException(e);
         }
