@@ -22,6 +22,7 @@ microservice-chart:
     periodSeconds: 10
   deployment:
     create: true
+    replicas: 1
   service:
     create: true
     type: ClusterIP
@@ -124,6 +125,9 @@ microservice-chart:
     STEP_STAZIONI_BATCH_SIZE: '1000'
     STEP_TIPIVERSAMENTO_BATCH_SIZE: '1000'
     STEP_WFESPPLUGINCONF_BATCH_SIZE: '1000'
+  envFieldRef:
+    APP_NAME: "metadata.labels['app.kubernetes.io/instance']"
+    APP_VERSION: "metadata.labels['app.kubernetes.io/version']"
   envSecret:
     ORACLEDB_PASSWORD: 'oracle-db-cfg-password'
     #    POSTGRESQL_PASSWORD: 'db-nexi-cfg-password' # NEXI UAT
