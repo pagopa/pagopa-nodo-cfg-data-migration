@@ -1,4 +1,9 @@
+<h1>⚠️ Disclaimer: ⚠️<br>This repository is archived and no longer maintained by PagoPA.</h1>
+
+---
+
 # Nodo Data Migration
+
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pagopa-api-config-data-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=pagopa_pagopa-nodo-cfg-data-migration)
 
